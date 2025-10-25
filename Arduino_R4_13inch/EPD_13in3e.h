@@ -69,6 +69,10 @@
 
 
 void EPD_13IN3E_Init(void);
+void EPD_13IN3E_SendData2(const UBYTE *buf, uint32_t Len);
+void EPD_13IN3E_SendData(UBYTE Reg);
+void EPD_13IN3E_TurnOnDisplay(void);
+void EPD_13IN3E_CS_ALL(UBYTE Value);
 void EPD_13IN3E_Clear(UBYTE color);
 void EPD_13IN3E_SendCommand(UBYTE Reg);
 void EPD_13IN3E_Display(const UBYTE *Image);
