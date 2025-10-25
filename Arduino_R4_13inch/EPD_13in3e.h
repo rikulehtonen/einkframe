@@ -70,6 +70,7 @@
 
 void EPD_13IN3E_Init(void);
 void EPD_13IN3E_Clear(UBYTE color);
+void EPD_13IN3E_SendCommand(UBYTE Reg);
 void EPD_13IN3E_Display(const UBYTE *Image);
 void EPD_13IN3E_DisplayPart(const UBYTE *Image, UWORD xstart, UWORD ystart, UWORD image_width, UWORD image_heigh);
 void EPD_13IN3E_Show6Block(void);

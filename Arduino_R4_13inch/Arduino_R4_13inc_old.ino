@@ -1,7 +1,7 @@
 #include "EPD_13in3e.h"
 #include "GUI_Paint.h"
-#include "fonts.h"
-#include "ImageData.h"
+#include <SPI.h>
+#include <SD.h>
 
 void setup() {
     Debug("EPD_13IN3E_test Demo\r\n");
