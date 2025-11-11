@@ -49,11 +49,11 @@
 #define EPD_SCK_PIN     18 // Updated
 #define EPD_MOSI_PIN    23 // Updated
 #define EPD_CS_M_PIN    2
-#define EPD_CS_S_PIN    5
-#define EPD_RST_PIN     10
-#define EPD_DC_PIN      13
-#define EPD_BUSY_PIN    9
-#define EPD_PWR_PIN     27
+#define EPD_CS_S_PIN    13
+#define EPD_DC_PIN      14
+#define EPD_RST_PIN     0
+#define EPD_BUSY_PIN    26
+#define EPD_PWR_PIN     25
 
 
 
