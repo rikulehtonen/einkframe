@@ -42,11 +42,11 @@ void setup() {
     Serial.begin(115200);
 
     #ifdef REASSIGN_PINS
-    SPI.begin(sck, miso, mosi, cs);
-    if (!SD.begin(cs)) {
-        Serial.println("Card Mount Failed");
-        return;
-    }
+        SPI.begin(sck, miso, mosi, cs);
+        if (!SD.begin(cs)) {
+            Serial.println("Card Mount Failed");
+            return;
+        }
     #else
     if (!SD.begin(cs)) {
         Serial.println("Card Mount Failed");
@@ -57,8 +57,7 @@ void setup() {
     // Get and print the next file
     String nextFile = getNextFile();
     Serial.printf("Processing file: %s\n", nextFile.c_str());
-
-    
+    render("/" + nextFile);
 }
 
 void listDir(fs::FS &fs, const char *dirname, uint8_t levels) {
@@ -174,6 +173,78 @@ String getNextFile() {
     return file_name;
 }
 
-void loop() {
-    // ...existing code...
+void render(String file_name){
+    
+    Debug("EPD_13IN3E_test Demo\r\n");
+    DEV_Module_Init();
+
+    Debug("e-Paper Init and Clear...\r\n");
+    //EPD_13IN3E_Init();
+    //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+    //DEV_Delay_ms(500);
+
+    // unsigned long j, k;
+    unsigned char const Color_seven[6] = 
+    {EPD_13IN3E_BLACK, EPD_13IN3E_YELLOW, EPD_13IN3E_RED, EPD_13IN3E_BLUE, EPD_13IN3E_GREEN, EPD_13IN3E_WHITE};
+
+    // re-open the file for reading:
+    File myFile = SD.open(file_name, FILE_READ);
+    if (myFile) {
+
+
+        UDOUBLE Width, Height;
+        UBYTE Color;
+        Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
+        Height = EPD_13IN3E_HEIGHT;
+        Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
+        
+        UBYTE buf[Width/2];
+        
+        for (UDOUBLE j = 0; j < Width/2; j++) {
+            buf[j] = Color;
+        }
+
+        UDOUBLE n = 0;
+        while (myFile.available() && n < Height*2) {
+
+            for (UDOUBLE j = 0; j < Width/2; j++) {
+                if (myFile.available()) {
+                    buf[j] = myFile.read();
+                }
+                buf[j] = Color;
+            }
+            
+            // Print the buffer contents
+            Serial.print("Buffer contents: ");
+            for (UDOUBLE j = 0; j < Width/2; j++) {
+                Serial.printf("0x%02X ", buf[j]);
+            }
+            Serial.println();
+
+            //if (n%2) { DEV_Digital_Write(EPD_CS_M_PIN, 0); }
+            //else { DEV_Digital_Write(EPD_CS_S_PIN, 0); }
+            //EPD_13IN3E_SendCommand(0x10);
+            //EPD_13IN3E_SendData2(buf, Width/2);
+            //EPD_13IN3E_CS_ALL(1);
+            n+=1;
+        }
+
+        // close the file:
+        myFile.close();
+        // Render image to the display
+        //EPD_13IN3E_TurnOnDisplay();
+    } else {
+        // if the file didn't open, print an error:
+        Debug("error opening image\r\n");
+    }
+
+    Debug("Goto Sleep...\r\n");
+    EPD_13IN3E_Sleep();
+    DEV_Delay_ms(2000);
+
+    // close 5V
+    Debug("close 5V, Module enters 0 power consumption ...\r\n");
+    DEV_Module_Exit();
 }
+
+void loop() {}
