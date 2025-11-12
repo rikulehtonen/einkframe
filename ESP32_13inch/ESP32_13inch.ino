@@ -1,8 +1,29 @@
+/*
+ * SD Card Connections:
+ * pin 1 - not used          |  Micro SD card     |
+ * pin 2 - CS (SS)           |                   /
+ * pin 3 - DI (MOSI)         |                  |__
+ * pin 4 - VDD (3.3V)        |                    |
+ * pin 5 - SCK (SCLK)        | 8 7 6 5 4 3 2 1   /
+ * pin 6 - VSS (GND)         | ▄ ▄ ▄ ▄ ▄ ▄ ▄ ▄  /
+ * pin 7 - DO (MISO)         | ▀ ▀ █ ▀ █ ▀ ▀ ▀ |
+ * pin 8 - not used          |_________________|
+ * 
+ * Note: Use `SPI.begin(sck, miso, mosi, cs)` to manually configure SPI pins.
+ */
+
 #include "EPD_13in3e.h"
 #include "GUI_Paint.h"
 #include "FS.h"
 #include "SD.h"
 #include "SPI.h"
+
+// Uncomment and set up if you want to use custom pins for the SPI communication
+#define REASSIGN_PINS
+int sck = 18;
+int miso = 19;
+int mosi = 23;
+int cs = 12;
 
 File myFile;
 
@@ -17,46 +38,95 @@ UBYTE bmpColorToEPD(uint8_t r, uint8_t g, uint8_t b) {
     return EPD_13IN3E_WHITE; // fallback
 }
 
-//Uncomment and set up if you want to use custom pins for the SPI communication
-#define REASSIGN_PINS
-int sck = 18;
-int miso = 19;
-int mosi = 23;
-int cs = 12;
-
 void setup() {
+    Serial.begin(115200);
 
-    //while (!Serial) {
-    //    ; // wait for serial port to connect. Needed for native USB port only
-    //}
-	Serial.begin(115200);
-
-    Serial.print("Initializing SD card...");
-
+    #ifdef REASSIGN_PINS
     SPI.begin(sck, miso, mosi, cs);
     if (!SD.begin(cs)) {
-        Debug("initialization failed!");
+        Serial.println("Card Mount Failed");
         return;
     }
-    Debug("initialization done.");
+    #else
+    if (!SD.begin(cs)) {
+        Serial.println("Card Mount Failed");
+        return;
+    }
+    #endif
 
+    // Get and print the next file
+    String nextFile = getNextFile();
+    Serial.printf("Processing file: %s\n", nextFile.c_str());
 
-    String file_name = getNextFile();
-    Serial.println(file_name);
-    //render(file_name);
-    //Serial.println("Sleeping");
-    delay(1000UL * 60 * 4);
-    //Serial.println("Sleeping complete");
-
+    
 }
 
+void listDir(fs::FS &fs, const char *dirname, uint8_t levels) {
+    Serial.printf("Listing directory: %s\n", dirname);
+
+    File root = fs.open(dirname);
+    if (!root) {
+        Serial.println("Failed to open directory");
+        return;
+    }
+    if (!root.isDirectory()) {
+        Serial.println("Not a directory");
+        return;
+    }
+
+    File file = root.openNextFile();
+    while (file) {
+        if (file.isDirectory()) {
+            Serial.print("  DIR : ");
+            Serial.println(file.name());
+            if (levels) {
+                listDir(fs, file.name(), levels - 1);
+            }
+        } else {
+            Serial.print("  FILE: ");
+            Serial.print(file.name());
+            Serial.print("  SIZE: ");
+            Serial.println(file.size());
+        }
+        file = root.openNextFile();
+    }
+}
+
+void readFile(fs::FS &fs, const char *path) {
+    Serial.printf("Reading file: %s\n", path);
+    File file = fs.open(path);
+    if (!file) {
+        Serial.println("Failed to open file for reading");
+        return;
+    }
+    Serial.print("Read from file: ");
+    while (file.available()) {
+        Serial.write(file.read());
+    }
+    file.close();
+}
+
+void writeFile(fs::FS &fs, const char *path, const char *message) {
+    Serial.printf("Writing file: %s\n", path);
+    File file = fs.open(path, FILE_WRITE);
+    if (!file) {
+        Serial.println("Failed to open file for writing");
+        return;
+    }
+    if (file.print(message)) {
+        Serial.println("File written");
+    } else {
+        Serial.println("Write failed");
+    }
+    file.close();
+}
 
 String getNextFile() {
     int config_index = 0;
     String file_name = "";
 
     // Read index from config.txt
-    File myFile = SD.open("config.txt", FILE_READ);
+    File myFile = SD.open("/config.txt", FILE_READ);
     if (myFile) {
         String index_string = "";
         while (myFile.available()) {
@@ -65,11 +135,11 @@ String getNextFile() {
         myFile.close();
         config_index = index_string.toInt();
     } else {
-        Serial.println("error opening config.txt");
+        Serial.println("Error opening config.txt for reading");
     }
 
     // Open files list
-    myFile = SD.open("config.txt", FILE_READ);
+    myFile = SD.open("/files.txt", FILE_READ);
     if (myFile) {
         int current_file_index = 0;
         while (myFile.available() && current_file_index <= config_index) {
@@ -86,21 +156,24 @@ String getNextFile() {
 
         myFile.close();
     } else {
-        Serial.println("error opening files.txt");
+        Serial.println("Error opening files.txt");
     }
 
     // Write back updated index
-    SD.remove("config.txt");
-    myFile = SD.open("config.txt", FILE_WRITE);
+    SD.remove("/config.txt");
+    myFile = SD.open("/config.txt", FILE_WRITE);
     if (myFile) {
         myFile.print(config_index);
         myFile.close();
     } else {
-        Serial.println("error opening config.txt for write");
+        Serial.println("Error opening config.txt for writing");
     }
 
+    // Print the next file name
+    Serial.printf("Next file: %s\n", file_name.c_str());
     return file_name;
 }
 
-
-void loop() { }
+void loop() {
+    // ...existing code...
+}
