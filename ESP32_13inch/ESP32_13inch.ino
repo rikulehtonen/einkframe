@@ -183,12 +183,27 @@ void render(String file_name){
     //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
     //DEV_Delay_ms(500);
 
+    EPD_13IN3E_CS_ALL(0);
+
     // unsigned long j, k;
     unsigned char const Color_seven[6] = 
     {EPD_13IN3E_BLACK, EPD_13IN3E_YELLOW, EPD_13IN3E_RED, EPD_13IN3E_BLUE, EPD_13IN3E_GREEN, EPD_13IN3E_WHITE};
 
+    // Read index from config.txt
+    File myFile = SD.open("/config.txt", FILE_READ);
+    if (myFile) {
+        String index_string = "";
+        while (myFile.available()) {
+            index_string += (char)myFile.read();
+        }
+        myFile.close();
+        int config_index = index_string.toInt();
+    } else {
+        Serial.println("Error opening config.txt for reading");
+    }
+
     // re-open the file for reading:
-    File myFile = SD.open(file_name, FILE_READ);
+    myFile = SD.open(file_name, FILE_READ);
     if (myFile) {
 
 
@@ -221,6 +236,7 @@ void render(String file_name){
             }
             Serial.println();
 
+            //EPD_13IN3E_CS_ALL(1);
             //if (n%2) { DEV_Digital_Write(EPD_CS_M_PIN, 0); }
             //else { DEV_Digital_Write(EPD_CS_S_PIN, 0); }
             //EPD_13IN3E_SendCommand(0x10);
