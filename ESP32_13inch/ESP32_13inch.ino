@@ -54,6 +54,21 @@ void setup() {
     }
     #endif
 
+    pinMode(EPD_BUSY_PIN,  INPUT);
+    pinMode(EPD_RST_PIN, OUTPUT);
+    pinMode(EPD_DC_PIN, OUTPUT);
+    pinMode(EPD_PWR_PIN,  OUTPUT);
+
+    //pinMode(EPD_SCK_PIN, OUTPUT);
+    //pinMode(EPD_MOSI_PIN, OUTPUT);
+    pinMode(EPD_CS_M_PIN , OUTPUT);
+    pinMode(EPD_CS_S_PIN , OUTPUT);
+
+    digitalWrite(EPD_CS_M_PIN , HIGH);
+    digitalWrite(EPD_CS_S_PIN , HIGH);
+    digitalWrite(EPD_SCK_PIN, LOW);
+    digitalWrite(EPD_PWR_PIN , HIGH);
+
     // Get and print the next file
     String nextFile = getNextFile();
     Serial.printf("Processing file: %s\n", nextFile.c_str());
@@ -176,7 +191,7 @@ String getNextFile() {
 void render(String file_name){
     
     Debug("EPD_13IN3E_test Demo\r\n");
-    DEV_Module_Init();
+    //DEV_Module_Init();
 
     Debug("e-Paper Init and Clear...\r\n");
     //EPD_13IN3E_Init();
@@ -188,19 +203,6 @@ void render(String file_name){
     // unsigned long j, k;
     unsigned char const Color_seven[6] = 
     {EPD_13IN3E_BLACK, EPD_13IN3E_YELLOW, EPD_13IN3E_RED, EPD_13IN3E_BLUE, EPD_13IN3E_GREEN, EPD_13IN3E_WHITE};
-
-    // Read index from config.txt
-    File myFile = SD.open("/config.txt", FILE_READ);
-    if (myFile) {
-        String index_string = "";
-        while (myFile.available()) {
-            index_string += (char)myFile.read();
-        }
-        myFile.close();
-        int config_index = index_string.toInt();
-    } else {
-        Serial.println("Error opening config.txt for reading");
-    }
 
     // re-open the file for reading:
     myFile = SD.open(file_name, FILE_READ);
@@ -230,18 +232,18 @@ void render(String file_name){
             }
             
             // Print the buffer contents
-            Serial.print("Buffer contents: ");
-            for (UDOUBLE j = 0; j < Width/2; j++) {
-                Serial.printf("0x%02X ", buf[j]);
-            }
-            Serial.println();
+            //Serial.print("Buffer contents: ");
+            //for (UDOUBLE j = 0; j < Width/2; j++) {
+            //    Serial.printf("0x%02X ", buf[j]);
+            //}
+            //Serial.println();
 
-            //EPD_13IN3E_CS_ALL(1);
-            //if (n%2) { DEV_Digital_Write(EPD_CS_M_PIN, 0); }
-            //else { DEV_Digital_Write(EPD_CS_S_PIN, 0); }
-            //EPD_13IN3E_SendCommand(0x10);
-            //EPD_13IN3E_SendData2(buf, Width/2);
-            //EPD_13IN3E_CS_ALL(1);
+            EPD_13IN3E_CS_ALL(0);
+            if (n%2) { DEV_Digital_Write(EPD_CS_S_PIN, 1); }
+            else { DEV_Digital_Write(EPD_CS_M_PIN, 1); }
+            EPD_13IN3E_SendCommand(0x10);
+            EPD_13IN3E_SendData2(buf, Width/2);
+            EPD_13IN3E_CS_ALL(0);
             n+=1;
         }
 
