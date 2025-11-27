@@ -78,6 +78,7 @@ void EPD_13IN3E_CS_ALL(UBYTE Value);
 void EPD_13IN3E_DisplayPart(const UBYTE *Image, UWORD xstart, UWORD ystart, UWORD image_width, UWORD image_heigh);
 void EPD_13IN3E_Show6Block(void);
 void EPD_13IN3E_Sleep(void);
+void EPD_13IN3E_SendCommand(UBYTE Reg);
 
 // Declare the EPD_13IN3E_CS_ALL function
 // void EPD_13IN3E_CS_ALL(unsigned char state);

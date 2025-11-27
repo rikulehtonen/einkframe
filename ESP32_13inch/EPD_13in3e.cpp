@@ -131,7 +131,7 @@ parameter:
      Reg : Command register
 ******************************************************************************/
 
-static void EPD_13IN3E_SendCommand(UBYTE Reg)
+void EPD_13IN3E_SendCommand(UBYTE Reg)
 {
     DEV_SPI_WriteByte(Reg);
 }
