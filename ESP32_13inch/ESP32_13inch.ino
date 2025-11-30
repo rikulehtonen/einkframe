@@ -194,8 +194,8 @@ void render(String file_name){
     //DEV_Module_Init();
 
     Debug("e-Paper Init and Clear...\r\n");
-    //EPD_13IN3E_Init();
-    //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+    EPD_13IN3E_Init();
+    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
     //DEV_Delay_ms(500);
 
     EPD_13IN3E_CS_ALL(0);
@@ -228,7 +228,6 @@ void render(String file_name){
                 if (myFile.available()) {
                     buf[j] = myFile.read();
                 }
-                buf[j] = Color;
             }
             
             // Print the buffer contents
@@ -250,7 +249,7 @@ void render(String file_name){
         // close the file:
         myFile.close();
         // Render image to the display
-        //EPD_13IN3E_TurnOnDisplay();
+        EPD_13IN3E_TurnOnDisplay();
     } else {
         // if the file didn't open, print an error:
         Debug("error opening image\r\n");
