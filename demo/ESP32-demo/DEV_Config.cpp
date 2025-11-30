@@ -32,21 +32,19 @@
 void GPIO_Config(void)
 {
     
-    
-
     pinMode(EPD_BUSY_PIN,  INPUT);
     pinMode(EPD_RST_PIN , OUTPUT);
     pinMode(EPD_DC_PIN  , OUTPUT);
     pinMode(EPD_PWR_PIN,  OUTPUT);
 
-    pinMode(EPD_SCK_PIN, OUTPUT);
-    pinMode(EPD_MOSI_PIN, OUTPUT);
+    //pinMode(EPD_SCK_PIN, OUTPUT);
+    //pinMode(EPD_MOSI_PIN, OUTPUT);
     pinMode(EPD_CS_M_PIN , OUTPUT);
     pinMode(EPD_CS_S_PIN , OUTPUT);
 
     digitalWrite(EPD_CS_M_PIN , HIGH);
     digitalWrite(EPD_CS_S_PIN , HIGH);
-    digitalWrite(EPD_SCK_PIN, LOW);
+    //digitalWrite(EPD_SCK_PIN, LOW);
     digitalWrite(EPD_PWR_PIN , HIGH);
 }
 
