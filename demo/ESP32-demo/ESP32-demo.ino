@@ -25,22 +25,17 @@ int cs = 12;
 File myFile;
 
 void setup() {
-    Debug("EPD_13IN3E_test Demo\r\n");
-
-
-    DEV_Module_Init();
-    Debug("e-Paper Init and Clear...\r\n");
-    EPD_13IN3E_Init();
-    //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
-    DEV_Delay_ms(500);
-
 
     //digitalWrite(EPD_CS_M_PIN , LOW);
     //digitalWrite(EPD_CS_S_PIN , LOW);
     // Get and print the next file
-    //SPI.begin(sck, miso, mosi, cs);
 
-    SPI.begin(sck, miso, mosi, cs);
+    Debug("EPD_13IN3E_test Demo\r\n");
+    DEV_Module_Init();
+    Debug("e-Paper Init...\r\n");
+    EPD_13IN3E_Init();
+
+    SPI.begin(sck, miso, mosi);
     if (!SD.begin(cs)) {
         Serial.println("Card Mount Failed");
         return;
@@ -49,14 +44,16 @@ void setup() {
     // Get and print the next file
     String nextFile = getNextFile();
     Serial.printf("Processing file: %s\n", nextFile.c_str());
-    SPI.begin(sck, miso, mosi, cs);
 
-    
     EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
     DEV_Delay_ms(500);
 
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
+
+    // Get and print the next file
+    nextFile = getNextFile();
+    Serial.printf("Processing file: %s\n", nextFile.c_str());
 
     // close 5V
     Debug("close 5V, Module enters 0 power consumption ...\r\n");
