@@ -20,20 +20,19 @@ UBYTE bmpColorToEPD(uint8_t r, uint8_t g, uint8_t b) {
 int sck = 18;
 int miso = 19;
 int mosi = 23;
-int cs = 12;
+int cs = 12; // SD card CS
+
+int eink_cs_m = 2;   // EINK Master CS (from DEV_Config.h)
+int eink_cs_s = 13;  // EINK Slave CS (from DEV_Config.h)
 
 File myFile;
 
 void setup() {
-
-    //digitalWrite(EPD_CS_M_PIN , LOW);
-    //digitalWrite(EPD_CS_S_PIN , LOW);
-    // Get and print the next file
+    // Ensure all CS pins are HIGH before SPI begin
 
     Debug("EPD_13IN3E_test Demo\r\n");
     DEV_Module_Init();
-    Debug("e-Paper Init...\r\n");
-    EPD_13IN3E_Init();
+
 
     SPI.begin(sck, miso, mosi);
     if (!SD.begin(cs)) {
@@ -45,16 +44,38 @@ void setup() {
     String nextFile = getNextFile();
     Serial.printf("Processing file: %s\n", nextFile.c_str());
 
-    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
-    DEV_Delay_ms(500);
+    // Read index from config.txt
+    File myFile = SD.open("/" + nextFile, FILE_READ);
+    if (myFile) {
+        String index_string = "";
+        while (myFile.available()) {
+            index_string += (char)myFile.read();
+
+            Debug(index_string);
+
+            Debug("EPD_13IN3E_test Demo\r\n");
+            DEV_Module_Init();
+            Debug("e-Paper Init...\r\n");
+            EPD_13IN3E_Init();
+
+            pinMode(cs, OUTPUT);
+            pinMode(eink_cs_m, OUTPUT);
+            pinMode(eink_cs_s, OUTPUT);
+            digitalWrite(cs, HIGH);
+            digitalWrite(eink_cs_m, LOW);
+            digitalWrite(eink_cs_s, LOW);
+            EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+
+        }
+        myFile.close();
+    } else {
+        Serial.println("Error opening config.txt for reading");
+    }
+
+
 
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
-
-    // Get and print the next file
-    nextFile = getNextFile();
-    Serial.printf("Processing file: %s\n", nextFile.c_str());
-
     // close 5V
     Debug("close 5V, Module enters 0 power consumption ...\r\n");
     DEV_Module_Exit();

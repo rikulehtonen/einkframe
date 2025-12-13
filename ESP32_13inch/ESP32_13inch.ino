@@ -19,7 +19,6 @@
 #include "SPI.h"
 
 // Uncomment and set up if you want to use custom pins for the SPI communication
-#define REASSIGN_PINS
 int sck = 18;
 int miso = 19;
 int mosi = 23;
@@ -39,100 +38,20 @@ UBYTE bmpColorToEPD(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 void setup() {
-    Serial.begin(115200);
 
-    #ifdef REASSIGN_PINS
-        SPI.begin(sck, miso, mosi, cs);
-        if (!SD.begin(cs)) {
-            Serial.println("Card Mount Failed");
-            return;
-        }
-    #else
+    Debug("EPD_13IN3E_test Demo\r\n");
+    DEV_Module_Init();
+
+    SPI.begin(sck, miso, mosi);
     if (!SD.begin(cs)) {
         Serial.println("Card Mount Failed");
         return;
     }
-    #endif
-
-    pinMode(EPD_BUSY_PIN,  INPUT);
-    pinMode(EPD_RST_PIN, OUTPUT);
-    pinMode(EPD_DC_PIN, OUTPUT);
-    pinMode(EPD_PWR_PIN,  OUTPUT);
-
-    //pinMode(EPD_SCK_PIN, OUTPUT);
-    //pinMode(EPD_MOSI_PIN, OUTPUT);
-    pinMode(EPD_CS_M_PIN , OUTPUT);
-    pinMode(EPD_CS_S_PIN , OUTPUT);
-
-    digitalWrite(EPD_CS_M_PIN , HIGH);
-    digitalWrite(EPD_CS_S_PIN , HIGH);
-    digitalWrite(EPD_SCK_PIN, LOW);
-    digitalWrite(EPD_PWR_PIN , HIGH);
 
     // Get and print the next file
     String nextFile = getNextFile();
     Serial.printf("Processing file: %s\n", nextFile.c_str());
     render("/" + nextFile);
-}
-
-void listDir(fs::FS &fs, const char *dirname, uint8_t levels) {
-    Serial.printf("Listing directory: %s\n", dirname);
-
-    File root = fs.open(dirname);
-    if (!root) {
-        Serial.println("Failed to open directory");
-        return;
-    }
-    if (!root.isDirectory()) {
-        Serial.println("Not a directory");
-        return;
-    }
-
-    File file = root.openNextFile();
-    while (file) {
-        if (file.isDirectory()) {
-            Serial.print("  DIR : ");
-            Serial.println(file.name());
-            if (levels) {
-                listDir(fs, file.name(), levels - 1);
-            }
-        } else {
-            Serial.print("  FILE: ");
-            Serial.print(file.name());
-            Serial.print("  SIZE: ");
-            Serial.println(file.size());
-        }
-        file = root.openNextFile();
-    }
-}
-
-void readFile(fs::FS &fs, const char *path) {
-    Serial.printf("Reading file: %s\n", path);
-    File file = fs.open(path);
-    if (!file) {
-        Serial.println("Failed to open file for reading");
-        return;
-    }
-    Serial.print("Read from file: ");
-    while (file.available()) {
-        Serial.write(file.read());
-    }
-    file.close();
-}
-
-void writeFile(fs::FS &fs, const char *path, const char *message) {
-    Serial.printf("Writing file: %s\n", path);
-    File file = fs.open(path, FILE_WRITE);
-    if (!file) {
-        Serial.println("Failed to open file for writing");
-        return;
-    }
-    if (file.print(message)) {
-        Serial.println("File written");
-    } else {
-        Serial.println("Write failed");
-    }
-    file.close();
 }
 
 String getNextFile() {
@@ -190,15 +109,7 @@ String getNextFile() {
 
 void render(String file_name){
     
-    Debug("EPD_13IN3E_test Demo\r\n");
-    //DEV_Module_Init();
-
-    Debug("e-Paper Init and Clear...\r\n");
-    EPD_13IN3E_Init();
-    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
-    //DEV_Delay_ms(500);
-
-    EPD_13IN3E_CS_ALL(0);
+    //EPD_13IN3E_CS_ALL(0);
 
     // unsigned long j, k;
     unsigned char const Color_seven[6] = 
@@ -221,6 +132,13 @@ void render(String file_name){
             buf[j] = Color;
         }
 
+        Debug("EPD_13IN3E_test Demo\r\n");
+        DEV_Module_Init();
+        Debug("e-Paper Init...\r\n");
+        EPD_13IN3E_Init();
+        EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+        //DEV_Delay_ms(500);
+
         UDOUBLE n = 0;
         while (myFile.available() && n < Height*2) {
 
@@ -231,11 +149,11 @@ void render(String file_name){
             }
             
             // Print the buffer contents
-            //Serial.print("Buffer contents: ");
-            //for (UDOUBLE j = 0; j < Width/2; j++) {
-            //    Serial.printf("0x%02X ", buf[j]);
-            //}
-            //Serial.println();
+            Serial.print("Buffer contents: ");
+            for (UDOUBLE j = 0; j < Width/2; j++) {
+                Serial.printf("0x%02X ", buf[j]);
+            }
+            Serial.println();
 
             EPD_13IN3E_CS_ALL(0);
             if (n%2) { DEV_Digital_Write(EPD_CS_S_PIN, 1); }
