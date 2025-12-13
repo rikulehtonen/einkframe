@@ -127,47 +127,53 @@ void render(String file_name){
         Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
         
         UBYTE buf[Width/2];
-        
         for (UDOUBLE j = 0; j < Width/2; j++) {
             buf[j] = Color;
         }
 
-        Debug("EPD_13IN3E_test Demo\r\n");
-        DEV_Module_Init();
-        Debug("e-Paper Init...\r\n");
-        EPD_13IN3E_Init();
-        EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
-        //DEV_Delay_ms(500);
+        //DEV_Module_Init();
+        Debug("EPD_13IN3E \r\n");
 
         UDOUBLE n = 0;
         while (myFile.available() && n < Height*2) {
 
+            Serial.println(n);
             for (UDOUBLE j = 0; j < Width/2; j++) {
                 if (myFile.available()) {
                     buf[j] = myFile.read();
+                } else {
+                    Serial.println("File not available");
+                    break;
                 }
             }
             
             // Print the buffer contents
-            Serial.print("Buffer contents: ");
-            for (UDOUBLE j = 0; j < Width/2; j++) {
-                Serial.printf("0x%02X ", buf[j]);
+            if(true) {
+                Serial.print("Buffer contents: ");
+                for (UDOUBLE j = 0; j < Width/2; j++) {
+                    Serial.printf("0x%02X ", buf[j]);
+                }
+                Serial.println();
             }
-            Serial.println();
 
-            EPD_13IN3E_CS_ALL(0);
-            if (n%2) { DEV_Digital_Write(EPD_CS_S_PIN, 1); }
-            else { DEV_Digital_Write(EPD_CS_M_PIN, 1); }
+            //Serial.println("Sending to screen");
+            if(n == 0) {
+                DEV_Module_Init();
+                EPD_13IN3E_Init();
+            }
+            EPD_13IN3E_CS_ALL(1);
+            if (n%2) { DEV_Digital_Write(EPD_CS_S_PIN, 0); }
+            else { DEV_Digital_Write(EPD_CS_M_PIN, 0); }
             EPD_13IN3E_SendCommand(0x10);
             EPD_13IN3E_SendData2(buf, Width/2);
-            EPD_13IN3E_CS_ALL(0);
+            EPD_13IN3E_CS_ALL(1);
             n+=1;
         }
 
+        EPD_13IN3E_TurnOnDisplay();
+        Serial.println("Done");
         // close the file:
         myFile.close();
-        // Render image to the display
-        EPD_13IN3E_TurnOnDisplay();
     } else {
         // if the file didn't open, print an error:
         Debug("error opening image\r\n");
