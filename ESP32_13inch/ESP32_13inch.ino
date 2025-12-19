@@ -107,90 +107,8 @@ String getNextFile() {
     return file_name;
 }
 
-void render(String file_name){
-    
-    //EPD_13IN3E_CS_ALL(0);
 
-    // unsigned long j, k;
-    unsigned char const Color_seven[6] = 
-    {EPD_13IN3E_BLACK, EPD_13IN3E_YELLOW, EPD_13IN3E_RED, EPD_13IN3E_BLUE, EPD_13IN3E_GREEN, EPD_13IN3E_WHITE};
 
-    // re-open the file for reading:
-    myFile = SD.open(file_name, FILE_READ);
-    if (myFile) {
-
-        UDOUBLE Width, Height;
-        UBYTE Color;
-        Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
-        Height = EPD_13IN3E_HEIGHT;
-        Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
-        
-        UBYTE buf[Width/2];
-        for (UDOUBLE j = 0; j < Width/2; j++) {
-            buf[j] = Color;
-        }
-
-        //DEV_Module_Init();
-        Debug("EPD_13IN3E \r\n");
-        DEV_Module_Init();
-        EPD_13IN3E_Init();
-        UDOUBLE n = 0;
-        while (myFile.available() && n < Height) {
-
-            Serial.println(n);
-            for (UDOUBLE j = 0; j < Width/2; j++) {
-                 if (myFile.available()) {
-                     buf[j] = myFile.read();
-                 } else {
-                     Serial.println("File not available");
-                     break;
-                 }
-            }
-            
-            // // Print the buffer contents
-            // if(n % 100 == 0) {
-            //     Serial.print("Buffer contents: ");
-            //     for (UDOUBLE j = 0; j < Width/2; j++) {
-            //         Serial.printf("0x%02X ", buf[j]);
-            //     }
-            //     Serial.println();
-            // }
-
-            for (UDOUBLE j = 0; j < Width/2; j++) {
-                buf[j] = Color_seven[n%5];
-            }
-
-            Serial.println("Sending to screen");
-            if(n == 0) {
-            }
-            // EPD_13IN3E_CS_ALL(0);
-            // if (n%2) { DEV_Digital_Write(EPD_CS_S_PIN, 1); }
-            // else { DEV_Digital_Write(EPD_CS_M_PIN, 1); }
-            // EPD_13IN3E_SendCommand(0x10);
-            // EPD_13IN3E_SendData2(buf, Width/2);
-            // DEV_Delay_ms(1);
-            // EPD_13IN3E_CS_ALL(0);
-            n+=1;
-        }
-
-        EPD_13IN3E_Clear(EPD_13IN3E_RED);
-        EPD_13IN3E_TurnOnDisplay();
-        Serial.println("Done");
-        // close the file:
-        myFile.close();
-    } else {
-        // if the file didn't open, print an error:
-        Debug("error opening image\r\n");
-    }
-
-    Debug("Goto Sleep...\r\n");
-    EPD_13IN3E_Sleep();
-    DEV_Delay_ms(2000);
-
-    // close 5V
-    Debug("close 5V, Module enters 0 power consumption ...\r\n");
-    DEV_Module_Exit();
-}
 
 void render2(String file_name){
     
@@ -200,8 +118,8 @@ void render2(String file_name){
     unsigned char const Color_seven[6] = 
     {EPD_13IN3E_BLACK, EPD_13IN3E_YELLOW, EPD_13IN3E_RED, EPD_13IN3E_BLUE, EPD_13IN3E_GREEN, EPD_13IN3E_WHITE};
 
-    DEV_Module_Init();
-    EPD_13IN3E_Init();
+    myFile = SD.open(file_name, FILE_READ);
+
     UDOUBLE Width, Height;
     UBYTE Color;
     Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
@@ -213,14 +131,39 @@ void render2(String file_name){
     for (UDOUBLE j = 0; j < Width/2; j++) {
         buf[j] = Color;
     }
-    
-    DEV_Digital_Write(EPD_CS_M_PIN, 0);
-    EPD_13IN3E_SendCommand(0x10);
+
+    //DEV_Digital_Write(EPD_CS_M_PIN, 0);
+    //EPD_13IN3E_SendCommand(0x10);
+    //EPD_13IN3E_CS_ALL(1);
+
     for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
-        EPD_13IN3E_SendData2(buf, Width/2);
-        DEV_Delay_ms(1);
+        if(myFile.available()) {
+            for (UDOUBLE i = 0; i < Width/2; i++) {
+                buf[i] = myFile.read();
+            }  
+            // Print the buffer contents
+            if (true) {
+                Serial.print("Buffer contents: ");
+                for (UDOUBLE j = 0; j < Width/2; j++) {
+                    Serial.printf("0x%02X ", buf[j]);
+                }
+                Serial.println();
+            }
+        } else {
+            Serial.println("FAILED");
+        }
+
+
+        //DEV_Digital_Write(EPD_CS_M_PIN, 0);
+        //EPD_13IN3E_SendData2(buf, Width/2);
+        //DEV_Digital_Write(EPD_CS_M_PIN, 1);
+        //DEV_Delay_ms(1);
     }
     EPD_13IN3E_CS_ALL(1);
+
+
+    DEV_Module_Init();
+    EPD_13IN3E_Init();
 
     DEV_Digital_Write(EPD_CS_S_PIN, 0);
     EPD_13IN3E_SendCommand(0x10);

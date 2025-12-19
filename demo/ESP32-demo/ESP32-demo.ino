@@ -80,27 +80,27 @@ void setup() {
     //Debug("e-Paper Init...\r\n");
     EPD_13IN3E_Init();
     pinMode(cs, OUTPUT);
-    pinMode(eink_cs_m, OUTPUT);
-    pinMode(eink_cs_s, OUTPUT);
-    digitalWrite(cs, HIGH);
-    digitalWrite(eink_cs_m, LOW);
-    digitalWrite(eink_cs_s, LOW);
     EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
 
-
-    if(myFile.available()) {
-        for (UDOUBLE j = 0; j < Width/2; j++) {
-            buf[j] = myFile.read();
-        }  
-        // Print the buffer contents
-        Serial.print("Buffer contents: ");
-        for (UDOUBLE j = 0; j < Width/2; j++) {
-            Serial.printf("0x%02X ", buf[j]);
+    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
+        if(myFile.available()) {
+            for (UDOUBLE j = 0; j < Width/2; j++) {
+                buf[j] = myFile.read();
+            }  
+            // Print the buffer contents
+            Serial.print("Buffer contents: ");
+            for (UDOUBLE j = 0; j < Width/2; j++) {
+                Serial.printf("0x%02X ", buf[j]);
+            }
+            Serial.println();
+        } else {
+            Serial.println("FAILED");
         }
-        Serial.println();
-    } else {
-        Serial.println("FAILED");
     }
+
+
+    pinMode(cs, OUTPUT);
+    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);    
 
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
