@@ -30,6 +30,8 @@ File myFile;
 void setup() {
     // Ensure all CS pins are HIGH before SPI begin
 
+    Serial.begin(115200);
+
     UDOUBLE Width, Height;
     UBYTE Color;
     Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
@@ -42,13 +44,19 @@ void setup() {
     }
 
     Debug("EPD_13IN3E_test Demo\r\n");
-    DEV_Module_Init();
 
+    // Initialize EPD then (re)initialise hardware SPI and mount the SD card
+    DEV_Module_Init();
+    EPD_13IN3E_Init();
+    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);  
+
+    // Ensure SPI is using the intended pins for SD and then mount SD
     SPI.begin(sck, miso, mosi);
     if (!SD.begin(cs)) {
         Serial.println("Card Mount Failed");
         return;
     }
+    Serial.println("SD card mounted");
 
     // Get and print the next file
     String nextFile = getNextFile();
@@ -59,30 +67,7 @@ void setup() {
     File myFile = SD.open("/" + nextFile, FILE_READ);
     UDOUBLE j = 0;
 
-    if(myFile.available()) {
-        for (UDOUBLE j = 0; j < Width/2; j++) {
-            buf[j] = myFile.read();
-        }
-            
-        // Print the buffer contents
-        Serial.print("Buffer contents: ");
-        for (UDOUBLE j = 0; j < Width/2; j++) {
-            Serial.printf("0x%02X ", buf[j]);
-        }
-        Serial.println();
-    } else {
-        Serial.println("FAILED");
-    }
-
-
-    //Debug("EPD_13IN3E_test Demo\r\n");
-    DEV_Module_Init();
-    //Debug("e-Paper Init...\r\n");
-    EPD_13IN3E_Init();
-    pinMode(cs, OUTPUT);
-    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
-
-    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
+    for (UDOUBLE j = 0; j < 20; j++) {
         if(myFile.available()) {
             for (UDOUBLE j = 0; j < Width/2; j++) {
                 buf[j] = myFile.read();
@@ -98,9 +83,8 @@ void setup() {
         }
     }
 
-
-    pinMode(cs, OUTPUT);
-    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);    
+    //digitalWrite(cs, HIGH);
+    //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);    
 
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
