@@ -1,7 +1,10 @@
 #include "EPD_13in3e.h"
-#include "GUI_Paint.h"
-#include "fonts.h"
-#include "ImageData.h"
+// #include "GUI_Paint.h"
+// #include "fonts.h"
+// #include "ImageData.h"
+#include "Debug.h"
+#include "DEV_Config.h"
+
 #include "FS.h"
 #include "SD.h"
 #include "SPI.h"
@@ -51,12 +54,12 @@ void setup() {
     EPD_13IN3E_Clear(EPD_13IN3E_WHITE);  
 
     // Ensure SPI is using the intended pins for SD and then mount SD
-    SPI.begin(sck, miso, mosi);
     if (!SD.begin(cs)) {
         Serial.println("Card Mount Failed");
-        return;
     }
-    Serial.println("SD card mounted");
+    else {
+        Serial.println("SD card mounted");
+    }
 
     // Get and print the next file
     String nextFile = getNextFile();
@@ -83,8 +86,10 @@ void setup() {
         }
     }
 
-    //digitalWrite(cs, HIGH);
-    //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);    
+    myFile.close();
+
+    Debug("Clearing\r\n");
+    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
 
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
