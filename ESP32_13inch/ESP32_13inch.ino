@@ -25,7 +25,7 @@
 int sck = 18;
 int miso = 19;
 int mosi = 23;
-int cs = 12;
+int cs = 17;
 
 File myFile;
 
@@ -42,10 +42,12 @@ UBYTE bmpColorToEPD(uint8_t r, uint8_t g, uint8_t b) {
 
 void setup() {
     Serial.begin(115200);
+    DEV_Module_Init();
+    SPI.begin(sck, miso, mosi);
+    EPD_13IN3E_Init();
+    DEV_Delay_ms(3000);
     Debug("EPD_13IN3E_test Demo\r\n");
 
-    DEV_Module_Init();
-    EPD_13IN3E_Init();
 
     if (!SD.begin(cs)) {
         Serial.println("Card Mount Failed");
@@ -54,7 +56,7 @@ void setup() {
         // Get and print the next file
         String nextFile = getNextFile();
         Serial.printf("Processing file: %s\n", nextFile.c_str());
-        render("/" + nextFile);
+        render("/test.bin");
     }
 
     Debug("Goto Sleep...\r\n");
@@ -147,7 +149,8 @@ void render(String file_name){
         if(myFile.available()) {
             for (UDOUBLE i = 0; i < Width/2; i++) {
                 buf[i] = myFile.read();
-            }  
+                //buf[i] = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
+            }
             // Print the buffer contents
             if (j % 100 == 0) {
                 Serial.print("Buffer contents: ");
@@ -158,6 +161,7 @@ void render(String file_name){
             }
             if (j % 2 == 0) {
                 EPD_13IN3E_SendData2(buf, Width/2);
+                DEV_Delay_ms(1);
             }
 
         } else {
@@ -175,7 +179,8 @@ void render(String file_name){
         if(myFile.available()) {
             for (UDOUBLE i = 0; i < Width/2; i++) {
                 buf[i] = myFile.read();
-            }  
+                //buf[i] = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
+            }
             // Print the buffer contents
             if (j % 100 == 0) {
                 Serial.print("Buffer contents: ");
