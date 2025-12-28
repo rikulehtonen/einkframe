@@ -13,7 +13,10 @@
  */
 
 #include "EPD_13in3e.h"
-#include "GUI_Paint.h"
+//#include "GUI_Paint.h"
+#include "Debug.h"
+#include "DEV_Config.h"
+
 #include "FS.h"
 #include "SD.h"
 #include "SPI.h"
@@ -38,20 +41,28 @@ UBYTE bmpColorToEPD(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 void setup() {
-
+    Serial.begin(115200);
     Debug("EPD_13IN3E_test Demo\r\n");
-    DEV_Module_Init();
 
-    SPI.begin(sck, miso, mosi);
+    DEV_Module_Init();
+    EPD_13IN3E_Init();
+
     if (!SD.begin(cs)) {
         Serial.println("Card Mount Failed");
-        return;
+    }
+    else {
+        // Get and print the next file
+        String nextFile = getNextFile();
+        Serial.printf("Processing file: %s\n", nextFile.c_str());
+        render("/" + nextFile);
     }
 
-    // Get and print the next file
-    String nextFile = getNextFile();
-    Serial.printf("Processing file: %s\n", nextFile.c_str());
-    render2("/" + nextFile);
+    Debug("Goto Sleep...\r\n");
+    EPD_13IN3E_Sleep();
+    DEV_Delay_ms(2000);
+    // close 5V
+    Debug("close 5V, Module enters 0 power consumption ...\r\n");
+    DEV_Module_Exit();
 }
 
 String getNextFile() {
@@ -108,9 +119,7 @@ String getNextFile() {
 }
 
 
-
-
-void render2(String file_name){
+void render(String file_name){
     
     //EPD_13IN3E_CS_ALL(0);
 
@@ -118,73 +127,78 @@ void render2(String file_name){
     unsigned char const Color_seven[6] = 
     {EPD_13IN3E_BLACK, EPD_13IN3E_YELLOW, EPD_13IN3E_RED, EPD_13IN3E_BLUE, EPD_13IN3E_GREEN, EPD_13IN3E_WHITE};
 
-    myFile = SD.open(file_name, FILE_READ);
-
     UDOUBLE Width, Height;
     UBYTE Color;
     Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
     Height = EPD_13IN3E_HEIGHT;
     Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
     
-    UBYTE buf[Width/2];
+    UBYTE buf[Width];
     
-    for (UDOUBLE j = 0; j < Width/2; j++) {
+    for (UDOUBLE j = 0; j < Width; j++) {
         buf[j] = Color;
     }
 
-    //DEV_Digital_Write(EPD_CS_M_PIN, 0);
-    //EPD_13IN3E_SendCommand(0x10);
-    //EPD_13IN3E_CS_ALL(1);
 
+    DEV_Digital_Write(EPD_CS_M_PIN, 0);
+    EPD_13IN3E_SendCommand(0x10);
+    myFile = SD.open(file_name, FILE_READ);
     for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
         if(myFile.available()) {
-            for (UDOUBLE i = 0; i < Width/2; i++) {
+            for (UDOUBLE i = 0; i < Width; i++) {
                 buf[i] = myFile.read();
             }  
             // Print the buffer contents
-            if (true) {
+            if (j % 100 == 0) {
                 Serial.print("Buffer contents: ");
-                for (UDOUBLE j = 0; j < Width/2; j++) {
-                    Serial.printf("0x%02X ", buf[j]);
+                for (UDOUBLE k = 0; k < Width; k++) {
+                    Serial.printf("0x%02X ", buf[k]);
                 }
                 Serial.println();
             }
+            if (j % 2 == 0) {
+                EPD_13IN3E_SendData2(buf, Width);
+            }
+
         } else {
             Serial.println("FAILED");
         }
-
-
-        //DEV_Digital_Write(EPD_CS_M_PIN, 0);
-        //EPD_13IN3E_SendData2(buf, Width/2);
-        //DEV_Digital_Write(EPD_CS_M_PIN, 1);
-        //DEV_Delay_ms(1);
     }
     EPD_13IN3E_CS_ALL(1);
 
 
-    DEV_Module_Init();
-    EPD_13IN3E_Init();
 
     DEV_Digital_Write(EPD_CS_S_PIN, 0);
-    EPD_13IN3E_SendCommand(0x10);
+    EPD_13IN3E_SendCommand(0x10);    
+    myFile = SD.open(file_name, FILE_READ);
     for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
-        EPD_13IN3E_SendData2(buf, Width/2);
-        DEV_Delay_ms(1);
+        if(myFile.available()) {
+            for (UDOUBLE i = 0; i < Width; i++) {
+                buf[i] = myFile.read();
+            }  
+            // Print the buffer contents
+            if (j % 100 == 0) {
+                Serial.print("Buffer contents: ");
+                for (UDOUBLE k = 0; k < Width; k++) {
+                    Serial.printf("0x%02X ", buf[k]);
+                }
+                Serial.println();
+            }
+            if (j % 2 != 0) {
+                EPD_13IN3E_SendData2(buf, Width);
+                DEV_Delay_ms(1);
+            }
+
+        } else {
+            Serial.println("FAILED");
+        }
     }
     EPD_13IN3E_CS_ALL(1);
-    
+
+
     EPD_13IN3E_TurnOnDisplay();
+    myFile.close();
     Serial.println("Done");
-
-
-
-    Debug("Goto Sleep...\r\n");
-    EPD_13IN3E_Sleep();
-    DEV_Delay_ms(2000);
-
-    // close 5V
-    Debug("close 5V, Module enters 0 power consumption ...\r\n");
-    DEV_Module_Exit();
 }
 
 void loop() {}

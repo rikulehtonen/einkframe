@@ -102,11 +102,7 @@ void EPD_13IN3E_CS_ALL(UBYTE Value)
 
 static void EPD_13IN3E_SPI_Sand(UBYTE Cmd, const UBYTE *buf, UDOUBLE Len)
 {
-    /* Command -> DC = LOW */
-    DEV_Digital_Write(EPD_DC_PIN, GPIO_PIN_RESET);
     DEV_SPI_WriteByte(Cmd);
-    /* Data -> DC = HIGH */
-    DEV_Digital_Write(EPD_DC_PIN, GPIO_PIN_SET);
     DEV_SPI_Write_nByte((UBYTE *)buf,Len);
 }
 
@@ -137,7 +133,6 @@ parameter:
 
 void EPD_13IN3E_SendCommand(UBYTE Reg)
 {
-    DEV_Digital_Write(EPD_DC_PIN, GPIO_PIN_RESET);
     DEV_SPI_WriteByte(Reg);
 }
 
@@ -148,12 +143,10 @@ parameter:
 ******************************************************************************/
 void EPD_13IN3E_SendData(UBYTE Reg)
 {
-    DEV_Digital_Write(EPD_DC_PIN, GPIO_PIN_SET);
     DEV_SPI_WriteByte(Reg);
 }
 void EPD_13IN3E_SendData2(const UBYTE *buf, uint32_t Len)
 {
-    DEV_Digital_Write(EPD_DC_PIN, GPIO_PIN_SET);
     DEV_SPI_Write_nByte((UBYTE *)buf,Len);
 }
 
