@@ -133,31 +133,31 @@ void render(String file_name){
     Height = EPD_13IN3E_HEIGHT;
     Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
     
-    UBYTE buf[Width];
+    UBYTE buf[Width/2];
     
-    for (UDOUBLE j = 0; j < Width; j++) {
-        buf[j] = Color;
+    for (UDOUBLE j = 0; j < Width/2; j++) {
+        buf[Width/2] = Color;
     }
 
 
     DEV_Digital_Write(EPD_CS_M_PIN, 0);
     EPD_13IN3E_SendCommand(0x10);
     myFile = SD.open(file_name, FILE_READ);
-    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
+    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT*2; j++) {
         if(myFile.available()) {
-            for (UDOUBLE i = 0; i < Width; i++) {
+            for (UDOUBLE i = 0; i < Width/2; i++) {
                 buf[i] = myFile.read();
             }  
             // Print the buffer contents
             if (j % 100 == 0) {
                 Serial.print("Buffer contents: ");
-                for (UDOUBLE k = 0; k < Width; k++) {
+                for (UDOUBLE k = 0; k < Width/2; k++) {
                     Serial.printf("0x%02X ", buf[k]);
                 }
                 Serial.println();
             }
             if (j % 2 == 0) {
-                EPD_13IN3E_SendData2(buf, Width);
+                EPD_13IN3E_SendData2(buf, Width/2);
             }
 
         } else {
@@ -171,21 +171,21 @@ void render(String file_name){
     DEV_Digital_Write(EPD_CS_S_PIN, 0);
     EPD_13IN3E_SendCommand(0x10);    
     myFile = SD.open(file_name, FILE_READ);
-    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
+    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT*2; j++) {
         if(myFile.available()) {
-            for (UDOUBLE i = 0; i < Width; i++) {
+            for (UDOUBLE i = 0; i < Width/2; i++) {
                 buf[i] = myFile.read();
             }  
             // Print the buffer contents
             if (j % 100 == 0) {
                 Serial.print("Buffer contents: ");
-                for (UDOUBLE k = 0; k < Width; k++) {
+                for (UDOUBLE k = 0; k < Width/2; k++) {
                     Serial.printf("0x%02X ", buf[k]);
                 }
                 Serial.println();
             }
             if (j % 2 != 0) {
-                EPD_13IN3E_SendData2(buf, Width);
+                EPD_13IN3E_SendData2(buf, Width/2);
                 DEV_Delay_ms(1);
             }
 
