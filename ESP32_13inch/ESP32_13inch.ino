@@ -29,17 +29,6 @@ int cs = 17;
 
 File myFile;
 
-// Convert RGB to nearest supported e-paper color
-UBYTE bmpColorToEPD(uint8_t r, uint8_t g, uint8_t b) {
-    if (r < 50 && g < 50 && b < 50) return EPD_13IN3E_BLACK;     // black
-    if (r > 200 && g > 200 && b > 200) return EPD_13IN3E_WHITE;  // white
-    if (r > 200 && g > 200 && b < 80) return EPD_13IN3E_YELLOW;  // yellow
-    if (r > 200 && g < 80 && b < 80) return EPD_13IN3E_RED;      // red
-    if (r < 80 && g < 80 && b > 200) return EPD_13IN3E_BLUE;     // blue
-    if (r < 80 && g > 200 && b < 80) return EPD_13IN3E_GREEN;    // green
-    return EPD_13IN3E_WHITE; // fallback
-}
-
 void setup() {
     Serial.begin(115200);
     DEV_Module_Init();
@@ -129,43 +118,47 @@ void render(String file_name){
     unsigned char const Color_seven[6] = 
     {EPD_13IN3E_BLACK, EPD_13IN3E_YELLOW, EPD_13IN3E_RED, EPD_13IN3E_BLUE, EPD_13IN3E_GREEN, EPD_13IN3E_WHITE};
 
-    UDOUBLE Width, Height;
+    UDOUBLE Width, Height, Half_Width;
     UBYTE Color;
     Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
+    Half_Width = Width/2;
     Height = EPD_13IN3E_HEIGHT;
-    Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
+    Color = (EPD_13IN3E_RED<<4)|EPD_13IN3E_RED;
     
-    UBYTE buf[Width/2];
-    
-    for (UDOUBLE j = 0; j < Width/2; j++) {
-        buf[Width/2] = Color;
+    UBYTE *buf = (UBYTE *)malloc(Half_Width);
+    if (!buf) {
+        Serial.println("Failed to allocate buffer");
+        return;
     }
-
+    
+    for (UDOUBLE j = 0; j < Half_Width; j++) buf[j] = Color;
 
     DEV_Digital_Write(EPD_CS_M_PIN, 0);
     EPD_13IN3E_SendCommand(0x10);
-    myFile = SD.open(file_name, FILE_READ);
-    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT*2; j++) {
-        if(myFile.available()) {
-            for (UDOUBLE i = 0; i < Width/2; i++) {
-                buf[i] = myFile.read();
-                //buf[i] = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
-            }
+    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
+        // Open the file for each read and close it afterwards (per request)
+        File f = SD.open(file_name, FILE_READ);
+        if (f) {
+            // Seek to the proper offset for this chunk
+            unsigned long offset = (unsigned long)(j * (UDOUBLE)Half_Width);
+            f.seek(offset);
+            // Read exactly sendSize bytes into our buffer (bufCap >= sendSize)
+            size_t bytesRead = f.read(buf, Half_Width);
             // Print the buffer contents
             if (j % 100 == 0) {
                 Serial.print("Buffer contents: ");
-                for (UDOUBLE k = 0; k < Width/2; k++) {
-                    Serial.printf("0x%02X ", buf[k]);
-                }
+                for (size_t k = 0; k < Half_Width; k++) Serial.printf("0x%02X ", buf[k]);
                 Serial.println();
             }
+            f.close();
+            DEV_Delay_ms(10);
             if (j % 2 == 0) {
-                EPD_13IN3E_SendData2(buf, Width/2);
+                EPD_13IN3E_SendData2(buf, bytesRead);
                 DEV_Delay_ms(1);
             }
-
+            if (bytesRead < Half_Width) break;
         } else {
-            Serial.println("FAILED");
+            Serial.println("FAILED_OPEN");
         }
     }
     EPD_13IN3E_CS_ALL(1);
@@ -178,8 +171,8 @@ void render(String file_name){
     for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT*2; j++) {
         if(myFile.available()) {
             for (UDOUBLE i = 0; i < Width/2; i++) {
-                buf[i] = myFile.read();
-                //buf[i] = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
+                //buf[i] = myFile.read();
+                buf[i] = Color;
             }
             // Print the buffer contents
             if (j % 100 == 0) {
@@ -202,7 +195,7 @@ void render(String file_name){
 
 
     EPD_13IN3E_TurnOnDisplay();
-    myFile.close();
+    free(buf);
     Serial.println("Done");
 }
 
