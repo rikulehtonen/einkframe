@@ -93,7 +93,7 @@ const UBYTE TFT_VCOM_POWER_V[1] = {
 };
 
 
-static void EPD_13IN3E_CS_ALL(UBYTE Value)
+void EPD_13IN3E_CS_ALL(UBYTE Value)
 {
     DEV_Digital_Write(EPD_CS_M_PIN, Value);
     DEV_Digital_Write(EPD_CS_S_PIN, Value);
@@ -131,7 +131,7 @@ parameter:
      Reg : Command register
 ******************************************************************************/
 
-static void EPD_13IN3E_SendCommand(UBYTE Reg)
+void EPD_13IN3E_SendCommand(UBYTE Reg)
 {
     DEV_SPI_WriteByte(Reg);
 }
@@ -141,11 +141,11 @@ function :	send data
 parameter:
     Data : Write data
 ******************************************************************************/
-static void EPD_13IN3E_SendData(UBYTE Reg)
+void EPD_13IN3E_SendData(UBYTE Reg)
 {
     DEV_SPI_WriteByte(Reg);
 }
-static void EPD_13IN3E_SendData2(const UBYTE *buf, uint32_t Len)
+void EPD_13IN3E_SendData2(const UBYTE *buf, uint32_t Len)
 {
     DEV_SPI_Write_nByte((UBYTE *)buf,Len);
 }
@@ -170,7 +170,7 @@ static void EPD_13IN3E_ReadBusyH(void)
 function :  Turn On Display
 parameter:
 ******************************************************************************/
-static void EPD_13IN3E_TurnOnDisplay(void)
+void EPD_13IN3E_TurnOnDisplay(void)
 {
     printf("Write PON \r\n");
     EPD_13IN3E_CS_ALL(0);
