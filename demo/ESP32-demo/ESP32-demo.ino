@@ -57,12 +57,12 @@ void setup() {
     UDOUBLE n = 0;
     // Read index from config.txt
     File f = SD.open("/test.bin", FILE_READ);
-    UBYTE buf[Width*10];
+    UBYTE buf[Width/2];
 
     if(f.available()) {
-        size_t bytesRead = f.read(buf, Width*10);
+        size_t bytesRead = f.read(buf, Width/2);
         Serial.print("Buffer contents: ");
-        for (UDOUBLE i = 0; i < Width*10; i++) {
+        for (UDOUBLE i = 0; i < Width/2; i++) {
             Serial.printf("0x%02X ", buf[i]);
         }
         Serial.println();
@@ -75,10 +75,12 @@ void setup() {
     DEV_Digital_Write(EPD_CS_M_PIN, 0);
     EPD_13IN3E_SendCommand(0x10);
 
-    for (UDOUBLE j = 0; j < 1; j++) {
+    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
         if(true) {
-            EPD_13IN3E_SendData2(buf, Width*10);
-                
+            
+            
+            
+            EPD_13IN3E_SendData2(buf, Width/2);
             DEV_Delay_ms(5);
         //Print the buffer contents
             if(j % 100 == 0) {
