@@ -9,16 +9,6 @@
 #include "SD.h"
 #include "SPI.h"
 
-UBYTE bmpColorToEPD(uint8_t r, uint8_t g, uint8_t b) {
-    if (r < 50 && g < 50 && b < 50) return EPD_13IN3E_BLACK;     // black
-    if (r > 200 && g > 200 && b > 200) return EPD_13IN3E_WHITE;  // white
-    if (r > 200 && g > 200 && b < 80) return EPD_13IN3E_YELLOW;  // yellow
-    if (r > 200 && g < 80 && b < 80) return EPD_13IN3E_RED;      // red
-    if (r < 80 && g < 80 && b > 200) return EPD_13IN3E_BLUE;     // blue
-    if (r < 80 && g > 200 && b < 80) return EPD_13IN3E_GREEN;    // green
-    return EPD_13IN3E_WHITE; // fallback
-}
-
 // Uncomment and set up if you want to use custom pins for the SPI communication
 int sck = 18;
 int miso = 19;
@@ -39,44 +29,61 @@ void setup() {
     UBYTE Color;
     Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
     Height = EPD_13IN3E_HEIGHT;
-    Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
+    Color = (EPD_13IN3E_RED<<4)|EPD_13IN3E_RED;
 
     Debug("EPD_13IN3E_test Demo\r\n");
 
-    // Initialize EPD then (re)initialise hardware SPI and mount the SD card
+        // Initialize EPD then (re)initialise hardware SPI and mount the SD card
     DEV_Module_Init();
     EPD_13IN3E_Init();
     EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
 
+
     if (!SD.begin(cs)) {
         Serial.println("Card Mount Failed");
+
+        Debug("Goto Sleep...\r\n");
+        EPD_13IN3E_Sleep();
+        // close 5V
+        Debug("close 5V, Module enters 0 power consumption ...\r\n");
+        DEV_Module_Exit();
+        return;
     }
     else {
         Serial.println("SD card mounted");
     }
 
-    // Get and print the next file
-    String nextFile = getNextFile();
-    Serial.printf("Processing file: %s\n", nextFile.c_str());
 
     UDOUBLE n = 0;
     // Read index from config.txt
     File f = SD.open("/test.bin", FILE_READ);
-    UDOUBLE j = 0;
-    UBYTE *buf = (UBYTE *)malloc(Width);
+    UBYTE buf[Width*10];
 
-    DEV_Digital_Write(EPD_CS_S_PIN, 0);
+    if(f.available()) {
+        size_t bytesRead = f.read(buf, Width*10);
+        Serial.print("Buffer contents: ");
+        for (UDOUBLE i = 0; i < Width*10; i++) {
+            Serial.printf("0x%02X ", buf[i]);
+        }
+        Serial.println();
+    } else {
+        Serial.println("FAILED");
+    }
+
+
+
+    DEV_Digital_Write(EPD_CS_M_PIN, 0);
     EPD_13IN3E_SendCommand(0x10);
 
-    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
-        if(f.available()) {
-            size_t bytesRead = f.read(buf, Width);
-            EPD_13IN3E_SendData2(buf, bytesRead);
-            DEV_Delay_ms(50);
-            // Print the buffer contents
+    for (UDOUBLE j = 0; j < 1; j++) {
+        if(true) {
+            EPD_13IN3E_SendData2(buf, Width*10);
+                
+            DEV_Delay_ms(5);
+        //Print the buffer contents
             if(j % 100 == 0) {
                 Serial.print("Buffer contents: ");
-                for (UDOUBLE i = 0; i < Width; i++) {
+                for (UDOUBLE i = 0; i < Width/2; i++) {
                     Serial.printf("0x%02X ", buf[i]);
                 }
                 Serial.println();
@@ -89,7 +96,6 @@ void setup() {
     EPD_13IN3E_CS_ALL(1);
 
     f.close();
-    free(buf);
 
     EPD_13IN3E_TurnOnDisplay();
 
@@ -100,61 +106,6 @@ void setup() {
     DEV_Module_Exit();
 }
 
-
-
-
-String getNextFile() {
-    int config_index = 0;
-    String file_name = "";
-
-    // Read index from config.txt
-    File myFile = SD.open("/config.txt", FILE_READ);
-    if (myFile) {
-        String index_string = "";
-        while (myFile.available()) {
-            index_string += (char)myFile.read();
-        }
-        myFile.close();
-        config_index = index_string.toInt();
-    } else {
-        Serial.println("Error opening config.txt for reading");
-    }
-
-    // Open files list
-    myFile = SD.open("/files.txt", FILE_READ);
-    if (myFile) {
-        int current_file_index = 0;
-        while (myFile.available() && current_file_index <= config_index) {
-            file_name = myFile.readStringUntil(',');
-            current_file_index++;
-        }
-
-        // If we've reached the end, wrap around
-        if (!myFile.available()) {
-            config_index = 0;
-        } else {
-            config_index++;
-        }
-
-        myFile.close();
-    } else {
-        Serial.println("Error opening files.txt");
-    }
-
-    // Write back updated index
-    SD.remove("/config.txt");
-    myFile = SD.open("/config.txt", FILE_WRITE);
-    if (myFile) {
-        myFile.print(config_index);
-        myFile.close();
-    } else {
-        Serial.println("Error opening config.txt for writing");
-    }
-
-    // Print the next file name
-    Serial.printf("Next file: %s\n", file_name.c_str());
-    return file_name;
-}
 
 void loop() {
 
