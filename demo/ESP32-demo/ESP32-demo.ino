@@ -36,7 +36,7 @@ void setup() {
         // Initialize EPD then (re)initialise hardware SPI and mount the SD card
     DEV_Module_Init();
     EPD_13IN3E_Init();
-    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+    //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
 
 
     if (!SD.begin(cs)) {
@@ -56,11 +56,11 @@ void setup() {
 
     UDOUBLE n = 0;
     // Read index from config.txt
-    File f = SD.open("/test.bin", FILE_READ);
-    UBYTE buf[Width/2];
+    File f = SD.open("/1a.bin", FILE_READ);
+    UBYTE buf[Width*50];
 
     if(f.available()) {
-        size_t bytesRead = f.read(buf, Width/2);
+        size_t bytesRead = f.read(buf, Width*50);
         Serial.print("Buffer contents: ");
         for (UDOUBLE i = 0; i < Width/2; i++) {
             Serial.printf("0x%02X ", buf[i]);
@@ -74,16 +74,16 @@ void setup() {
 
     DEV_Digital_Write(EPD_CS_M_PIN, 0);
     EPD_13IN3E_SendCommand(0x10);
-
+    //size_t bytesRead = f.read(buf, Width/2);
     for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
         if(true) {
-            
-            
-            
-            EPD_13IN3E_SendData2(buf, Width/2);
+
+            //size_t bytesRead = f.read(buf, Width/2);
+            EPD_13IN3E_SendData2(buf + (j%50)*Width, Width/2);
             DEV_Delay_ms(5);
-        //Print the buffer contents
-            if(j % 100 == 0) {
+            //Print the buffer contents
+            if(j % 25 == 0) {
+                size_t bytesRead = f.read(buf, Width*50);
                 Serial.print("Buffer contents: ");
                 for (UDOUBLE i = 0; i < Width/2; i++) {
                     Serial.printf("0x%02X ", buf[i]);
@@ -94,8 +94,9 @@ void setup() {
             Serial.println("FAILED");
         }
     }
-
     EPD_13IN3E_CS_ALL(1);
+
+
 
     f.close();
 
