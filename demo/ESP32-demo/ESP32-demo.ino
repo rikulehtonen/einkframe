@@ -25,11 +25,18 @@ void setup() {
 
     Serial.begin(115200);
 
-    UDOUBLE Width, Height;
+    UDOUBLE Width, Width1, Height;
     UBYTE Color;
     Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
+    Width1 = (Width % 2 == 0)? (Width / 2 ): (Width / 2 + 1);
     Height = EPD_13IN3E_HEIGHT;
-    Color = (EPD_13IN3E_RED<<4)|EPD_13IN3E_RED;
+    Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
+
+    UBYTE padding[Width1];
+    
+    for (UDOUBLE j = 0; j < Width/2; j++) {
+        padding[j] = Color;
+    }
 
     Debug("EPD_13IN3E_test Demo\r\n");
 
@@ -63,19 +70,11 @@ void setup() {
     // Read index from config.txt
     UBYTE *buf = (UBYTE *)ps_malloc((Width)*EPD_13IN3E_HEIGHT);
 
-    File f = SD.open("/1a.bin", FILE_READ);
-    int i = 0;
+    File f = SD.open("/4a.bin", FILE_READ);
     if(f.available()) {
-        size_t bytesRead = f.read(buf, Width*40);
         Serial.print("Buffer contents: ");
         for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
-            if(j % 2 == 0) {
-                size_t bytesRead = f.read(buf + i*Width, Width);
-                i++;
-            }
-            else {
-                f.seek((j+1)*Width);
-            }
+            size_t bytesRead = f.read(buf + j*Width, Width);
         }
         for (UDOUBLE i = 0; i < Width; i++) {
             Serial.printf("0x%02X ", buf[i]);
@@ -89,49 +88,17 @@ void setup() {
 
     DEV_Digital_Write(EPD_CS_M_PIN, 0);
     EPD_13IN3E_SendCommand(0x10);
-    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
-        if(true) {
-            EPD_13IN3E_SendData2(buf + j*Width, Width/2 );
-        } else {
-            Serial.println("FAILED");
-        }
+    for (UDOUBLE j=0; j<Height; j++) {
+        EPD_13IN3E_SendData2(buf + j*Width, Width1);
+        DEV_Delay_ms(1);
     }
     EPD_13IN3E_CS_ALL(1);
-    DEV_Delay_ms(1000);
-
-
-    f = SD.open("/1a.bin", FILE_READ);
-    i = 0;
-    if(f.available()) {
-        size_t bytesRead = f.read(buf, Width*40);
-        Serial.print("Buffer contents: ");
-        for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
-            if(j % 2 != 0) {
-                size_t bytesRead = f.read(buf + i*Width, Width);
-                i++;
-            }
-            else {
-                f.seek((j+1)*Width);
-            }
-        }
-        for (UDOUBLE i = 0; i < Width; i++) {
-            Serial.printf("0x%02X ", buf[i]);
-        }
-        Serial.println();
-    } else {
-        Serial.println("FAILED");
-    }
-    f.close();
-
 
     DEV_Digital_Write(EPD_CS_S_PIN, 0);
     EPD_13IN3E_SendCommand(0x10);
-    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
-        if(true) {
-            EPD_13IN3E_SendData2(buf + j*Width, Width/2);
-        } else {
-            Serial.println("FAILED");
-        }
+    for (UDOUBLE j=0; j<Height; j++) {
+        EPD_13IN3E_SendData2(buf + j*Width + Width1, Width1);
+        DEV_Delay_ms(1);
     }
     EPD_13IN3E_CS_ALL(1);
     DEV_Delay_ms(1000);
