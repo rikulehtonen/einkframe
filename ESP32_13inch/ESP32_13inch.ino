@@ -21,18 +21,20 @@
 #include "SD.h"
 #include "SPI.h"
 
+#define uS_TO_S_FACTOR 1000000ULL /* Conversion factor for micro seconds to seconds */
+#define TIME_TO_SLEEP  60*1          /* Time ESP32 will go to sleep (in seconds) */
+
 // Uncomment and set up if you want to use custom pins for the SPI communication
 int sck = 18;
 int miso = 19;
 int mosi = 23;
 int cs = 17;
 
-File myFile;
+File f;
 
 void setup() {
     Serial.begin(115200);
     DEV_Module_Init();
-    SPI.begin(sck, miso, mosi);
     EPD_13IN3E_Init();
     DEV_Delay_ms(3000);
     Debug("EPD_13IN3E_test Demo\r\n");
@@ -45,15 +47,22 @@ void setup() {
         // Get and print the next file
         String nextFile = getNextFile();
         Serial.printf("Processing file: %s\n", nextFile.c_str());
-        render("/test.bin");
+        render("/" + nextFile);
     }
 
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
-    DEV_Delay_ms(2000);
     // close 5V
     Debug("close 5V, Module enters 0 power consumption ...\r\n");
     DEV_Module_Exit();
+
+    //Deep sleep
+    esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
+    Serial.println("Setup ESP32 to sleep for every " + String(TIME_TO_SLEEP) + " Seconds");
+    Serial.println("Going to sleep now");
+    Serial.flush();
+    esp_deep_sleep_start();
+
 }
 
 String getNextFile() {
@@ -61,45 +70,45 @@ String getNextFile() {
     String file_name = "";
 
     // Read index from config.txt
-    File myFile = SD.open("/config.txt", FILE_READ);
-    if (myFile) {
+    File f = SD.open("/config.txt", FILE_READ);
+    if (f) {
         String index_string = "";
-        while (myFile.available()) {
-            index_string += (char)myFile.read();
+        while (f.available()) {
+            index_string += (char)f.read();
         }
-        myFile.close();
+        f.close();
         config_index = index_string.toInt();
     } else {
         Serial.println("Error opening config.txt for reading");
     }
 
     // Open files list
-    myFile = SD.open("/files.txt", FILE_READ);
-    if (myFile) {
+    f = SD.open("/files.txt", FILE_READ);
+    if (f) {
         int current_file_index = 0;
-        while (myFile.available() && current_file_index <= config_index) {
-            file_name = myFile.readStringUntil(',');
+        while (f.available() && current_file_index <= config_index) {
+            file_name = f.readStringUntil(',');
             current_file_index++;
         }
 
         // If we've reached the end, wrap around
-        if (!myFile.available()) {
+        if (!f.available()) {
             config_index = 0;
         } else {
             config_index++;
         }
 
-        myFile.close();
+        f.close();
     } else {
         Serial.println("Error opening files.txt");
     }
 
     // Write back updated index
     SD.remove("/config.txt");
-    myFile = SD.open("/config.txt", FILE_WRITE);
-    if (myFile) {
-        myFile.print(config_index);
-        myFile.close();
+    f = SD.open("/config.txt", FILE_WRITE);
+    if (f) {
+        f.print(config_index);
+        f.close();
     } else {
         Serial.println("Error opening config.txt for writing");
     }
@@ -112,91 +121,68 @@ String getNextFile() {
 
 void render(String file_name){
     
-    //EPD_13IN3E_CS_ALL(0);
-
-    // unsigned long j, k;
-    unsigned char const Color_seven[6] = 
-    {EPD_13IN3E_BLACK, EPD_13IN3E_YELLOW, EPD_13IN3E_RED, EPD_13IN3E_BLUE, EPD_13IN3E_GREEN, EPD_13IN3E_WHITE};
-
-    UDOUBLE Width, Height, Half_Width;
+    UDOUBLE Width, Width1, Height;
     UBYTE Color;
     Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
-    Half_Width = Width/2;
+    Width1 = (Width % 2 == 0)? (Width / 2 ): (Width / 2 + 1);
     Height = EPD_13IN3E_HEIGHT;
-    Color = (EPD_13IN3E_RED<<4)|EPD_13IN3E_RED;
+    Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
+
+    UBYTE padding[Width1];
     
-    UBYTE *buf = (UBYTE *)malloc(Half_Width);
-    if (!buf) {
-        Serial.println("Failed to allocate buffer");
-        return;
+    for (UDOUBLE j = 0; j < Width/2; j++) {
+        padding[j] = Color;
     }
-    
-    for (UDOUBLE j = 0; j < Half_Width; j++) buf[j] = Color;
+
+    Debug("EPD_13IN3E_test Demo\r\n");
+    //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+
+    if(psramInit()){
+        Serial.println("\nPSRAM is correctly initialized");
+    }else{
+        Serial.println("PSRAM not available");
+    }
+
+    UDOUBLE n = 0;
+    // Read index from config.txt
+    UBYTE *buf = (UBYTE *)ps_malloc((Width)*EPD_13IN3E_HEIGHT);
+
+    File f = SD.open(file_name, FILE_READ);
+    if(f.available()) {
+        Serial.print("Buffer contents: ");
+        for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
+            size_t bytesRead = f.read(buf + j*Width, Width);
+        }
+        for (UDOUBLE i = 0; i < Width; i++) {
+            Serial.printf("0x%02X ", buf[i]);
+        }
+        Serial.println();
+    } else {
+        Serial.println("FAILED");
+    }
+    f.close();
+
 
     DEV_Digital_Write(EPD_CS_M_PIN, 0);
     EPD_13IN3E_SendCommand(0x10);
-    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
-        // Open the file for each read and close it afterwards (per request)
-        File f = SD.open(file_name, FILE_READ);
-        if (f) {
-            // Seek to the proper offset for this chunk
-            unsigned long offset = (unsigned long)(j * (UDOUBLE)Half_Width);
-            f.seek(offset);
-            // Read exactly sendSize bytes into our buffer (bufCap >= sendSize)
-            size_t bytesRead = f.read(buf, Half_Width);
-            // Print the buffer contents
-            if (j % 100 == 0) {
-                Serial.print("Buffer contents: ");
-                for (size_t k = 0; k < Half_Width; k++) Serial.printf("0x%02X ", buf[k]);
-                Serial.println();
-            }
-            f.close();
-            DEV_Delay_ms(10);
-            if (j % 2 == 0) {
-                EPD_13IN3E_SendData2(buf, bytesRead);
-                DEV_Delay_ms(1);
-            }
-            if (bytesRead < Half_Width) break;
-        } else {
-            Serial.println("FAILED_OPEN");
-        }
+    for (UDOUBLE j=0; j<Height; j++) {
+        EPD_13IN3E_SendData2(buf + j*Width, Width1);
+        DEV_Delay_ms(1);
     }
     EPD_13IN3E_CS_ALL(1);
-
-
 
     DEV_Digital_Write(EPD_CS_S_PIN, 0);
-    EPD_13IN3E_SendCommand(0x10);    
-    myFile = SD.open(file_name, FILE_READ);
-    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT*2; j++) {
-        if(myFile.available()) {
-            for (UDOUBLE i = 0; i < Width/2; i++) {
-                //buf[i] = myFile.read();
-                buf[i] = Color;
-            }
-            // Print the buffer contents
-            if (j % 100 == 0) {
-                Serial.print("Buffer contents: ");
-                for (UDOUBLE k = 0; k < Width/2; k++) {
-                    Serial.printf("0x%02X ", buf[k]);
-                }
-                Serial.println();
-            }
-            if (j % 2 != 0) {
-                EPD_13IN3E_SendData2(buf, Width/2);
-                DEV_Delay_ms(1);
-            }
-
-        } else {
-            Serial.println("FAILED");
-        }
+    EPD_13IN3E_SendCommand(0x10);
+    for (UDOUBLE j=0; j<Height; j++) {
+        EPD_13IN3E_SendData2(buf + j*Width + Width1, Width1);
+        DEV_Delay_ms(1);
     }
     EPD_13IN3E_CS_ALL(1);
+    DEV_Delay_ms(1000);
 
 
     EPD_13IN3E_TurnOnDisplay();
     free(buf);
-    Serial.println("Done");
 }
 
 void loop() {}

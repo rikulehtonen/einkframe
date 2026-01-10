@@ -45,10 +45,8 @@ void setup() {
     EPD_13IN3E_Init();
     //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
 
-
     if (!SD.begin(cs)) {
         Serial.println("Card Mount Failed");
-
         Debug("Goto Sleep...\r\n");
         EPD_13IN3E_Sleep();
         // close 5V
@@ -70,7 +68,7 @@ void setup() {
     // Read index from config.txt
     UBYTE *buf = (UBYTE *)ps_malloc((Width)*EPD_13IN3E_HEIGHT);
 
-    File f = SD.open("/4a.bin", FILE_READ);
+    File f = SD.open("/1a.bin", FILE_READ);
     if(f.available()) {
         Serial.print("Buffer contents: ");
         for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
@@ -105,6 +103,7 @@ void setup() {
 
 
     EPD_13IN3E_TurnOnDisplay();
+    free(buf);
 
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
