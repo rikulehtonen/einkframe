@@ -22,7 +22,7 @@
 #include "SPI.h"
 
 #define uS_TO_S_FACTOR 1000000ULL /* Conversion factor for micro seconds to seconds */
-#define TIME_TO_SLEEP  60*1          /* Time ESP32 will go to sleep (in seconds) */
+#define TIME_TO_SLEEP  60*60*12          /* Time ESP32 will go to sleep (in seconds) */
 
 // Uncomment and set up if you want to use custom pins for the SPI communication
 int sck = 18;
@@ -38,9 +38,18 @@ void setup() {
     EPD_13IN3E_Init();
     DEV_Delay_ms(3000);
     Debug("EPD_13IN3E_test Demo\r\n");
+    int sd_init_retries = 0;
+    const int MAX_SD_RETRIES = 5;
+    const int SD_RETRY_DELAY = 500; // milliseconds
+    
 
+    while (!SD.begin(cs) && sd_init_retries < MAX_SD_RETRIES) {
+        Serial.printf("SD Card Mount Failed (attempt %d/%d), retrying...\n", sd_init_retries + 1, MAX_SD_RETRIES);
+        DEV_Delay_ms(SD_RETRY_DELAY);
+        sd_init_retries++;
+    }
 
-    if (!SD.begin(cs)) {
+    if (sd_init_retries >= MAX_SD_RETRIES) {
         Serial.println("Card Mount Failed");
     }
     else {
@@ -153,10 +162,10 @@ void render(String file_name){
         for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
             size_t bytesRead = f.read(buf + j*Width, Width);
         }
-        for (UDOUBLE i = 0; i < Width; i++) {
-            Serial.printf("0x%02X ", buf[i]);
-        }
-        Serial.println();
+        //for (UDOUBLE i = 0; i < Width; i++) {
+        //    Serial.printf("0x%02X ", buf[i]);
+        //}
+        //Serial.println();
     } else {
         Serial.println("FAILED");
     }
