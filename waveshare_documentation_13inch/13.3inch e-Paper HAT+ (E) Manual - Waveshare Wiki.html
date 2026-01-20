@@ -1,0 +1,2195 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Potential_issues_during_development -->
+<html class="client-js" lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":!1,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"8dbc0c237dc42d01af75f194","wgCSPNonce":!1,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"13.3inch_e-Paper_HAT+_(E)_Manual","wgTitle":"13.3inch e-Paper HAT+ (E) Manual","wgCurRevisionId":106817,"wgRevisionId":106817,"wgArticleId":21567,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["SPI interface","RPi interface"],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"13.3inch_e-Paper_HAT+_(E)_Manual","wgRelevantArticleId":21567,"wgIsProbablyEditable":!1,"wgRelevantPageIsProbablyEditable":!1,"wgRestrictionEdit":[],
+"wgRestrictionMove":[]};RLSTATE={"ext.gadget.tabber":"ready","site.styles":"ready","noscript":"ready","user.styles":"ready","user":"ready","user.options":"loading","jquery.makeCollapsible.styles":"ready","mediawiki.toc.styles":"ready","skins.tweeki.styles":"ready","skins.tweeki.bootstraptheme.styles":"ready","skins.tweeki.externallinks.styles":"ready","skins.tweeki.awesome.styles":"ready"};RLPAGEMODULES=["site","mediawiki.page.startup","mediawiki.page.ready","jquery.makeCollapsible","mediawiki.toc","ext.FancyBoxThumbs","ext.HighlightjsIntegration","skins.tweeki.messages","skins.tweeki.scripts"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@1hzgi",function($,jQuery,require,module){/*@nomin*/mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+});});</script>
+<link rel="stylesheet" href="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/aAdkk0o.php">
+<script async="" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/aAdkk0o(1).php"></script>
+<style>
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}.mw-collapsible-toggle-default:before{content:'['}.mw-collapsible-toggle-default:after{content:']'}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle,.mw-content-ltr caption .mw-collapsible-toggle,.mw-content-rtl caption .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle{float:none}
+pre.code2highlight,pre.nohighlight{  padding:0.5em}code.code2highlight.hljs{  padding:1px 4px}.hljs{display:block;overflow-x:auto;padding:0.5em;background:#1E1E1E;color:#DCDCDC}.hljs-keyword,.hljs-literal,.hljs-symbol,.hljs-name{color:#569CD6}.hljs-link{color:#569CD6;text-decoration:underline}.hljs-built_in,.hljs-type{color:#4EC9B0}.hljs-number,.hljs-class{color:#B8D7A3}.hljs-string,.hljs-meta-string{color:#D69D85}.hljs-regexp,.hljs-template-tag{color:#9A5334}.hljs-subst,.hljs-function,.hljs-title,.hljs-params,.hljs-formula{color:#DCDCDC}.hljs-comment,.hljs-quote{color:#57A64A;font-style:italic}.hljs-doctag{color:#608B4E}.hljs-meta,.hljs-meta-keyword,.hljs-tag{color:#9B9B9B}.hljs-variable,.hljs-template-variable{color:#BD63C5}.hljs-attr,.hljs-attribute,.hljs-builtin-name{color:#9CDCFE}.hljs-section{color:gold}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}.hljs-bullet,.hljs-selector-tag,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#D7BA7D}.hljs-addition{background-color:#144212;display:inline-block;width:100%}.hljs-deletion{background-color:#600;display:inline-block;width:100%}
+.fancybox-wrap,.fancybox-skin,.fancybox-outer,.fancybox-inner,.fancybox-image,.fancybox-wrap iframe,.fancybox-wrap object,.fancybox-nav,.fancybox-nav span,.fancybox-tmp{padding:0;margin:0;border:0;outline:none;vertical-align:top}.fancybox-wrap{position:absolute;top:0;left:0;z-index:8020}.fancybox-skin{position:relative;background:#f9f9f9;color:#444;text-shadow:none;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}.fancybox-opened{z-index:8030}.fancybox-opened .fancybox-skin{-webkit-box-shadow:0 10px 25px rgba(0,0,0,0.5);-moz-box-shadow:0 10px 25px rgba(0,0,0,0.5);box-shadow:0 10px 25px rgba(0,0,0,0.5)}.fancybox-outer,.fancybox-inner{position:relative}.fancybox-inner{overflow:hidden}.fancybox-type-iframe .fancybox-inner{-webkit-overflow-scrolling:touch}.fancybox-error{color:#444;font:14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;margin:0;padding:15px;white-space:nowrap}.fancybox-image,.fancybox-iframe{display:block;width:100%;height:100%}.fancybox-image{max-width:100%;max-height:100%}#fancybox-loading,.fancybox-close,.fancybox-prev span,.fancybox-next span{background-image:url(/w/extensions/FancyBoxThumbs/modules/fancyBox/source/fancybox_sprite.png?783d4)}#fancybox-loading{position:fixed;top:50%;left:50%;margin-top:-22px;margin-left:-22px;background-position:0 -108px;opacity:0.8;cursor:pointer;z-index:8060}#fancybox-loading div{width:44px;height:44px;background:url(/w/extensions/FancyBoxThumbs/modules/fancyBox/source/fancybox_loading.gif?c6f1a) center center no-repeat}.fancybox-close{position:absolute;top:-18px;right:-18px;width:36px;height:36px;cursor:pointer;z-index:8040}.fancybox-nav{position:absolute;top:0;width:40%;height:100%;cursor:pointer;text-decoration:none;background:transparent url(/w/extensions/FancyBoxThumbs/modules/fancyBox/source/blank.gif?32547); -webkit-tap-highlight-color:rgba(0,0,0,0);z-index:8040}.fancybox-prev{left:0}.fancybox-next{right:0}.fancybox-nav span{position:absolute;top:50%;width:36px;height:34px;margin-top:-18px;cursor:pointer;z-index:8040;visibility:hidden}.fancybox-prev span{left:10px;background-position:0 -36px}.fancybox-next span{right:10px;background-position:0 -72px}.fancybox-nav:hover span{visibility:visible}.fancybox-tmp{position:absolute;top:-99999px;left:-99999px;visibility:hidden;max-width:99999px;max-height:99999px;overflow:visible !important} .fancybox-lock{overflow:hidden}.fancybox-overlay{position:absolute;top:0;left:0;overflow:hidden;display:none;z-index:8010;background:url(/w/extensions/FancyBoxThumbs/modules/fancyBox/source/fancybox_overlay.png?77aea)}.fancybox-overlay-fixed{position:fixed;bottom:0;right:0}.fancybox-lock .fancybox-overlay{overflow:auto;overflow-y:scroll} .fancybox-title{visibility:hidden;font:normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;position:relative;text-shadow:none;z-index:8050}.fancybox-opened .fancybox-title{visibility:visible}.fancybox-title-float-wrap{position:absolute;bottom:0;right:50%;margin-bottom:-35px;z-index:8050;text-align:center}.fancybox-title-float-wrap .child{display:inline-block;margin-right:-100%;padding:2px 20px;background:transparent; background:rgba(0,0,0,0.8);-webkit-border-radius:15px;-moz-border-radius:15px;border-radius:15px;text-shadow:0 1px 2px #222;color:#FFF;font-weight:bold;line-height:24px;white-space:nowrap}.fancybox-title-outside-wrap{position:relative;margin-top:10px;color:#fff}.fancybox-title-inside-wrap{padding-top:10px}.fancybox-title-over-wrap{position:absolute;bottom:0;left:0;color:#fff;padding:10px;background:#000;background:rgba(0,0,0,.8)}
+@media screen {
+	.toctoggle{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;font-size:94%}}</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/aAdkk0o(2).php">
+<link rel="stylesheet" href="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/aAdkk0o(3).php">
+<meta name="generator" content="MediaWiki 1.35.5">
+<meta property="og:image" content="https://www.waveshare.com/w/upload/5/54/360px-13.3inch-e-Paper-E-1.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="https://www.waveshare.com/w/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="https://www.waveshare.com/w/opensearch_desc.php" title="Waveshare Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://www.waveshare.com/w/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="Waveshare Wiki Atom feed" href="https://www.waveshare.com/w/index.php?title=Special:RecentChanges&amp;feed=atom">
+<!--[if lt IE 9]><script src="/w/resources/lib/html5shiv/html5shiv.js"></script><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-13_3inch_e-Paper_HAT_E_Manual rootpage-13_3inch_e-Paper_HAT_E_Manual skin-tweeki action-view tweeki-animateLayout tweeki-non-advanced tweeki-user-anon" style="margin-bottom: 0px; position: relative;">			<!-- navbar -->
+			<div id="mw-navigation" class="navbar navbar-default navbar-fixed-top navbar-expand-lg fixed-top navbar-light bg-light" role="navigation">
+				<h2>Navigation menu</h2>
+				<div id="mw-head" class="navbar-inner">
+					<div class="container">
+
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							<a href="https://www.waveshare.com/wiki/Main_Page" class="navbar-brand"><img src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/Ws-watermark-en.svg" alt="Waveshare Wiki"></a>
+						</div>
+
+						<div id="navbar" class="navbar-collapse collapse">
+													<ul class="nav navbar-nav">
+							<li class="nav"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#" id="n-raspberry-pi" class="dropdown-toggle" data-toggle="dropdown">Raspberry Pi <b class="caret"></b></a><ul class="dropdown-menu " role="menu"><li id="n-main_page.2523rpi-boards"><a href="https://www.waveshare.com/wiki/Main_Page#RPi-Boards" tabindex="-1">Boards/Kits</a></li><li id="n-main_page.2523rpi-displays"><a href="https://www.waveshare.com/wiki/Main_Page#RPi-Displays" tabindex="-1">Displays</a></li><li id="n-main_page.2523rpi-cameras"><a href="https://www.waveshare.com/wiki/Main_Page#RPi-Cameras" tabindex="-1">Cameras</a></li><li id="n-main_page.2523rpi-expansions"><a href="https://www.waveshare.com/wiki/Main_Page#RPi-Expansions" tabindex="-1">Expansions</a></li><li id="n-main_page.2523rpi-laptops"><a href="https://www.waveshare.com/wiki/Main_Page#RPi-Laptops" tabindex="-1">All-in-one</a></li><li id="n-main_page.2523rpi-robots"><a href="https://www.waveshare.com/wiki/Main_Page#RPi-Robots" tabindex="-1">Robots</a></li><li id="n-main_page.2523rpi-games"><a href="https://www.waveshare.com/wiki/Main_Page#RPi-Games" tabindex="-1">Portable Gaming</a></li><li id="n-main_page.2523rpi-acces"><a href="https://www.waveshare.com/wiki/Main_Page#RPi-Acces" tabindex="-1">Accessories</a></li><li id="n-main_page.2523android-linux-boards"><a href="https://www.waveshare.com/wiki/Main_Page#Android-Linux-Boards" tabindex="-1">Other Android/Linux Boards</a></li></ul></li><li class="nav"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#" id="n-ai" class="dropdown-toggle" data-toggle="dropdown">AI <b class="caret"></b></a><ul class="dropdown-menu " role="menu"><li id="n-main_page.2523jetson-ai-boards"><a href="https://www.waveshare.com/wiki/Main_Page#Jetson-AI-Boards" tabindex="-1">Boards/Kits</a></li><li id="n-main_page.2523jetson-ai-displays"><a href="https://www.waveshare.com/wiki/Main_Page#Jetson-AI-Displays" tabindex="-1">Displays</a></li><li id="n-main_page.2523jetson-ai-cameras"><a href="https://www.waveshare.com/wiki/Main_Page#Jetson-AI-Cameras" tabindex="-1">Cameras</a></li><li id="n-main_page.2523jetson-ai-hat"><a href="https://www.waveshare.com/wiki/Main_Page#Jetson-AI-HAT" tabindex="-1">Expansions</a></li><li id="n-main_page.2523jetson-ai-robots"><a href="https://www.waveshare.com/wiki/Main_Page#Jetson-AI-Robots" tabindex="-1">Robots</a></li></ul></li><li class="nav"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#" id="n-displays" class="dropdown-toggle" data-toggle="dropdown">Displays <b class="caret"></b></a><ul class="dropdown-menu " role="menu"><li id="n-main_page.2523display-lcd-oleds"><a href="https://www.waveshare.com/wiki/Main_Page#Display-LCD-OLEDs" tabindex="-1">LCD/OLED</a></li><li id="n-main_page.2523display-e-paper"><a href="https://www.waveshare.com/wiki/Main_Page#Display-e-Paper" tabindex="-1">e-Paper</a></li></ul></li><li class="nav"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#" id="n-iot" class="dropdown-toggle" data-toggle="dropdown">IoT <b class="caret"></b></a><ul class="dropdown-menu " role="menu"><li id="n-main_page.2523long-range-wireless-comm"><a href="https://www.waveshare.com/wiki/Main_Page#Long-range-wireless-comm" tabindex="-1">Long Range Wireless</a></li><li id="n-main_page.2523short-range-wireless-comm"><a href="https://www.waveshare.com/wiki/Main_Page#Short-range-wireless-comm" tabindex="-1">Short Range Wireless</a></li><li id="n-main_page.2523wired-communication"><a href="https://www.waveshare.com/wiki/Main_Page#Wired-communication" tabindex="-1">Wired Comm / Converter</a></li><li id="n-main_page.2523misc-cameras-av"><a href="https://www.waveshare.com/wiki/Main_Page#Misc-cameras-av" tabindex="-1">Cameras / Audio / Video</a></li><li id="n-main_page.2523misc-sensor-modules"><a href="https://www.waveshare.com/wiki/Main_Page#Misc-sensor-modules" tabindex="-1">Sensors</a></li><li id="n-main_page.2523misc-servos-motors"><a href="https://www.waveshare.com/wiki/Main_Page#Misc-servos-motors" tabindex="-1">Motors / Servos</a></li><li id="n-main_page.2523misc-other-modules"><a href="https://www.waveshare.com/wiki/Main_Page#Misc-other-modules" tabindex="-1">others</a></li></ul></li><li class="nav"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#" id="n-robotics" class="dropdown-toggle" data-toggle="dropdown">Robotics <b class="caret"></b></a><ul class="dropdown-menu " role="menu"><li id="n-main_page.2523robotics-cars"><a href="https://www.waveshare.com/wiki/Main_Page#Robotics-cars" tabindex="-1">Mobile Robots</a></li><li id="n-main_page.2523dog-like-robots"><a href="https://www.waveshare.com/wiki/Main_Page#Dog-like-Robots" tabindex="-1">Dog-like Robots</a></li><li id="n-main_page.2523robotics-drivers-sensors"><a href="https://www.waveshare.com/wiki/Main_Page#Robotics-drivers-sensors" tabindex="-1">Drivers / Sensors</a></li><li id="n-main_page.2523robotics-robot-arms"><a href="https://www.waveshare.com/wiki/Main_Page#Robotics-robot-arms" tabindex="-1">Robot Arm / Control</a></li></ul></li><li class="nav"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#" id="n-mcu.252Ffpga" class="dropdown-toggle" data-toggle="dropdown">MCU/FPGA <b class="caret"></b></a><ul class="dropdown-menu " role="menu"><li id="n-main_page.2523arduino-main-boards"><a href="https://www.waveshare.com/wiki/Main_Page#Arduino-main-boards" tabindex="-1">Arduino</a></li><li id="n-main_page.2523micro.253Abit"><a href="https://www.waveshare.com/wiki/Main_Page#micro:bit" tabindex="-1">micro:bit</a></li><li id="n-main_page.2523mcu.2farm" class="LPC"><a href="https://www.waveshare.com/wiki/Main_Page#MCU.2FARM" tabindex="-1">STM32</a></li><li id="n-main_page.2523fpga"><a href="https://www.waveshare.com/wiki/Main_Page#FPGA" tabindex="-1">FPGA</a></li></ul></li><li class="nav"><a href="https://service.waveshare.com/" id="n-https.253A.252F.252Fservice.waveshare.com" rel="nofollow" target="_blank">Support</a></li><li class="nav"><a href="https://www.klayers.net/" id="n-https.253A.252F.252Fwww.klayers.net.252F" rel="nofollow" target="_blank">IC</a></li>							</ul>
+						
+													<ul class="nav navbar-nav navbar-right">
+							</ul>
+				<form class="navbar-form navbar-right" action="https://www.waveshare.com/w/index.php" id="searchform">
+					<div class="form-group"><input type="search" name="search" placeholder="Product name search" title="Search Waveshare Wiki [alt-shift-f]" accesskey="f" id="searchInput" class="search-query form-control"><input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="mw-searchButton" class="searchButton btn hidden">
+					</div>
+				</form><ul class="nav navbar-nav navbar-right">							</ul>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<!-- /navbar -->
+					<div id="mw-page-base"></div>
+			<div id="mw-head-base"></div>
+			<a id="top"></a>
+
+			<!-- content -->
+			<div id="contentwrapper" class="user-loggedout not-editable container with-navbar with-navbar-fixed">
+
+				
+				<div class="row">
+					<div class="col-md-offset-2 col-md-10" role="main">
+								<div class="mw-body" id="content">
+			<div id="mw-js-message" style="display:none;"></div>
+									<h1 id="firstHeading" class="firstHeading page-header" lang="en"><span dir="auto">13.3inch e-Paper HAT+ (E) Manual</span></h1>
+									<!-- bodyContent -->
+			<div id="bodyContent">
+								<div id="siteSub">From Waveshare Wiki</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#mw-navigation">navigation</a>, 					<a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#p-search">search</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div class="mw-parser-output"><div class="wiki-pages jet-green-color">
+<div class="tabberlive newwsnav" id="wsnavbar">
+<ul class="tabbernav">
+<li class="nav-link"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#myintro">说明</a></li>
+<li class="nav-link"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#rpi">RPi</a></li>
+<li class="nav-link"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#jetson">JetsonNano</a></li>
+<li class="nav-link"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#stm32">STM32</a></li>
+<li class="nav-link"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#arduino">Arduino</a></li>
+<li class="nav-link"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#myresources">资料</a></li>
+<li class="nav-link"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#myfaq">FAQ</a></li>
+<li class="nav-link"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#mysupport">售后</a></li>
+</ul>
+</div>
+<div class="tabber">
+<table id="infotable" class="a-r at-c roundy bgd-green bl-white" style="margin-left: 5px; margin-bottom: 5px; width: 30%;">
+
+<tbody><tr>
+<td>
+<table class="at-c roundy" style="background: transparent;width:100%;">
+
+<tbody><tr>
+<td class="at-c textwhite"><b>13.3inch e-Paper (E) <br>Raw display only</b>
+</td></tr>
+<tr>
+<td class="at-c bgwhite" style="margin:5px;"><a href="https://www.waveshare.com/13.3inch-e-paper-hat-plus-e.htm?sku=29353" target="_blank" rel="nofollow noreferrer noopener"><img alt="13.3inch e-Paper (E)" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/360px-13.3inch-e-Paper-E-1.jpg" decoding="async" loading="lazy" width="360" height="270"></a><br><br><small>1600×1200, RPi/SPI, E6 Full Color e-Paper</small>
+</td></tr></tbody></table>
+</td></tr>
+<tr>
+<td>
+<table class="roundy" style="background: transparent;width:100%;">
+
+<tbody><tr>
+<td class="at-c textwhite"><b>13.3inch e-Paper HAT+ (E) <br>With Driver HAT</b>
+</td></tr>
+<tr>
+<td class="at-c bgwhite" style="margin:5px;"><a href="https://www.waveshare.com/13.3inch-e-paper-hat-plus-e.htm?sku=29355" target="_blank" rel="nofollow noreferrer noopener"><img alt="13.3inch e-Paper HAT+ (E)" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/360px-13.3inch-e-Paper-HAT+-E-intro.jpg" decoding="async" loading="lazy" width="360" height="270"></a><br><br><small>1600×1200, RPi/SPI, E6 Full Color e-Paper</small>
+</td></tr></tbody></table>
+</td></tr>
+<tr style="display:none;">
+<td>
+<table class="roundy" style="background: transparent;width:100%;">
+
+<tbody><tr>
+<td class="at-c textwhite"><b>{{{name3}}}</b>
+</td></tr>
+<tr>
+<td class="at-c bgwhite" style="margin:5px;"><br>
+</td></tr></tbody></table>
+</td></tr>
+<tr style="display:none;">
+<td>
+<table class="roundy" style="background: transparent;width:100%;">
+
+<tbody><tr>
+<td class="at-c textwhite"><b>{{{name4}}}</b>
+</td></tr>
+<tr>
+<td class="at-c bgwhite" style="margin:5px;"><br>
+</td></tr></tbody></table>
+</td></tr>
+<tr style="display:none;">
+<td>
+<table class="roundy" style="background: transparent;width:100%;">
+
+<tbody><tr>
+<td class="at-c textwhite"><b>{{{name5}}}</b>
+</td></tr>
+<tr>
+<td class="at-c bgwhite" style="margin:5px;"><br>
+</td></tr></tbody></table>
+</td></tr>
+<tr style="display:none;">
+<td>
+<table class="roundy" style="background: transparent;width:100%;">
+
+<tbody><tr>
+<td class="at-c textwhite"><b>{{{name6}}}</b>
+</td></tr>
+<tr>
+<td class="at-c bgwhite" style="margin:5px;"><br>
+</td></tr></tbody></table>
+</td></tr>
+<tr>
+<td>
+<table class="roundy" style="display:none;">
+<tbody><tr>
+<td style="width:2%;">
+</td>
+<td style="width:3%;">
+</td>
+<th colspan="2" width="90%" class="at-c roundytop bgl-white">Primary Attribute
+</th>
+<td style="width:3%;">
+</td>
+<td style="width:2%;">
+</td></tr>
+<tr>
+<td colspan="6" width="90px" class="at-c roundytl roundytr bgwhite b-green" style="border-width: 0 0 1px 0;"><b>Category:</b>
+</td></tr>
+<tr style="display:none;">
+<th colspan="3" width="90px" class="at-r bgwhite b-green" style="border-width: 0 0 1px 0;">{{{userDefinedInfo}}}:
+</th>
+<td colspan="3" class="at-l b-green bgwhite" style="border-width: 0 0 1px 0;">{{{userdefinedvalue}}}
+</td></tr>
+<tr style="display:none;">
+<td colspan="6" width="90px" class="at-c roundybl roundybr bgwhite"><b>Brand:</b> Waveshare
+</td></tr></tbody></table>
+</td></tr>
+<tr>
+<td>
+<table class="a-r roundy" style="display:none;">
+<tbody><tr>
+<td style="width:2%;">
+</td>
+<td style="width:3%;">
+</td>
+<th colspan="2" width="90%" class="at-c roundytop bgl-white">Website
+</th>
+<td style="width:3%;">
+</td>
+<td style="width:2%;">
+</td></tr>
+<tr>
+<td colspan="6" width="90px" class="at-c roundytl roundytr bgwhite b-green" style="border-width: 0 0 1px 0;"><b>International:</b> {{{website_en}}}
+</td></tr>
+<tr>
+<td colspan="6" width="90px" class="at-c roundybl roundybr bgwhite"><b>Chinese:</b> {{{website_cn}}}
+</td></tr></tbody></table>
+</td></tr>
+<tr>
+<td>
+<table class="a-r roundy" style="background: transparent; border-collapse:collapse;width:100%;display:none;">
+<tbody><tr>
+<td style="width:2%;">
+</td>
+<td style="width:3%;">
+</td>
+<th colspan="2" width="90%" class="at-c roundytop bgl-white">Onboard Interfaces
+</th>
+<td style="width:3%;">
+</td>
+<td style="width:2%;">
+</td></tr>
+<tr>
+<td colspan="6" width="90px" class="at-l roundy bgwhite b-green" style="border-width: 0 0 1px 0;">
+<table class="roundy bgwhite fulltable" style="text-align:center;">
+
+<tbody><tr>
+<td class="roundy bl-gray bw-1" style="width:25%;;"><small><b><a href="https://www.waveshare.com/wiki/Category:SPI_interface" title="Category:SPI interface">SPI</a></b></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;;"><small><b><a href="https://www.waveshare.com/wiki/Category:RPi_interface" title="Category:RPi interface">RPi</a></b></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td></tr>
+<tr>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td></tr>
+<tr>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td></tr>
+<tr>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td></tr>
+<tr>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td>
+<td class="roundy bl-gray bw-1" style="width:25%;display:none;"><small></small>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr>
+<tr style="display:none;">
+<td>
+<table class="a-r roundy" style="background: transparent; border-collapse:collapse;width:100%;;display:none;">
+<tbody><tr>
+<td style="width:2%;">
+</td>
+<td style="width:3%;">
+</td>
+<th colspan="2" width="90%" class="at-c roundytop bgl-white">Related Products
+</th>
+<td style="width:3%;">
+</td>
+<td style="width:2%;">
+</td></tr>
+<tr>
+<td colspan="6" width="90px" class="at-l roundy bgwhite b-green" style="border-width: 0 0 1px 0;">
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<div class="tabbertab" title="说明" id="myintro">
+
+
+<h1><span class="mw-headline" id="Overview">Overview</span></h1>
+<h2><span class="mw-headline" id="Parameters">Parameters</span></h2>
+<table border="1;" style="border:#dddddd; width:600px; line-height:200%" align="center">
+
+<tbody><tr style="background:white; color:black;" align="center">
+<td>Size</td>
+<td>13.3inch
+</td></tr>
+<tr style="background:#efefef; color:black;" align="center">
+<td>Driver Board Size</td>
+<td>65.00mm × 30.50mm
+</td></tr>
+<tr style="background:white; color:black;" align="center">
+<td>Display Size</td>
+<td>270.40mm × 202.80mm
+</td></tr>
+<tr style="background:#efefef; color:black;" align="center">
+<td>Outline Dimensions</td>
+<td>284.70mm × 208.80mm × 0.85mm
+</td></tr>
+<tr style="background:white; color:black;" align="center">
+<td>Operating Voltage</td>
+<td>3.3V / 5V (IO level voltage should be the same as the supply voltage)
+</td></tr>
+<tr style="background:#efefef; color:black;" align="center">
+<td>Communication Interface</td>
+<td>SPI
+</td></tr>
+<tr style="background:white; color:black;" align="center">
+<td>Dot Pitch</td>
+<td>0.169mm × 0.169mm
+</td></tr>
+<tr style="background:#efefef; color:black;" align="center">
+<td>Resolution</td>
+<td>1600 × 1200
+</td></tr>
+<tr style="background:white; color:black;" align="center">
+<td>Display Color</td>
+<td>E6 Full Color
+</td></tr>
+<tr style="background:#efefef; color:black;" align="center">
+<td>Grayscale</td>
+<td>2
+</td></tr>
+<tr style="background:white; color:black;" align="center">
+<td>Refresh Time</td>
+<td>19s
+</td></tr>
+<tr style="background:#efefef; color:black;" align="center">
+<td>Total Refresh Power</td>
+<td>&lt;0.5W（typ.）
+</td></tr>
+<tr style="background:#white; color:black;" align="center">
+<td>Operating Temperature</td>
+<td>0 ~ 40 ℃
+</td></tr>
+<tr style="background:#efefef; color:black;" align="center">
+<td>Storage Temperature</td>
+<td>-25 ~ 60 ℃
+</td></tr></tbody></table>
+<ul><li>Refresh time: The refresh time is based on experimental test data, and there may be errors in the actual refresh time. The actual results shall prevail. There will be a flickering effect during the global refresh process, which is a normal phenomenon. <br></li>
+<li>Refresh power consumption: The power consumption data is experimental test data, and the actual power consumption may have certain errors due to the presence of the driver board and actual usage. The actual results shall prevail. <br></li>
+<li>Refresh at low temperatures may cause a color cast, and it is necessary to stand still at 25°C for 6 hours before refreshing. <br></li></ul>
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-expanded" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h2><span class="mw-headline" id="Communication_Method">Communication Method</span></h2>
+<div class="mw-collapsible-content" style="">
+<p><a href="https://www.waveshare.com/wiki/File:4.37inch-e-paper-manual-2.jpg" class="image fancybox"><img alt="4.37inch-e-paper-manual-2.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/700px-4.37inch-e-paper-manual-2.jpg" decoding="async" loading="lazy" width="700" height="313" srcset="/w/upload/d/df/4.37inch-e-paper-manual-2.jpg 1.5x"></a><br>
+CSB (CS): Slave chip select signal, active at low level. When it is at low level, the chip is enabled. <br>
+SCL (SCK/SCLK): Serial clock signal. <br>
+D/C (DC): Data/command control signal, write command (Command) when the level is low; write data (Data/parameter) when the level is high. <br>
+SDA (DIN): Serial data signal. <br>
+Timing: CPHL=0, CPOL=0, i.e. SPI mode 0. <br>
+Note: For specific information about SPI communication, you can search for information online on your own.
+</p>
+</div></div>
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-expanded" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h2><span class="mw-headline" id="Operating_Principle">Operating Principle</span></h2>
+<div class="mw-collapsible-content" style="">
+<p>The e-paper used in this product uses "microcapsule electrophoresis display" technology for image display. The basic principle is that charged nanoparticles suspended in a liquid migrate under the action of an electric field. The e-paper display screen displays patterns by reflecting ambient light and does not require a backlight. Under ambient light, the e-paper display screen is clearly visible, with a viewing angle of almost 180°. Therefore, e-paper displays are ideal for reading.
+</p>
+</div></div>
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-expanded" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h2><span class="mw-headline" id="Programming_Principle">Programming Principle</span></h2>
+<div class="mw-collapsible-content" style="">
+<ul><li>For a computer, images are composed of pixels, and the amount of space each pixel occupies determines the number of possible states (colors) it can have. The simplest black and white images have each pixel occupy one bit (1Bit), being either 0 or 1, black or white. As the number of colors increases, each pixel requires more space, such as eight bits, sixteen bits, twenty-four bits, and so on<br></li>
+<li><b>This module uses a non-standard 24-bit image. If you need to create your own images, you can refer to the "Picture processing" section.</b> <br></li></ul>
+<ul><li>For black and white images, we can define it as 0 if it is black and 1 if it is white, so there is a way to represent colors: <br>
+<ul><li>White: □, corresponding to 1<br></li>
+<li>Black: ■, corresponding to 0<br></li></ul></li>
+<li>A dot is generally called a pixel on the graph, and the color is either 1 or 0, that is, 1 bit can identify the color: 1Pixel = 1bit, then a byte contains 8 pixels. <br></li>
+<li>Take 16 pixels as an example. We assume that the first 8 pixels are black and the last 8 pixels are white. Then it can be thought that pixels 1-16 correspond to bits 0 to 15, and 0 means black. 1 means white:<br></li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:E-paper_hardware_work_1.png" class="image fancybox"><img alt="E-paper hardware work 1.png" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/E-paper_hardware_work_1.png" decoding="async" loading="lazy" width="488" height="77"></a><br>
+</p>
+<ul><li>For the computer, the way it stores data is that the high bits come first and the low bits come last, and each byte only has 8 bits, so there may be a slight change:<br></li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:E-paper_hardware_work_2.png" class="image fancybox"><img alt="E-paper hardware work 2.png" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/E-paper_hardware_work_2.png" decoding="async" loading="lazy" width="488" height="96"></a><br>
+</p>
+<ul><li>In this way, only 2 bytes are required to represent 16 pixels. <br></li></ul>
+<ul><li>Now suppose we have six colors, so we need at least three digits of data to represent all colors, but in order to facilitate the operation, we add a 0 in front of it, that is, use four digits of data to represent the color of a pixel, so that one byte (1Byte) can represent two pixels. Actually, the controller of this module uses this method. <br></li></ul>
+<table border="1" style="text-align:center; width:400px">
+
+<tbody><tr>
+<td><b>Color</b>
+</td>
+<td><b>BIN</b>
+</td>
+<td><b>HEX</b>
+</td>
+<td><b>The color (reference)</b>
+</td></tr>
+<tr>
+<td>Black</td>
+<td>0b0000</td>
+<td>0x0
+</td>
+<td style="background:#000000">
+</td></tr>
+<tr>
+<td>White</td>
+<td>0b0001</td>
+<td>0x1</td>
+<td>
+</td></tr>
+<tr>
+<td>Yellow</td>
+<td>0b0010</td>
+<td>0x2
+</td>
+<td style="background:#FFFF00">
+</td></tr>
+<tr>
+<td>Red</td>
+<td>0b0011</td>
+<td>0x3
+</td>
+<td style="background:#FF0000">
+</td></tr>
+<tr>
+<td>Blue</td>
+<td>0b0101</td>
+<td>0x5
+</td>
+<td style="background:#0000FF">
+</td></tr>
+<tr>
+<td>Green</td>
+<td>0b0110</td>
+<td>0x6
+</td>
+<td style="background:green">
+</td></tr></tbody></table>
+<ul><li>Taking four pixel points as an example, we assume that the colors of these four points are yellow, blue, red, and green respectively. Based on the table above, the human logic is as follows, storing them in sequence:<br></li></ul>
+<table border="1" style="text-align:center">
+
+<tbody><tr>
+<td><b>Pixel</b>
+</td>
+<td colspan="4" width="100px">1
+</td>
+<td colspan="4" width="100px">2
+</td>
+<td colspan="4" width="100px">3
+</td>
+<td colspan="4" width="100px">4
+</td></tr>
+<tr>
+<td><b>Bit</b>
+</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+<td>13</td>
+<td>14</td>
+<td>15
+</td></tr>
+<tr>
+<td><b>Data</b></td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0
+</td></tr>
+<tr>
+<td><b>Color</b>
+</td>
+<td colspan="4" style="background:yellow">
+</td>
+<td colspan="4" style="background:blue">
+</td>
+<td colspan="4" style="background:red">
+</td>
+<td colspan="4" style="background:green">
+</td></tr></tbody></table>
+<ul><li>For the computer, the way it stores data is that the high bits come first and the low bits come last, and each byte only has 8 bits,so it is stored in bytes like this:<br></li></ul>
+<table border="1" style="text-align:center">
+
+<tbody><tr>
+<td><b>Pixel</b>
+</td>
+<td colspan="4" width="100px">1
+</td>
+<td colspan="4" width="100px">2
+</td>
+<td colspan="4" width="100px">3
+</td>
+<td colspan="4" width="100px">4
+</td></tr>
+<tr>
+<td><b>Bit</b>
+</td>
+<td>7</td>
+<td>6</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>7</td>
+<td>6</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0
+</td></tr>
+<tr>
+<td><b>Data</b></td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0
+</td></tr>
+<tr>
+<td><b>Color</b>
+</td>
+<td colspan="4" style="background:yellow">
+</td>
+<td colspan="4" style="background:blue">
+</td>
+<td colspan="4" style="background:red">
+</td>
+<td colspan="4" style="background:green">
+</td></tr>
+<tr>
+<td><b>Byte</b>
+</td>
+<td colspan="8">0x25
+</td>
+<td colspan="8">0x36
+</td></tr></tbody></table>
+</div></div>
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h2><span class="mw-headline" id="Double-IC_Programming_Analysis">Double-IC Programming Analysis</span></h2>
+<div class="mw-collapsible-content">
+<p>The 13.3inch e-Paper (E) is a dual-IC controlled e-Paper screen, in addition to the above programming principle, please note the following<br>
+<a href="https://www.waveshare.com/wiki/File:13.3inch-e-Paper-E-IC.jpg" class="image fancybox"><img alt="13.3inch-e-Paper-E-IC.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/13.3inch-e-Paper-E-IC.jpg" decoding="async" loading="lazy" width="960" height="920"></a><br>
+</p>
+<ul><li>As shown in the figure above, each IC controls half of the screen, and the two CS pins are used to control the corresponding M area (master area) and S area (slave area)</li>
+<li>Except for CS pins, other control pins are shared</li>
+<li>Except for common commands (initialization command and refresh command in the demo), only one CS pin is allowed to be pulled low at a time</li>
+<li>When transmitting images, it should be noted that the display direction of the screen is horizontal display (X-axis direction), and after reaching the end point of a region, it will be displayed in the next line. Therefore, it is necessary to cut the picture into two pictures and transmit them separately, otherwise it will be displayed misalignment</li></ul>
+</div></div>
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h2><span class="mw-headline" id="Precautions">Precautions</span></h2>
+<div class="mw-collapsible-content">
+<ol><li><font color="#FF0000">Note that the screen cannot be powered on for a long time. When the screen does not refresh, the screen must be set to sleep mode or power off. Otherwise, the screen will remain in a high voltage state for a long time, which will damage the diaphragm and cannot be repaired. </font></li>
+<li><font color="#FF0000">When using the e-paper screen, it is recommended that the refresh interval is at least 180s, and refreshed at least every 24 hours. If the e-paper screen is not used for a long time, it should be whitened and stored. (Refer to the data sheet for specific storage environment requirements)</font></li>
+<li>After the screen enters sleep mode, the image data sent will be ignored, and it can only be refreshed normally after re-initialization.</li>
+<li>If you find that the data of the created image is displayed incorrectly on the screen, it is recommended to check whether the image size is set correctly, and try again by changing the width and height settings.</li>
+<li>The working voltage requirement for an ink screen is 3.3V. If you purchase a raw display and need to work in a 5V environment when designing the circuit, it is recommended to perform level conversion processing.</li>
+<li><font color="#FF0000">The FPC cable of the screen is relatively fragile. Please note: do not bend the cable in the vertical direction of the screen to avoid the cable being torn; do not repeatedly bend the cable excessively to avoid the cable breaking; do not bend the cable toward the front of the screen to prevent the cable from being disconnected from the panel. During debugging and R&amp;D, it is recommended to fix the wiring before use. </font></li>
+<li><font color="#FF0000">The ink screen screen is relatively fragile, so be careful to avoid falling, colliding, or pressing hard. </font></li>
+<li>We recommend that customers first use the sample demo we provide and use the corresponding development board to test after getting the screen.</li></ol>
+</div></div>
+</div>
+<p><br>
+</p>
+<div class="tabbertab" title="Picture processing" id="image">
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span><div class="mw-collapsible-content">
+<div class="wiki-pages jet-green-color">
+<h1><span class="mw-headline" id="Picture_Processing">Picture Processing</span></h1>
+<div class="mw-collapsible-content">
+<p>Picture production and conversion of multi-color e-Paper
+</p>
+<div class="toccolours mw-collapsible mw-collapsed mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" role="button" tabindex="0" aria-expanded="false"><a class="mw-collapsible-text">Expand</a></span>
+<h2><span class="mw-headline" id="Picture_Production">Picture Production</span></h2>
+<div class="mw-collapsible-content" style="display: none;">
+<h3><span class="mw-headline" id="Preparation">Preparation</span></h3>
+<p>Software required: Adobe PhotoShop CC, Paint<br>
+</p>
+<h3><span class="mw-headline" id="Introduction">Introduction</span></h3>
+<ul><li>The Floyd-Steinberg dithering algorithm is ideal for displaying rich layers with a small number of colors. This allows for more color combinations and better shadow rendering of the original image. It is especially suitable for various use scenarios of e-Paper screens.</li>
+<li>Here's how to convert a normal image into a Floyd-Steinberg scatter chart.</li>
+<li>If you are interested in the actual algorithm, you can learn about our algorithm porting in <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/e-Paper-ESP32-Driver-Board.htm">ESP32</a> and <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/e-Paper-ESP8266-Driver-Board.htm">ESP8266</a>. Here, no further elaboration will be given.</li></ul>
+<h3><span class="mw-headline" id="Operation_Steps">Operation Steps</span></h3>
+<p>Preparation: Download <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/common/E-PAPER-ACT.zip">Color table</a> to your PC, and extract it to get the following files, we need to use N-color.act or 4-color.act, 6-color.act. <br>
+<a href="https://www.waveshare.com/wiki/File:NcolorImageConvert_1.jpg" class="image fancybox"><img alt="NcolorImageConvert 1.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/NcolorImageConvert_1.jpg" decoding="async" loading="lazy" width="700" height="164"></a>
+</p><p>1. Create a new Photoshop project, set the width and height according to the actual resolution of the e-Papre screen, and use RGB color in the color mode. If the screen resolution used is 800*480, change the width to 800 pixels and the height to 480 pixels. <br>
+<a href="https://www.waveshare.com/wiki/File:Color3.png" class="image fancybox"><img alt="Color3.png" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/400px-Color3.png" decoding="async" loading="lazy" width="400" height="724" srcset="/w/upload/0/0e/Color3.png 1.5x"></a>
+</p><p>2. Prepare the corresponding materials, copy them into the project, and adjust parameters such as size and contrast (similar to the steps involved in general Photoshop image processing). <br>
+<a href="https://www.waveshare.com/wiki/File:Pica.png" class="image fancybox"><img alt="Pica.png" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/900px-Pica.png" decoding="async" loading="lazy" width="900" height="503" srcset="/w/upload/thumb/4/4c/Pica.png/1350px-Pica.png 1.5x, /w/upload/4/4c/Pica.png 2x"></a>
+</p><p>3. Select File -&gt; Save for Web in the format used for the Web and device. <br>
+<a href="https://www.waveshare.com/wiki/File:Pica5.png" class="image fancybox"><img alt="Pica5.png" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/900px-Pica5.png" decoding="async" loading="lazy" width="900" height="678" srcset="/w/upload/f/fe/Pica5.png 1.5x"></a>
+</p><p>4. Select Load Color Table as shown below. Load the Color table provided in the Preparation section. <br>
+<a href="https://www.waveshare.com/wiki/File:Pica6.png" class="image fancybox"><img alt="Pica6.png" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/500px-Pica6.png" decoding="async" loading="lazy" width="500" height="891" srcset="/w/upload/7/75/Pica6.png 1.5x"></a>
+</p><p>5. For seven-color pictures, load N-color.act, then click Save to save as a gif file. It is then converted to BMP format for use on this module. <br>
+For four-color pictures, load 4-color.act, then click Save to save as a gif file. It is then converted to BMP format for use on this module. <br>
+For six-color pictures, load 6-color.act, then click Save to save as a gif file. It is then converted to BMP format for use on this module. <br>
+<a href="https://www.waveshare.com/wiki/File:Pica4.png" class="image fancybox"><img alt="Pica4.png" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/500px-Pica4.png" decoding="async" loading="lazy" width="500" height="738" srcset="/w/upload/f/f0/Pica4.png 1.5x"></a>
+</p><p>6. Open the GIF file with Paint, save it as a 24-bit BMP picture. <br>
+<a href="https://www.waveshare.com/wiki/File:Pica7.png" class="image fancybox"><img alt="Pica7.png" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/500px-Pica7.png" decoding="async" loading="lazy" width="500" height="480" srcset="/w/upload/a/ad/Pica7.png 1.5x"></a><br>
+</p><p>7. At this point, the picture has been made, and it can be used in the TF card of the Raspberry Pi or e-Paper Shield module, or converted into an array for other embedded devices according to the next section. <br>
+</p>
+</div></div>
+<div class="toccolours mw-collapsible mw-made-collapsible mw-collapsed"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" role="button" tabindex="0" aria-expanded="false"><a class="mw-collapsible-text">Expand</a></span>
+<h2><span class="mw-headline" id="Picture_Data_Conversion">Picture Data Conversion</span></h2>
+<div class="mw-collapsible-content" style="display: none;">
+<h3><span class="mw-headline" id="Download_Demos">Download Demos</span></h3>
+<ul><li>Four-color app: <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/common/ConverterTo4color.zip">Four-color picture conversion app</a></li>
+<li>E6 full-color app: <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/common/ConverterTo6color.zip">E6 full-color picture conversion app</a></li>
+<li>Seven-color app: <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/common/ConverterTo7color.zip">Seven-color picture conversion app</a></li>
+<li>Source code: <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/common/ConverterTocolor.zip">Demo source code</a></li></ul>
+<p>Note: This application is provided for your convenience and is open source, and our company does not provide technical support for it
+</p>
+<h3><span class="mw-headline" id="Bug_Resolution">Bug Resolution</span></h3>
+<p>If your computer is win10/win11 and you do not have VS (Microsoft Visual Studio) or other Microsoft development tools installed, you may encounter error prompts: "ucrtbased.dll" and "vcruntime 140d.dll".<br>
+This means that these two components are missing from your computer, and the solution is as follows:<br>
+1. Install VS (Microsoft Visual Studio) or other Microsoft development tools (Visual C++ Redistributable, etc.).<br>
+2. Use the <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/common/Win10_11-dll.zip">two component files</a> provided by us<br>
+<a href="https://www.waveshare.com/wiki/File:2.36inch_e-paper_picture_make07.jpg" class="image fancybox"><img alt="2.36inch e-paper picture make07.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/2.36inch_e-paper_picture_make07.jpg" decoding="async" loading="lazy" width="400" height="272"></a><br>
+Put these two files in the directory C:\Windows\System32 and restart your computer<br>
+</p>
+<h3><span class="mw-headline" id="Conversion_Steps">Conversion Steps</span></h3>
+<ul><li>Put the produced picture and the corresponding exe application in the same folder, you can put multiple pictures at the same time.</li>
+<li>Drag and drop the picture onto the exe file, and the demo will convert the picture into a fixed name. c file.</li>
+<li>Double-click on the cmd file, and the demo will convert all the pictures in the folder that match the size into a .c file with the corresponding names.</li>
+<li>Four-color single picture demonstration (click on the picture to view the demonstration)</li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:2.36inch_e-paper_picture_make.gif" class="image fancybox"><img alt="2.36inch e-paper picture make.gif" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/400px-2.36inch_e-paper_picture_make.gif" decoding="async" loading="lazy" width="400" height="295" srcset="/w/upload/thumb/a/a3/2.36inch_e-paper_picture_make.gif/600px-2.36inch_e-paper_picture_make.gif 1.5x, /w/upload/a/a3/2.36inch_e-paper_picture_make.gif 2x"></a>
+</p>
+<ul><li>Four-color multi-picture demonstration (click on the picture to view the demonstration)</li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:2.36inch_e-paper_picture_make2.gif" class="image fancybox"><img alt="2.36inch e-paper picture make2.gif" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/400px-2.36inch_e-paper_picture_make2.gif" decoding="async" loading="lazy" width="400" height="295" srcset="/w/upload/0/09/2.36inch_e-paper_picture_make2.gif 1.5x"></a>
+</p>
+<ul><li>Seven-color single picture demonstration (click on the picture to view the demonstration)</li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:2.36inch_e-paper_picture_make3.gif" class="image fancybox"><img alt="2.36inch e-paper picture make3.gif" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/400px-2.36inch_e-paper_picture_make3.gif" decoding="async" loading="lazy" width="400" height="295" srcset="/w/upload/3/33/2.36inch_e-paper_picture_make3.gif 1.5x"></a>
+</p>
+<ul><li>Seven-color multi-picture demonstration (click on the picture to view the demonstration)</li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:2.36inch_e-paper_picture_make4.gif" class="image fancybox"><img alt="2.36inch e-paper picture make4.gif" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/400px-2.36inch_e-paper_picture_make4.gif" decoding="async" loading="lazy" width="400" height="295" srcset="/w/upload/e/eb/2.36inch_e-paper_picture_make4.gif 1.5x"></a>
+</p>
+</div></div>
+</div></div>
+</div></div>
+<p><br>
+</p>
+<div class="tabbertab" title="RPI tutorial" id="rpi">
+<div class="wiki-pages jet-green-color">
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h1><span class="mw-headline" id="Raspberry_Pi">Raspberry Pi</span></h1>
+<div class="mw-collapsible-content">
+<h2><span class="mw-headline" id="Hardware_connection">Hardware connection</span></h2>
+<p>When connecting to the Raspberry Pi, you can directly plug the board into the 40PIN pin header of the Raspberry Pi, and be careful to align the pins. <br>
+If you choose to use an 10PIN cable to connect, please refer to the pin corresponding table below:<br>
+</p>
+<table border="1;" style="border:#d7e5b9; width:100%; max-width:700px; line-height:200%" align="center">
+<caption>Raspberry Pi connection pin correspondence
+</caption>
+<tbody><tr style="background:#7eb128; color:white;" align="center">
+<td rowspan="2">e-Paper
+</td>
+<td colspan="2">Raspberry Pi
+</td></tr>
+<tr style="background:#7eb128; color:white;" align="center">
+<td>BCM2835 encoding
+</td>
+<td>Board physical pin number
+</td></tr>
+<tr align="center">
+<td>VCC</td>
+<td>3.3V</td>
+<td>3.3V
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>GND</td>
+<td>GND</td>
+<td>GND
+</td></tr>
+<tr align="center">
+<td>DIN</td>
+<td>MOSI</td>
+<td>19
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>CLK</td>
+<td>SCLK</td>
+<td>23
+</td></tr>
+<tr align="center">
+<td>CS_M</td>
+<td>CE0</td>
+<td>24
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>CS_S</td>
+<td>CE1</td>
+<td>26
+</td></tr>
+<tr align="center">
+<td>DC</td>
+<td>25</td>
+<td>22
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>RST</td>
+<td>17</td>
+<td>11
+</td></tr>
+<tr align="center">
+<td>BUSY</td>
+<td>24</td>
+<td>18
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>PWR</td>
+<td>18</td>
+<td>12
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="Raspberry_Pi_Preparation">Raspberry Pi Preparation</span></h2>
+<h3><span class="mw-headline" id="Disable_SPI_interface">Disable SPI interface</span></h3>
+<div class="mw-collapsible-content">
+<ul><li>Open the Raspberry Pi terminal and enter the following command to enter the configuration interface: <br></li></ul>
+<pre>sudo raspi-config
+Select Interface Options -&gt; SPI -&gt; Yes to disable the SPI interface
+</pre>
+<p><a href="https://www.waveshare.com/wiki/File:12.48-epaper-SPI-1.jpg" class="image fancybox"><img alt="12.48-epaper-SPI-1.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/12.48-epaper-SPI-1.jpg" decoding="async" loading="lazy" width="551" height="258"></a>
+<a href="https://www.waveshare.com/wiki/File:12.48-epaper-SPI-2.jpg" class="image fancybox"><img alt="12.48-epaper-SPI-2.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/12.48-epaper-SPI-2.jpg" decoding="async" loading="lazy" width="603" height="253"></a>
+<a href="https://www.waveshare.com/wiki/File:12.48-epaper-SPI-3.jpg" class="image fancybox"><img alt="12.48-epaper-SPI-3.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/12.48-epaper-SPI-3.jpg" decoding="async" loading="lazy" width="450" height="291"></a>
+</p>
+<ul><li>Restart Raspberry Pi:<br></li></ul>
+<pre>sudo reboot
+</pre>
+<h3><span class="mw-headline" id="config.txt_file_setting">config.txt file setting</span></h3>
+<p>Use the command<br>
+</p>
+<pre>sudo nano /boot/config.txt
+</pre>
+<p>or<br>
+</p>
+<pre>sudo nano /boot/firmware/config.txt
+</pre>
+<p>Open the corresponding config.txt file<br>
+Add at the end<br>
+</p>
+<pre>gpio=7=op,dl
+gpio=8=op,dl
+</pre>
+<p>Press Ctrl+O (letter O) to save<br>
+Press Ctrl+X to exit<br>
+</p>
+<ul><li>Restart Raspberry Pi:<br></li></ul>
+<pre>sudo reboot
+</pre>
+<h2><span class="mw-headline" id="Run_C_demo">Run C demo</span></h2>
+<ul><li>Install BCM2835 (Pi4, zero series, etc.)</li></ul>
+<pre>#Open the Raspberry Pi terminal and run the following commands:
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.71.tar.gz
+tar zxvf bcm2835-1.71.tar.gz 
+cd bcm2835-1.71/
+sudo ./configure &amp;&amp; sudo make &amp;&amp; sudo make check &amp;&amp; sudo make install
+# For more information, please refer to the official website: http://www.airspayce.com/mikem/bcm2835/
+</pre>
+<ul><li>Install wiringPi (Pi5)</li></ul>
+<pre>git clone https://github.com/WiringPi/WiringPi
+cd WiringPi
+./build
+gpio -v
+# Run gpio -v and corresponding version will appear. If it does not appear, there is an installation error.
+</pre>
+<ul><li>Download the demo (you can skip it if you have already downloaded it)</li></ul>
+<pre><a target="_blank" rel="nofollow noreferrer noopener" class="external free" href="https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/13.3inch_e-Paper_E.zip">https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/13.3inch_e-Paper_E.zip</a>
+unzip 13.3inch_e-Paper_E.zip -d 13.3inch_e-Paper_E
+cd 13.3inch_e-Paper_E/RaspberryPi/
+</pre>
+<div class="toccolours mw-collapsible mw-collapsed mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" role="button" tabindex="0" aria-expanded="false"><a class="mw-collapsible-text">Expand</a></span>
+<ul><li>Alternate decompression method</li></ul>
+<div class="mw-collapsible-content" style="display: none;">
+<pre>sudo apt-get install p7zip-full
+7z x 13.3inch_e-Paper_E.zip -O./13.3inch_e-Paper_E
+cd 13.3inch_e-Paper_E/RaspberryPi/
+</pre>
+</div></div>
+<div class="toccolours mw-collapsible mw-collapsed mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" role="button" tabindex="0" aria-expanded="false"><a class="mw-collapsible-text">Expand</a></span>
+<ul><li>Download the demo via GitHub (alternative method, skip if already downloaded)</li></ul>
+<div class="mw-collapsible-content" style="display: none;">
+<p>Currently, accessing GitHub is not very smooth. It is recommended to use the above method to download from our official website.
+</p>
+<pre>git clone <a target="_blank" rel="nofollow noreferrer noopener" class="external free" href="https://github.com/waveshare/e-Paper.git">https://github.com/waveshare/e-Paper.git</a>
+cd e-Paper/E-paper_Separate_Program/13.3inch_e-Paper_E/RaspberryPi/
+</pre>
+</div></div>
+<ul><li>Compiler program (Note: -j4 means using 4 threads for compilation, the number can be modified by yourself)</li></ul>
+<pre># It is now in 13.3inch_e-Paper_E/RaspberryPi_JetsonNano
+cd c
+sudo make clean
+# Use the BCM library to drive the Pi4
+sudo make -j4 USELIB=USE_BCM2835_LIB
+# Use the wiringPi library to drive the Pi5
+sudo make -j4 USELIB=USE_WIRINGPI_LIB 
+</pre>
+<ul><li>Run demo</li></ul>
+<pre>sudo ./epd
+</pre>
+<h2><span class="mw-headline" id="Run_python_demo">Run python demo</span></h2>
+<ul><li>Install function library</li></ul>
+<pre>sudo apt-get update
+sudo apt-get install python3-pip
+sudo apt-get install python3-pil
+sudo apt-get install python3-numpy
+sudo apt-get install python3-spidev
+</pre>
+<div class="toccolours mw-collapsible mw-collapsed mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" role="button" tabindex="0" aria-expanded="false"><a class="mw-collapsible-text">Expand</a></span>
+<ul><li>Install function library (python2)</li></ul>
+<div class="mw-collapsible-content" style="display: none;">
+<pre>sudo apt-get update
+sudo apt-get install python-pip
+sudo apt-get install python-pil
+sudo apt-get install python-numpy
+sudo apt-get install python-spidev
+</pre>
+</div></div>
+<ul><li>Download the demo (you can skip it if you have already downloaded it)</li></ul>
+<pre><a target="_blank" rel="nofollow noreferrer noopener" class="external free" href="https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/13.3inch_e-Paper_E.zip">https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/13.3inch_e-Paper_E.zip</a>
+unzip 13.3inch_e-Paper_E.zip -d 13.3inch_e-Paper_E
+cd 13.3inch_e-Paper_E/RaspberryPi/
+</pre>
+<div class="toccolours mw-collapsible mw-collapsed mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" role="button" tabindex="0" aria-expanded="false"><a class="mw-collapsible-text">Expand</a></span>
+<ul><li>Alternate decompression method</li></ul>
+<div class="mw-collapsible-content" style="display: none;">
+<pre>sudo apt-get install p7zip-full
+7z x 13.3inch_e-Paper_E.zip -O./13.3inch_e-Paper_E
+cd 13.3inch_e-Paper_E/RaspberryPi/
+</pre>
+</div></div>
+<div class="toccolours mw-collapsible mw-collapsed mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" role="button" tabindex="0" aria-expanded="false"><a class="mw-collapsible-text">Expand</a></span>
+<ul><li>Download the demo via GitHub (alternative method, skip if already downloaded)</li></ul>
+<div class="mw-collapsible-content" style="display: none;">
+<p>Currently, accessing GitHub is not very smooth. It is recommended to use the above method to download from our official website.
+</p>
+<pre>git clone <a target="_blank" rel="nofollow noreferrer noopener" class="external free" href="https://github.com/waveshare/e-Paper.git">https://github.com/waveshare/e-Paper.git</a>
+cd e-Paper/E-paper_Separate_Program/13.3inch_e-Paper_E/RaspberryPi/
+</pre>
+</div></div>
+<ul><li>Run demo</li></ul>
+<pre># Make sure it is in 13.3inch_e-Paper_E/RaspberryPi/
+cd python/examples/
+python3 epd_13in3e_test.py
+</pre>
+</div></div></div>
+</div>
+<p><br>
+</p>
+<div class="tabbertab" title="Arduino tutorial" id="arduino">
+<div class="wiki-pages jet-green-color">
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h1><span class="mw-headline" id="Arduino">Arduino</span></h1>
+<div class="mw-collapsible-content">
+<h2><span class="mw-headline" id="Hardware_connection_2">Hardware connection</span></h2>
+<p>Use an 10PIN cable to connect, please refer to the pin corresponding table below:
+</p>
+<table border="1;" style="border:#d7e5b9; width:700px; line-height:200%" align="center">
+<caption>Arduino connection pin correspondence
+</caption>
+<tbody><tr style="background:#7eb128; color:white;" align="center">
+<td>e-Paper</td>
+<td>Arduino UNO</td>
+<td>Mega2560
+</td></tr>
+<tr align="center">
+<td>VCC</td>
+<td>5V</td>
+<td>5V
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>GND</td>
+<td>GND</td>
+<td>GND
+</td></tr>
+<tr align="center">
+<td>DIN</td>
+<td>D11</td>
+<td>D51
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>CLK</td>
+<td>D13</td>
+<td>D52
+</td></tr>
+<tr align="center">
+<td>CS_M</td>
+<td>D10</td>
+<td>D10
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>CS_S</td>
+<td>D9</td>
+<td>D9
+</td></tr>
+<tr align="center">
+<td>DC</td>
+<td>D8</td>
+<td>D8
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>RST</td>
+<td>D7</td>
+<td>D7
+</td></tr>
+<tr align="center">
+<td>BUSY</td>
+<td>D6</td>
+<td>D6
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>PWR</td>
+<td>D5</td>
+<td>D5
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="Install_IDE">Install IDE</span></h2>
+<p><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/wiki/Arduino_ide_download">Arduino IDE Windows Installation Tutorial</a>
+</p>
+<h2><span class="mw-headline" id="Run_demo">Run demo</span></h2>
+<ul><li>In the Resources section download the <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/13.3inch_e-Paper_E.zip">Demo</a>, then unzip it and enter the 13.3inch_e-Paper_E directory to see the following content<br></li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:E-paper_arduino_cede-R4-2.jpg" class="image fancybox"><img alt="E-paper arduino cede-R4-2.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/E-paper_arduino_cede-R4-2.jpg" decoding="async" loading="lazy" width="663" height="136"></a><br>
+</p>
+<ul><li>Open the demo: 13.3inch_e-Paper_E\Arduino_R4\Arduino_R4.ino<br></li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:E-paper_arduino_cede-R4-3.jpg" class="image fancybox"><img alt="E-paper arduino cede-R4-3.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/E-paper_arduino_cede-R4-3.jpg" decoding="async" loading="lazy" width="676" height="415"></a><br>
+</p>
+<ul><li>In the Arduino IDE, select the corresponding development board (Board) and port (Port) in the Tools menu<br></li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:E-paper_arduino_cede-R4-1.jpg" class="image fancybox"><img alt="E-paper arduino cede-R4-1.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/E-paper_arduino_cede-R4-1.jpg" decoding="async" loading="lazy" width="345" height="329"></a><br>
+</p>
+<ul><li>Finally, click Upload, and the upload is as follows (Arduino 1.8.13)</li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:E-paper_arduino_cede3.jpg" class="image fancybox"><img alt="E-paper arduino cede3.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/E-paper_arduino_cede3.jpg" decoding="async" loading="lazy" width="784" height="316"></a><br>
+</p>
+</div></div></div>
+</div>
+<div class="tabbertab" title="STM32 tutorial" id="stm32">
+<div class="wiki-pages jet-green-color"> 
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h1><span class="mw-headline" id="STM32">STM32</span></h1>
+<div class="mw-collapsible-content">
+<h2><span class="mw-headline" id="Hardware_connection_3">Hardware connection</span></h2>
+<p>Use a 9PIN cable to connect, please refer to the pin corresponding table below:
+</p>
+<table border="1;" style="border:#d7e5b9; width:100%; max-width:700px; line-height:200%" align="center">
+<caption>STM32 connection pin correspondence
+</caption>
+<tbody><tr style="background:#7eb128; color:white;" align="center">
+<td>e-Paper</td>
+<td>STM32
+</td></tr>
+<tr align="center">
+<td>VCC</td>
+<td>3.3V
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>GND</td>
+<td>GND
+</td></tr>
+<tr align="center">
+<td>DIN</td>
+<td>PA7
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>CLK</td>
+<td>PA5
+</td></tr>
+<tr align="center">
+<td>CS_M</td>
+<td>PA4
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>CS_S</td>
+<td>PC4
+</td></tr>
+<tr align="center">
+<td>DC</td>
+<td>PA2
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>RST</td>
+<td>PA1
+</td></tr>
+<tr align="center">
+<td>BUSY</td>
+<td>PA3
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>PWR</td>
+<td>PA6
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="Run_demo_2">Run demo</span></h2>
+<ul><li>Click to download the <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/13.3inch_e-Paper_E.zip">Demo</a>, then unzip it and enter the 13.3inch_e-Paper_E directory to see the following content</li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:E-paper_stm32_cede1_f103zet6.jpg" class="image fancybox"><img alt="E-paper stm32 cede1 f103zet6.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/E-paper_stm32_cede1_f103zet6.jpg" decoding="async" loading="lazy" width="264" height="129"></a><br>
+</p>
+<ul><li>Use Keil to open epd-demo.uvprojx in the 13.3inch_e-Paper_E\STM32-F103ZET6\MDK-ARM directory<br></li>
+<li>Open Keil's compilation toolbar (which is generally open) &lt; br/&gt;</li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:E-paper_stm32_cede1.jpg" class="image fancybox"><img alt="E-paper stm32 cede1.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/E-paper_stm32_cede1.jpg" decoding="async" loading="lazy" width="508" height="337"></a><br>
+</p>
+<ul><li>Click Compile</li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:E-paper_stm32_cede3.jpg" class="image fancybox"><img alt="E-paper stm32 cede3.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/E-paper_stm32_cede3.jpg" decoding="async" loading="lazy" width="654" height="86"></a><br>
+</p>
+<ul><li>Make sure the appropriate programmer is connected, then click LOAD to download the demo to the microcontroller</li></ul>
+</div></div></div>
+</div>
+<div class="tabbertab" title="ESP32 tutorial" id="stm32">
+<div class="wiki-pages jet-green-color">
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h1><span class="mw-headline" id="ESP32">ESP32</span></h1>
+<div class="mw-collapsible-content">
+<h2><span class="mw-headline" id="Hardware_connection_4">Hardware connection</span></h2>
+<table border="1;" style="border:#d7e5b9; width:100%; max-width:700px; line-height:200%" align="center”">
+<caption>ESP32 connection pin correspondence
+</caption>
+<tbody><tr style="background:#7eb128; color:white;" align="center">
+<td>e-Paper</td>
+<td>ESP32
+</td></tr>
+<tr align="center">
+<td>VCC</td>
+<td>3.3V
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>GND</td>
+<td>GND
+</td></tr>
+<tr align="center">
+<td>DIN</td>
+<td>IO14
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>CLK</td>
+<td>IO13
+</td></tr>
+<tr align="center">
+<td>CS_M</td>
+<td>IO15
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>CS_S</td>
+<td>IO2
+</td></tr>
+<tr align="center">
+<td>DC</td>
+<td>IO27
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>RST</td>
+<td>IO26
+</td></tr>
+<tr align="center">
+<td>BUSY</td>
+<td>IO25
+</td></tr>
+<tr style="background:#ebf2dc; color:black;" align="center">
+<td>PWR</td>
+<td>IO33
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="Environment_configuration">Environment configuration</span></h2>
+<p>Online installation requires the use of VPN software, please click the link below for more information.
+</p>
+<ul><li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/wiki/Arduino_ESP32/8266_Online_Installation">Install Online</a></li></ul>
+<h2><span class="mw-headline" id="Run_demo_3">Run demo</span></h2>
+<ul><li>In the Resources section download the <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/13.3inch_e-Paper_E.zip">Demo</a>, then unzip it and enter the 13.3inch_e-Paper_E directory to see the following content<br></li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:Epd_esp32-1.jpg" class="image fancybox"><img alt="Epd esp32-1.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/Epd_esp32-1.jpg" decoding="async" loading="lazy" width="632" height="140"></a><br>
+</p>
+<ul><li>Open the demo: 13.3inch_e-Paper_E\ESP32\ESP32.ino<br></li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:Epd_esp32-2.jpg" class="image fancybox"><img alt="Epd esp32-2.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/Epd_esp32-2.jpg" decoding="async" loading="lazy" width="782" height="454"></a><br>
+</p>
+<ul><li>In the Arduino IDE, select the corresponding development board (Board) and port (Port) in the Tools menu<br></li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:Epd_esp32-3.jpg" class="image fancybox"><img alt="Epd esp32-3.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/Epd_esp32-3.jpg" decoding="async" loading="lazy" width="657" height="521"></a><br>
+</p>
+<ul><li>Finally, click Upload, and the upload is as follows (Arduino 2.2.1)</li></ul>
+<p><a href="https://www.waveshare.com/wiki/File:Epd_esp32-4.jpg" class="image fancybox"><img alt="Epd esp32-4.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/Epd_esp32-4.jpg" decoding="async" loading="lazy" width="922" height="290"></a><br>
+</p>
+<h2><span class="mw-headline" id="ESP32-WiFi">ESP32-WiFi</span></h2>
+<p>please refer to <a target="_blank" rel="nofollow noreferrer noopener" class="external free" href="https://www.waveshare.com/wiki/E-Paper_ESP32_Driver_Board#WiFi_Demo">https://www.waveshare.com/wiki/E-Paper_ESP32_Driver_Board#WiFi_Demo</a>
+program download： <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/ESP32-wifi-13.3E.zip">ESP32-wifi</a>
+</p>
+</div></div></div>
+</div>
+<div class="tabbertab" title="Resources" id="myresources">
+<h1><span class="mw-headline" id="Resources">Resources</span></h1>
+<h2><span class="mw-headline" id="Documents">Documents</span></h2>
+<ul><li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/13.3inch_e-Paper_HAT%2B.pdf">Driver Board Schematic</a><br></li>
+<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/13.3inch_e-Paper_(E)_user_manual.pdf">13.3inch e-Paper (E) Datasheet</a></li></ul>
+<h2><span class="mw-headline" id="Demos">Demos</span></h2>
+<ul><li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/13.3inch_e-Paper_E.zip">Demo</a></li>
+<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/13.3inch%20e-Paper%20HAT%2B/ESP32-wifi-13.3E.zip">ESP32-wifi</a></li></ul>
+<h2><span class="mw-headline" id="Development_resources">Development resources</span></h2>
+<ul><li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/wiki/E-Paper_Floyd-Steinberg">Create a Scatter Plot using Photoshop</a></li>
+<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/wiki/E-Paper_API_Analysis">E-Paper API Analysis</a></li>
+<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/common/Zimo221.7z">Character Conversion Software</a></li>
+<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/wiki/Ink_Screen_Font_Library_Tutorial">E-Paper Font Library Conversion Tutorial</a></li>
+<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://files.waveshare.com/wiki/common/Image2Lcd.7z">Image2Lcd.7z Image Bitmap Conversion Software</a></li>
+<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/wiki/Image2Lcd_Image_Bitmap_Conversion">Image2Lcd Image Bitmap Conversion Steps</a></li>
+<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/wiki/Template:2.13inch_e-Paper_HAT%2B_Pwn">pwnagotchi Usage and Porting</a></li></ul>
+<h2><span class="mw-headline" id="Related_link">Related link</span></h2>
+<ul><li><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/wiki/Raspberry_Pi_Documentation">Raspberry Pi Documentation</a></li></ul>
+</div>
+<div class="tabbertab" title="FAQ" id="myfaq">
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h1><span class="mw-headline" id="FAQ">FAQ</span></h1>
+<div class="mw-collapsible-content">
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-expanded" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h2><span class="mw-headline" id="Software_Issues">Software Issues</span></h2>
+<div class="mw-collapsible-content" style="">
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion1">
+								<b>Question:</b> The following occurs when Raspberry Pi runs a python demo <br></a><a href="https://www.waveshare.com/wiki/File:RPI_FAQ_0.jpg" class="image fancybox"><img alt="RPI FAQ 0.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/RPI_FAQ_0.jpg" decoding="async" loading="lazy" width="600" height="80"></a>
+							
+						</h4>
+					</div>
+					<div id="accordion1" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Enter command: ls /dev/spi*</li>
+<li>The result may appear as shown in the figure <br><a href="https://www.waveshare.com/wiki/File:RPI_FAQ_1.jpg" class="image fancybox"><img alt="RPI FAQ 1.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/RPI_FAQ_1.jpg" decoding="async" loading="lazy" width="600" height="70"></a></li>
+<li>This is because the SPI interface is occupied in the /boot/config.txt file <br><a href="https://www.waveshare.com/wiki/File:RPI_FAQ_2.jpg" class="image fancybox"><img alt="RPI FAQ 2.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/RPI_FAQ_2.jpg" decoding="async" loading="lazy" width="600" height="151"></a></li>
+<li>The solution is as follows:
+<ul><li>Remove the occupation of spi0-0 in the /boot/config.txt file</li>
+<li>Modify the position of the image in the /e-Paper/RaspberryPi_JetsonNano/lib/waveshare_epd/epdconfig.py file to 0,1</li>
+<li><a href="https://www.waveshare.com/wiki/File:RPI_FAQ_3.jpg" class="image fancybox"><img alt="RPI FAQ 3.jpg" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/RPI_FAQ_3.jpg" decoding="async" loading="lazy" width="600" height="121"></a></li></ul></li></ul>
+</div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion2">
+								<b>Question:</b> How to use other custom fonts? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion2" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Currently, we do not provide other font files. You can refer to the custom font compiler shared by users to generate font files for testing. Note: This tool is not officially maintained by Waveshare and is for learning purposes only
+<ul><li><a target="_blank" rel="nofollow noreferrer noopener" class="external free" href="https://github.com/ayoy/fontedit">https://github.com/ayoy/fontedit</a></li></ul></li></ul>
+</div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;">{{{5}}}</font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion3">
+								<b>Question:</b> STM32 drives the e-Paper, but the MDK compilation display space is not enough? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion3" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Our example demo uses STM32f103ZET6, if the customer modifies to other model in the MDK, such as STM32F103RBT6, the RAM space becomes smaller, and you need to modify the stack size and heap size in the startup file on the original basis. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion4">
+								<b>Question:</b> Questions about datasheet. When does the font transmit Data Start Transmission 1, and when does it use Data Start Transmission 2? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion4" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>When transmitting B/W data, use Data Start Transmission 1; When transmitting RED data, use Data Start Transmission 2.</li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion5">
+								<b>Question:</b> Why can't I display Chinese on the e-Paper? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion5" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>The Chinese font library of our example demo uses GB2312 encoding. Please change your xxx_test.c file to GB2312 encoding format, compile and download it, and it will display normally. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion6">
+								<b>Question:</b> Why does e-Paper display a black border? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion6" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>The border display color can be set through the Border Waveform Control register or the VCOM AND DATA INTERVAL SETTING register. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion7">
+								<b>Question:</b> Multiple locations are partially refreshed, how many times does the font appear lighter after being refreshed? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion7" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>In this case, the customer needs to reduce the number of partially refreshing positions and perform a screen clearing after partially refreshing 5 times. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion8">
+								<b>Question:</b> When the e-Paper is in deep sleep mode, there may be an issue that the screen refresh will not be clean when waking up for the first time. How can I solve this problem? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion8" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>The process of waking up the e-Paper is actually a process of re-powering on, so when the EPD wakes up, it needs to perform a screen clearing action first to minimize residual images. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion9">
+								<b>Question:</b> When testing the demo, the demo keeps getting stuck at e-Paper busy? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion9" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>May be caused by SPI driver failure:
+<ul><li>1. First check if the wiring is correct.</li>
+<li>2. Check if SPI is enabled and parameters are configured correctly. (Baud rate, mode and other parameters)</li></ul></li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion10">
+								<b>Question:</b> Why can't the image be displayed after partial refresh and then global refresh? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion10" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>When switching from partial refresh to global refresh on the e-Paper, a global refresh initialization function needs to be added. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion11">
+								<b>Question:</b> Why does the printing information work normally but the e-Paper does not respond when running the python demo? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion11" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>It may be that a C language demo based on the BCM2835 library has been run before. At this time, you need to restart the Raspberry Pi and then run the python demo. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion12">
+								<b>Question:</b> Error ImportError: No module named Image when running python demo?
+							</a>
+						</h4>
+					</div>
+					<div id="accordion12" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Use the command "sudo apt-get install python-imaging" to install the imaging function library. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+</div></div>
+<div class="toccolours mw-collapsible mw-collapsed mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" role="button" tabindex="0" aria-expanded="false"><a class="mw-collapsible-text">Expand</a></span>
+<h2><span class="mw-headline" id="Hardware_Issues">Hardware Issues</span></h2>
+<div class="mw-collapsible-content" style="display: none;">
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion13">
+								<b>Question:</b> Can the Arduino 5V drive the e-Paper? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion13" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Yes, there is now a level translation chip onboard that supports 5V drive. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion14">
+								<b>Question:</b> What should we pay attention to when designing a driver board? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion14" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>The rated input voltage of the e-Paper is 2.3~3.6V. If it is a 5V system, level conversion is required. In addition, the voltage should not be lower than 2.5V to avoid affecting the display effect of the e-Paper.</li>
+<li>For device selection, you can use the model in the schematic diagram we provide or select according to the data sheet. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion15">
+								<b>Question:</b> Can I use analog SPI? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion15" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Yes, please note that the timing needs to be correct. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion16">
+								<b>Question:</b> Why is the BUSY pin always busy? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion16" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Confirm if SPI communication is normal.</li>
+<li>Confirm if the BUSY pin is properly initialized to input mode.</li>
+<li>It may be that there is no normal reset. Try to shorten the duration of the low level during the reset. (Due to the addition of a power-off switch in the driver circuit, resetting the low level for too long can cause the driver board to lose power and result in reset failure.)</li>
+<li>If the busy function has a send 0x71 command, you can try to comment it out. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion17">
+								<b>Question:</b> What are the specifications of the e-Paper cable interface? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion17" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>1.64 inch, 2.36 inch, 3 inch, 0.5mm pitch, 26pin</li>
+<li>1.02inch, 0.5mm pitch, 30pin</li>
+<li>4.37inch, 7.3inch, 0.5mm pitch, 50pin</li>
+<li>The rest (non-parallel port) are 0.5mm pitch, 24pin </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion18">
+								<b>Question:</b> What type of connector does the e-Paper use? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion18" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Cable socket 0.5-XXpin rear flip 2.0H (FPC connector). </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+</div></div>
+<div class="toccolours mw-collapsible mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-expanded" role="button" tabindex="0" aria-expanded="true"><a class="mw-collapsible-text">Collapse</a></span>
+<h2><span class="mw-headline" id="Screen_Issues">Screen Issues</span></h2>
+<div class="mw-collapsible-content" style="">
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion19">
+								<b>Question:</b> What is the usage environment of the e-Paper display? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion19" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>[Working conditions] Temperature range: 0~40°C (the seven-color screen is: 15~35°C); humidity range: 35%~65%RH.</li>
+<li>[Storage conditions]: Temperature range: below 30°C; Humidity range: below 55%RH; Maximum storage time: 6 months.</li>
+<li>[Transportation conditions]: temperature range: -25~50°C; Maximum shipping time: 10 days.</li>
+<li>[After unpacking]: Temperature range: 20°C±5°C; Humidity range: 50±5%RH; Maximum storage time: Complete assembly within 72 hours.</li></ul>
+</div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion20">
+								<b>Question:</b> Precautions for refreshing the e-Paper 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion20" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Refresh mode:
+<ul><li>Global refresh: The e-Paper will flash multiple times during the refresh process (the number of flashes depends on the refresh time). The flashing is to remove residual images to achieve the best display effect.</li>
+<li>Partial refresh: The e-Paper screen has no flickering effect during the refresh process. Users who use the partial refresh function should pay attention to performing a <b>global refresh</b> operation to clear the residual images after refreshing several times. Otherwise, the residual image problem will become more and more serious and even damage the screen. (Currently, only some black and white e-Paper screens support partial refresh, please refer to the product page description for details.)</li></ul></li>
+<li>Refresh frequency:
+<ul><li>During use, it is recommended that customers set the refresh interval of the e-Paper screen to at least 180 seconds. (Except for products that support partial refresh function)</li>
+<li>During the standby process (that is, after the refresh operation), it is recommended that customers set the e-Paper screen to sleep mode or power off (the power supply of the e-Paper can be disconnected with an analog switch) to reduce power consumption and extend the life of the e-Paper screen. (<b>If some e-ink screens are powered on for a long time, the screen may be damaged and cannot be repaired.</b>)</li>
+<li>During the use of multi-color e-Paper screen, it is recommended that customers update the display screen at least once every 24 hours. (If the screen remains the same image for a long time, it may burn out and be difficult to repair.)</li></ul></li>
+<li>Usage Scenarios:
+<ul><li>The e-Paper screen is recommended for indoor use, not for outdoor use.</li>
+<li>If the usage scenario is outdoors, we cannot guarantee its display effect. If the screen is damaged due to outdoor use, we do not provide warranty service.</li>
+<li>The following are some protections for outdoor use. We do not guarantee that the e-Paper can be used normally after taking these protections.
+<ul><li>Avoid direct sunlight on the e-Paper screen, and at the same time take ultraviolet protection measures, because charged particles will dry out under strong light for a long time, resulting in inactivation and cannot be refreshed, which is irreversible.</li>
+<li>Use 3M tape to completely cover the white plastic part on the e-Paper connection cable. Complete coverage or no tape will have different reactions under ultraviolet light.</li>
+<li>Place the e-Paper in a relatively cool area, such as under the shade of trees or under the shadow of eaves.</li></ul></li>
+<li>When designing e-Paper products, customers should determine whether the use environment meets the requirements of e-Paper screens.</li></ul></li></ul>
+</div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion21">
+								<b>Question:</b> What is the number of refresh times/lifespan of the e-Paper screen? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion21" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Ideally, with normal use, it can be refreshed 1,000,000 times (1 million times). </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion22">
+								<b>Question:</b> Why does the screen refresh (global refresh) has a serious residual image problem that cannot be fixed after a period of use? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion22" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>When the development board is powered on for a long time, after each refresh operation, it is recommended to set the screen to sleep mode or directly cut off the power, otherwise the screen may be burned when the e-Paper is in a high voltage state for a long time. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion23">
+								<b>Question:</b> Can the e-Paper screen be refreshed again after entering deep sleep mode? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion23" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Yes, but you need to redo the e-paper initialization operation with the software. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion24">
+								<b>Question:</b> Why does it show image offset?
+							</a>
+						</h4>
+					</div>
+					<div id="accordion24" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>The SPI rate may be too high, causing data loss, try to reduce the SPI rate.</li>
+<li>Insufficient power supply or unstable power supply causes data loss.</li>
+<li>The data cable is too long and causes data loss, and the extension cable should not exceed 20cm. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion25">
+								<b>Question:</b> What is a waveform file of an e-Paper screen and what does it do? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion25" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>The gray scale of electrophoresis e-paper is determined by the spatial position of the particles in the microcapsule or microcup, and the electrophoresis phenomenon occurs between black particles and white particles under the action of voltage, and the voltage timing that prompts the electrophoretic movement of the particles is the driving waveform of the e-paper. The driving waveform is the core part of the e-paper display, and the optimization of the driving waveform will directly affect the display effect of the display. The drive waveform file is a parameter formed to describe the voltage timing that causes the electrophoretic motion of the particles, and needs to be called periodically when the e-paper is refreshed.</li>
+<li>Different batches of e-paper diaphragms and electrophoretic matrices will have different voltage values ​​when driving the display due to reasons such as materials and manufacturing processes. The relationship between grayscale, voltage, and temperature is reflected in the waveform of the e-Paper screen. Generally speaking, after each batch of electrophoresis matrices is generated, there will be a corresponding waveform file in the form of a .wbf file. The membrane manufacturer will provide the waveform file and electrophoresis matrix to the manufacturer of the e-paper screen, and then the the manufacturer of the e-paper screen integrates the protective board, substrate and driver and provides them to customers later; if the waveform file does not correspond to the screen, it is likely to cause the display to fail or the display effect to be unsatisfactory. Generally, the waveform file has been OTP built into the driver IC of the e-paper screen when it leaves the factory, and some of the demos we provide also call external waveform files to drive the e-paper screen. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion26">
+								<b>Question:</b> What do LUT and OTP stand for? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion26" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>LUT is the abbreviation of LOOK UP TABLE, and OTP is the abbreviation of ONE TIME PROGRAM. The original meaning of LUT is to load waveform files, and waveform files are divided into two types: OTP and REGISTER. OTP is the built-in waveform storage method, and REGISTER is the external waveform storage method. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion27">
+								<b>Question:</b> What is the partial refresh process of e-paper? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion27" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>There are two main types of e-paper screens:
+<ul><li>One is to refresh the background image first.</li>
+<li>The other is to alternately refresh old data and new data. </li></ul></li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion28">
+								<b>Question:</b> How to perform partial refresh at different locations at the same time? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion28" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Simultaneous partial refresh at different locations requires programming, that is, first refresh the data at different locations into the e-paper IC, and finally complete Updata/TurnOnDisplay in a unified manner. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion29">
+								<b>Question:</b> Does the three-color e-Paper have a reddish/yellowish color difference? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion29" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>Yes, there will be some color difference when e-Paper is produced in batches, which is normal. Storing the e-Paper face up can reduce the reddish/yellow cast to a certain extent. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion30">
+								<b>Question:</b> Is there a surface coating when the raw display product is shipped? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion30" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>With coating. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion31">
+								<b>Question:</b> Does e-Paper have a built-in temperature sensor? 
+							</a>
+						</h4>
+					</div>
+					<div id="accordion31" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>All current screens have built-in temperature sensors, or an external LM75 temperature sensor can be used using the IIC pins. </li></ul></div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+</div></div>
+</div></div>
+<div class="toccolours mw-collapsible mw-collapsed mw-made-collapsible"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" role="button" tabindex="0" aria-expanded="false"><a class="mw-collapsible-text">Expand</a></span>
+<h2><span class="mw-headline" id="Potential_issues_during_development">Potential issues during development</span></h2>
+<div class="mw-collapsible-content" style="display: none;">
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion32">
+								<b>Question:</b> The Raspberry Pi program compiles and runs, but the e-Paper screen doesn't respond
+							</a>
+						</h4>
+					</div>
+					<div id="accordion32" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>In the config.txt file on the Raspberry Pi, no corresponding code has been added. Please refer to the Raspberry Pi Preparation to proceed <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#.E6.A0.91.E8.8E.93.E6.B4.BE.E5.89.8D.E7.BD.AE.E8.AE.BE.E7.BD.AE">Configuration</a></li></ul>
+</div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion33">
+								<b>Question:</b> After the Raspberry Party did a single refresh of the e-Paper screen, it couldn't perform a second refresh of the e-Paper screen
+							</a>
+						</h4>
+					</div>
+					<div id="accordion33" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>During the first refresh, the refresh of the e-Paper screen was forcibly terminated</li>
+<li>After the refresh ended, it did not enter sleep mode and directly cut off the power</li></ul>
+</div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#accordion34">
+								<b>Question:</b> When the main control board such as STM32, ESP32, and Arduino drives the e-Paper screen, it cannot be driven, and the main control board keeps restarting
+							</a>
+						</h4>
+					</div>
+					<div id="accordion34" class="panel-collapse collapse in">
+						<div class="panel-body">
+<div>&nbsp;<b>Answer:</b></div>
+<div>
+<ul><li>The power supply is insufficient, the current required for the e-Paper screen and the driver board to run is relatively large, it is recommended to use a power supply of 3.3V/1A or more to power it</li></ul>
+</div>
+<div style="display:none;"></div>
+<div style="display:none;"></div>
+<p><font color="red" style="display:none;"></font>
+</p>
+						</div>
+					</div>
+				</div>
+</div>
+<p><br>
+</p>
+</div></div>
+</div>
+<p><br>
+</p>
+<div class="tabbertab" title="Support" id="mysupport">
+<h1><span class="mw-headline" id="Support">Support</span></h1>
+<p><br>
+<br>
+</p>
+<div style="background:linear-gradient(to bottom right,#91C942,#7DB036); border-radius:15px; width:100%;min-width:750px;">
+<div style="display:flex;flex-direction: row;align-items: flex-start;">
+<div style="flex:l; font-size:15px; width:70%; margin-top:20px; margin-bottom:20px; margin-right:40px;padding-left:40px;">
+<p style="font-size:20px; font-weight:bold;">
+Technical Support
+</p>
+<p>
+If you need technical support or have any feedback/review, please click the <b>Submit Now</b> button to submit a ticket, Our support team will check and reply to you within 1 to 2 working days. Please be patient as we make every effort to help you to resolve the issue. 
+<br> 
+Working Time: 9 AM - 6 PM GMT+8 (Monday to Friday)
+</p>
+</div>
+<div style="margin-top:94px;">
+<div id="service" style="display:flex; flex:r; background-color:#393939; color:white; text-align:center; font-size:20px; border-radius:20px;">
+<p><a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://service.waveshare.com/">Submit Now</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div></div></div>
+<!-- 
+NewPP limit report
+Cached time: 20260106191334
+Cache expiry: 0
+Dynamic content: true
+Complications: []
+CPU time usage: 0.277 seconds
+Real time usage: 0.474 seconds
+Preprocessor visited node count: 1840/1000000
+Post‐expand include size: 35145/2097152 bytes
+Template argument size: 24709/2097152 bytes
+Highest expansion depth: 6/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 33009/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  255.939      1 -total
+ 39.85%  101.990      1 Template:E-Paper_FAQ_color
+ 35.41%   90.617     34 Template:FAQ
+  9.09%   23.261      1 Template:Infobox_item
+  5.75%   14.713      1 Template:E-paper_for_esp32_use_13in3e
+  5.66%   14.475      1 Template:Servicebox1
+  5.31%   13.601      1 Template:E-paper_for_rpiuse_13in3e
+  4.96%   12.707      1 Template:E-Paper_Principle
+  4.82%   12.344      1 Template:E-Paper-precautions_E6
+  4.73%   12.110      1 Template:E-Paper_SPI_Communication
+-->
+</div></div>								<div class="printfooter">
+				Retrieved from "<a dir="ltr" href="https://www.waveshare.com/w/index.php?title=13.3inch_e-Paper_HAT%2B_(E)_Manual&amp;oldid=106817">https://www.waveshare.com/w/index.php?title=13.3inch_e-Paper_HAT%2B_(E)_Manual&amp;oldid=106817</a>"				</div>
+												<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"><div id="mw-hidden-catlinks" class="mw-hidden-catlinks mw-hidden-cats-hidden">Hidden categories: <ul><li><a href="https://www.waveshare.com/wiki/Category:SPI_interface" title="Category:SPI interface">SPI interface</a></li><li><a href="https://www.waveshare.com/wiki/Category:RPi_interface" title="Category:RPi interface">RPi interface</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+			<!-- /bodyContent -->
+		</div>
+						</div>
+				</div>
+			</div>
+			<!-- /content -->
+
+			<!-- sidebar-left -->
+			<div class="sidebar-wrapper sidebar-left-wrapper">
+				<div class="sidebar-container container">
+					<div class="row">
+						<div id="sidebar-left" class="col-md-2 col-md-offset-0">
+							<div id="tweekiTOC"><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading" style="display: table;"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none">
+<ul class="nav">
+<li class="toclevel-1 tocsection-1"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Overview"><span class="tocnumber">1</span> <span class="toctext">Overview</span></a>
+<ul class="nav">
+<li class="toclevel-2 tocsection-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Parameters"><span class="tocnumber">1.1</span> <span class="toctext">Parameters</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Communication_Method"><span class="tocnumber">1.2</span> <span class="toctext">Communication Method</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Operating_Principle"><span class="tocnumber">1.3</span> <span class="toctext">Operating Principle</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Programming_Principle"><span class="tocnumber">1.4</span> <span class="toctext">Programming Principle</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Double-IC_Programming_Analysis"><span class="tocnumber">1.5</span> <span class="toctext">Double-IC Programming Analysis</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Precautions"><span class="tocnumber">1.6</span> <span class="toctext">Precautions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Picture_Processing"><span class="tocnumber">2</span> <span class="toctext">Picture Processing</span></a>
+<ul class="nav">
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Picture_Production"><span class="tocnumber">2.1</span> <span class="toctext">Picture Production</span></a>
+<ul class="nav">
+<li class="toclevel-3"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Preparation"><span class="tocnumber">2.1.1</span> <span class="toctext">Preparation</span></a></li>
+<li class="toclevel-3"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Introduction"><span class="tocnumber">2.1.2</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-3"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Operation_Steps"><span class="tocnumber">2.1.3</span> <span class="toctext">Operation Steps</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Picture_Data_Conversion"><span class="tocnumber">2.2</span> <span class="toctext">Picture Data Conversion</span></a>
+<ul class="nav">
+<li class="toclevel-3"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Download_Demos"><span class="tocnumber">2.2.1</span> <span class="toctext">Download Demos</span></a></li>
+<li class="toclevel-3"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Bug_Resolution"><span class="tocnumber">2.2.2</span> <span class="toctext">Bug Resolution</span></a></li>
+<li class="toclevel-3"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Conversion_Steps"><span class="tocnumber">2.2.3</span> <span class="toctext">Conversion Steps</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Raspberry_Pi"><span class="tocnumber">3</span> <span class="toctext">Raspberry Pi</span></a>
+<ul class="nav">
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Hardware_connection"><span class="tocnumber">3.1</span> <span class="toctext">Hardware connection</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Raspberry_Pi_Preparation"><span class="tocnumber">3.2</span> <span class="toctext">Raspberry Pi Preparation</span></a>
+<ul class="nav">
+<li class="toclevel-3"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Disable_SPI_interface"><span class="tocnumber">3.2.1</span> <span class="toctext">Disable SPI interface</span></a></li>
+<li class="toclevel-3"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#config.txt_file_setting"><span class="tocnumber">3.2.2</span> <span class="toctext">config.txt file setting</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Run_C_demo"><span class="tocnumber">3.3</span> <span class="toctext">Run C demo</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Run_python_demo"><span class="tocnumber">3.4</span> <span class="toctext">Run python demo</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Arduino"><span class="tocnumber">4</span> <span class="toctext">Arduino</span></a>
+<ul class="nav">
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Hardware_connection_2"><span class="tocnumber">4.1</span> <span class="toctext">Hardware connection</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Install_IDE"><span class="tocnumber">4.2</span> <span class="toctext">Install IDE</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Run_demo"><span class="tocnumber">4.3</span> <span class="toctext">Run demo</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#STM32"><span class="tocnumber">5</span> <span class="toctext">STM32</span></a>
+<ul class="nav">
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Hardware_connection_3"><span class="tocnumber">5.1</span> <span class="toctext">Hardware connection</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Run_demo_2"><span class="tocnumber">5.2</span> <span class="toctext">Run demo</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#ESP32"><span class="tocnumber">6</span> <span class="toctext">ESP32</span></a>
+<ul class="nav">
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Hardware_connection_4"><span class="tocnumber">6.1</span> <span class="toctext">Hardware connection</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Environment_configuration"><span class="tocnumber">6.2</span> <span class="toctext">Environment configuration</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Run_demo_3"><span class="tocnumber">6.3</span> <span class="toctext">Run demo</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#ESP32-WiFi"><span class="tocnumber">6.4</span> <span class="toctext">ESP32-WiFi</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Resources"><span class="tocnumber">7</span> <span class="toctext">Resources</span></a>
+<ul class="nav">
+<li class="toclevel-2 tocsection-6"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Documents"><span class="tocnumber">7.1</span> <span class="toctext">Documents</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Demos"><span class="tocnumber">7.2</span> <span class="toctext">Demos</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Development_resources"><span class="tocnumber">7.3</span> <span class="toctext">Development resources</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Related_link"><span class="tocnumber">7.4</span> <span class="toctext">Related link</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#FAQ"><span class="tocnumber">8</span> <span class="toctext">FAQ</span></a>
+<ul class="nav">
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Software_Issues"><span class="tocnumber">8.1</span> <span class="toctext">Software Issues</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Hardware_Issues"><span class="tocnumber">8.2</span> <span class="toctext">Hardware Issues</span></a></li>
+<li class="toclevel-2"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Screen_Issues"><span class="tocnumber">8.3</span> <span class="toctext">Screen Issues</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Potential_issues_during_development"><span class="tocnumber">8.4</span> <span class="toctext">Potential issues during development</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="https://www.waveshare.com/wiki/13.3inch_e-Paper_HAT+_(E)_Manual#Support"><span class="tocnumber">9</span> <span class="toctext">Support</span></a></li>
+</ul>
+<div id="toctotop"><a href="javascript:scrollTo(0,0);">To Top</a></div></div></div>						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /sidebar-left -->
+					<!-- footer -->
+			<div id="footer" role="contentinfo" class="footer container footer-sticky bg-light" style="margin-top: 0px; opacity: 1;">
+			<ul id="footer-custom"><li class="dropup"><a href="https://www.waveshare.com/w/index.php?title=Special:UserLogin&amp;returnto=13.3inch+e-Paper+HAT%2B+%28E%29+Manual" title="You are encouraged to log in; however, it is not mandatory [alt-shift-o]" accesskey="o">Login / Create Account</a></li></ul><div style="clear:both"></div>			</div>
+			<!-- /footer -->
+		
+<script>
+var fbtFancyBoxOptions = {};
+</script>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgPageParseReport":{"limitreport":{"cputime":"0.277","walltime":"0.474","ppvisitednodes":{"value":1840,"limit":1000000},"postexpandincludesize":{"value":35145,"limit":2097152},"templateargumentsize":{"value":24709,"limit":2097152},"expansiondepth":{"value":6,"limit":40},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":33009,"limit":5000000},"timingprofile":["100.00%  255.939      1 -total"," 39.85%  101.990      1 Template:E-Paper_FAQ_color"," 35.41%   90.617     34 Template:FAQ","  9.09%   23.261      1 Template:Infobox_item","  5.75%   14.713      1 Template:E-paper_for_esp32_use_13in3e","  5.66%   14.475      1 Template:Servicebox1","  5.31%   13.601      1 Template:E-paper_for_rpiuse_13in3e","  4.96%   12.707      1 Template:E-Paper_Principle","  4.82%   12.344      1 Template:E-Paper-precautions_E6","  4.73%   12.110      1 Template:E-Paper_SPI_Communication"]},"cachereport":{"timestamp":"20260106191334","ttl":0,"transientcontent":true}}});mw.config.set({"wgBackendResponseTime":884});});</script>	<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b9d8886e80f8eb9',t:'MTc2NzcyNjgxMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" src="./13.3inch e-Paper HAT+ (E) Manual - Waveshare Wiki_files/saved_resource.html"></iframe>
+
+</body></html>
