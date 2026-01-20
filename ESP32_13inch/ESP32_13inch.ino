@@ -143,8 +143,9 @@ void render(String file_name){
         padding[j] = Color;
     }
 
+    DEV_Delay_ms(5000);
     Debug("EPD_13IN3E_test Demo\r\n");
-    //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
 
     if(psramInit()){
         Serial.println("\nPSRAM is correctly initialized");
