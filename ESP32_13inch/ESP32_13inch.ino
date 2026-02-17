@@ -22,7 +22,7 @@
 #include "SPI.h"
 
 #define uS_TO_S_FACTOR 1000000ULL /* Conversion factor for micro seconds to seconds */
-#define TIME_TO_SLEEP  60*60*12          /* Time ESP32 will go to sleep (in seconds) */
+#define TIME_TO_SLEEP  60*60*13          /* Time ESP32 will go to sleep (in seconds) */
 
 // Uncomment and set up if you want to use custom pins for the SPI communication
 int sck = 18;
