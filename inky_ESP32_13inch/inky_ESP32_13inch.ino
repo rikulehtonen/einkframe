@@ -43,21 +43,25 @@ void setup() {
     const int SD_RETRY_DELAY = 500; // milliseconds
     
 
-    while (!SD.begin(cs) && sd_init_retries < MAX_SD_RETRIES) {
-        Serial.printf("SD Card Mount Failed (attempt %d/%d), retrying...\n", sd_init_retries + 1, MAX_SD_RETRIES);
-        DEV_Delay_ms(SD_RETRY_DELAY);
-        sd_init_retries++;
-    }
+    // while (!SD.begin(cs) && sd_init_retries < MAX_SD_RETRIES) {
+    //     Serial.printf("SD Card Mount Failed (attempt %d/%d), retrying...\n", sd_init_retries + 1, MAX_SD_RETRIES);
+    //     DEV_Delay_ms(SD_RETRY_DELAY);
+    //     sd_init_retries++;
+    // }
 
-    if (sd_init_retries >= MAX_SD_RETRIES) {
-        Serial.println("Card Mount Failed");
-    }
-    else {
-        // Get and print the next file
-        String nextFile = getNextFile();
-        Serial.printf("Processing file: %s\n", nextFile.c_str());
-        render("/" + nextFile);
-    }
+    // if (sd_init_retries >= MAX_SD_RETRIES) {
+    //     Serial.println("Card Mount Failed");
+    // }
+    // else {
+    //     // Get and print the next file
+    //     String nextFile = getNextFile();
+    //     Serial.printf("Processing file: %s\n", nextFile.c_str());
+    //     render("/" + nextFile);
+    // }
+
+    UBYTE Color;
+    Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
+    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
 
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
