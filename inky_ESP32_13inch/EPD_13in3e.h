@@ -52,6 +52,7 @@
 #define BTST_P          0x06
 #define DTM             0x10
 #define DRF             0x12
+#define PPL             0x30
 #define CDI             0x50
 #define TCON            0x60
 #define TRES            0x61
