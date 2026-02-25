@@ -102,8 +102,15 @@ void EPD_13IN3E_CS_ALL(UBYTE Value)
 
 static void EPD_13IN3E_SPI_Sand(UBYTE Cmd, const UBYTE *buf, UDOUBLE Len)
 {
+    // Command: DC low
+    DEV_Digital_Write(EPD_DC_PIN, 0);
+    DEV_Delay_ms(300);
     DEV_SPI_WriteByte(Cmd);
-    DEV_SPI_Write_nByte((UBYTE *)buf,Len);
+    // Data: DC high
+    if (buf != NULL && Len > 0) {
+        DEV_Digital_Write(EPD_DC_PIN, 1);
+        DEV_SPI_Write_nByte((UBYTE *)buf,Len);
+    }
 }
 
 
@@ -119,10 +126,10 @@ static void EPD_13IN3E_Reset(void)
     DEV_Delay_ms(30);
     DEV_Digital_Write(EPD_RST_PIN, 1);
     DEV_Delay_ms(30);
-    DEV_Digital_Write(EPD_RST_PIN, 0);
-    DEV_Delay_ms(30);
-    DEV_Digital_Write(EPD_RST_PIN, 1);
-    DEV_Delay_ms(30);
+    //DEV_Digital_Write(EPD_RST_PIN, 0);
+    //DEV_Delay_ms(30);
+    //DEV_Digital_Write(EPD_RST_PIN, 1);
+    //DEV_Delay_ms(30);
 }
 
 /******************************************************************************
@@ -133,6 +140,8 @@ parameter:
 
 void EPD_13IN3E_SendCommand(UBYTE Reg)
 {
+    // Ensure DC is low for command
+    DEV_Digital_Write(EPD_DC_PIN, 0);
     DEV_SPI_WriteByte(Reg);
 }
 
@@ -143,10 +152,14 @@ parameter:
 ******************************************************************************/
 void EPD_13IN3E_SendData(UBYTE Reg)
 {
+    // Ensure DC is high for data
+    DEV_Digital_Write(EPD_DC_PIN, 1);
     DEV_SPI_WriteByte(Reg);
 }
 void EPD_13IN3E_SendData2(const UBYTE *buf, uint32_t Len)
 {
+    // Ensure DC is high for data
+    DEV_Digital_Write(EPD_DC_PIN, 1);
     DEV_SPI_Write_nByte((UBYTE *)buf,Len);
 }
 
@@ -178,18 +191,21 @@ void EPD_13IN3E_TurnOnDisplay(void)
     EPD_13IN3E_CS_ALL(1);
     EPD_13IN3E_ReadBusyH();
 
+    DEV_Delay_ms(200);
     printf("Write DRF \r\n");
-    DEV_Delay_ms(50);
     EPD_13IN3E_CS_ALL(0);
     EPD_13IN3E_SPI_Sand(DRF, DRF_V, sizeof(DRF_V));
     EPD_13IN3E_CS_ALL(1);
     EPD_13IN3E_ReadBusyH();
 
+    DEV_Delay_ms(32000);
     printf("Write POF \r\n");
     EPD_13IN3E_CS_ALL(0);
     EPD_13IN3E_SPI_Sand(POF, POF_V, sizeof(POF_V));
     EPD_13IN3E_CS_ALL(1);
-    // EPD_13IN3E_ReadBusyH();
+
+    EPD_13IN3E_ReadBusyH();
+    DEV_Delay_ms(200);
     printf("Display Done!! \r\n");
 }
 
@@ -200,7 +216,7 @@ parameter:
 void EPD_13IN3E_Init(void)
 {
 	EPD_13IN3E_Reset();
-//    EPD_13IN3E_ReadBusyH();
+    EPD_13IN3E_ReadBusyH();
 
     DEV_Digital_Write(EPD_CS_M_PIN, 0);
 	EPD_13IN3E_SPI_Sand(AN_TM, AN_TM_V, sizeof(AN_TM_V));

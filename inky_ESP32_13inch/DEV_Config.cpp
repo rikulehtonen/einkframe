@@ -32,8 +32,9 @@
 
 void GPIO_Config(void)
 {
-    
-    pinMode(EPD_BUSY_PIN,  INPUT);
+    // Configure pins. Busy line needs a pull-up so it doesn't float
+    pinMode(EPD_BUSY_PIN,  INPUT_PULLUP);
+
     pinMode(EPD_RST_PIN , OUTPUT);
     pinMode(EPD_DC_PIN  , OUTPUT);
     pinMode(EPD_PWR_PIN,  OUTPUT);
@@ -44,10 +45,14 @@ void GPIO_Config(void)
     pinMode(EPD_CS_M_PIN , OUTPUT);
     pinMode(EPD_CS_S_PIN , OUTPUT);
 
+    // Set sensible initial output levels
     digitalWrite(EPD_CS_M_PIN , HIGH);
     digitalWrite(EPD_CS_S_PIN , HIGH);
     digitalWrite(EPD_SCK_PIN, HIGH);
     digitalWrite(EPD_PWR_PIN , HIGH);
+    // Ensure DC and RST are in known states
+    digitalWrite(EPD_DC_PIN, LOW);
+    //digitalWrite(EPD_RST_PIN, HIGH);
 }
 
 void GPIO_Mode(UWORD GPIO_Pin, UWORD Mode)

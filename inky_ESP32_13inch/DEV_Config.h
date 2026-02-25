@@ -49,8 +49,8 @@
 #define EPD_SCK_PIN     18 // Updated
 #define EPD_MOSI_PIN    23 // Updated
 #define EPD_MISO_PIN    19 // MISO for hardware SPI (ESP32 default)
-#define EPD_CS_M_PIN    2
-#define EPD_CS_S_PIN    13
+#define EPD_CS_M_PIN    2 // Updated first
+#define EPD_CS_S_PIN    13 // Updated second
 #define EPD_DC_PIN      14
 #define EPD_RST_PIN     0
 #define EPD_BUSY_PIN    26

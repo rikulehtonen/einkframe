@@ -59,9 +59,7 @@ void setup() {
     //     render("/" + nextFile);
     // }
 
-    UBYTE Color;
-    Color = (EPD_13IN3E_WHITE<<4)|EPD_13IN3E_WHITE;
-    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+    EPD_13IN3E_Clear(EPD_13IN3E_BLACK);
 
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
