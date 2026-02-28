@@ -309,16 +309,20 @@ void EPD_13IN3E_Clear(UBYTE color)
         buf[j] = Color;
     }
     
-    // Send DTM (Data Transfer Mode) command to CS0 and load data
     DEV_Digital_Write(EPD_CS_M_PIN, 0);
-    DEV_Digital_Write(EPD_CS_S_PIN, 1);
-    EPD_13IN3E_SPI_Sand(DTM, buf, Width * Height / 2);
+    EPD_13IN3E_SendCommand(0x10);
+    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
+        EPD_13IN3E_SendData2(buf, Width/2);
+        DEV_Delay_ms(1);
+    }
     EPD_13IN3E_CS_ALL(1);
 
-    // Send DTM (Data Transfer Mode) command to CS1 and load data
-    DEV_Digital_Write(EPD_CS_M_PIN, 1);
     DEV_Digital_Write(EPD_CS_S_PIN, 0);
-    EPD_13IN3E_SPI_Sand(DTM, buf, Width * Height / 2);
+    EPD_13IN3E_SendCommand(0x10);
+    for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
+        EPD_13IN3E_SendData2(buf, Width/2);
+        DEV_Delay_ms(1);
+    }
     EPD_13IN3E_CS_ALL(1);
     
     EPD_13IN3E_TurnOnDisplay();
@@ -332,16 +336,23 @@ void EPD_13IN3E_Display(const UBYTE *Image)
     Width1 = (Width % 2 == 0)? (Width / 2 ): (Width / 2 + 1);
     Height = EPD_13IN3E_HEIGHT;
     
-    // Send DTM (Data Transfer Mode) command to CS0 with first half of image
     DEV_Digital_Write(EPD_CS_M_PIN, 0);
-    DEV_Digital_Write(EPD_CS_S_PIN, 1);
-    EPD_13IN3E_SPI_Sand(DTM, Image, Width1 * Height);
+    EPD_13IN3E_SendCommand(0x10);
+    for(UDOUBLE i=0; i<Height; i++ )
+    {
+        EPD_13IN3E_SendData2(Image + i*Width,Width1);
+        DEV_Delay_ms(1);
+    }
     EPD_13IN3E_CS_ALL(1);
 
-    // Send DTM (Data Transfer Mode) command to CS1 with second half of image
-    DEV_Digital_Write(EPD_CS_M_PIN, 1);
     DEV_Digital_Write(EPD_CS_S_PIN, 0);
-    EPD_13IN3E_SPI_Sand(DTM, Image + Width1 * Height, Width1 * Height);
+    EPD_13IN3E_SendCommand(0x10);
+    for(UDOUBLE i=0; i<Height; i++ )
+    {
+        EPD_13IN3E_SendData2(Image + i*Width + Width1,Width1);
+        DEV_Delay_ms(1);
+    }
+       
     EPD_13IN3E_CS_ALL(1);
     
     EPD_13IN3E_TurnOnDisplay();
