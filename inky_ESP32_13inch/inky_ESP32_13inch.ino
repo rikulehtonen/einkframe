@@ -34,10 +34,10 @@ File f;
 
 void setup() {
     Serial.begin(115200);
-    DEV_Module_Init();
-    EPD_13IN3E_Init();
     DEV_Delay_ms(3000);
     Debug("EPD_13IN3E_test Demo\r\n");
+    DEV_Module_Init();
+    EPD_13IN3E_Init();
     int sd_init_retries = 0;
     const int MAX_SD_RETRIES = 5;
     const int SD_RETRY_DELAY = 500; // milliseconds
@@ -67,6 +67,8 @@ void setup() {
     Debug("close 5V, Module enters 0 power consumption ...\r\n");
     DEV_Module_Exit();
 
+    DEV_Delay_ms(30000);
+    
     //Deep sleep
     esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
     Serial.println("Setup ESP32 to sleep for every " + String(TIME_TO_SLEEP) + " Seconds");

@@ -80,13 +80,13 @@ const UBYTE AGID_V[1] = {
 };
 
 const UBYTE BTST_P_V[2] = {
-	0xE8, 0x28
+	0xD8, 0x18
 };
 const UBYTE BOOST_VDDP_EN_V[1] = {
 	0x01
 };
 const UBYTE BTST_N_V[2] = {
-	0xE8, 0x28
+	0xD8, 0x18
 };
 const UBYTE BUCK_BOOST_VDDN_V[1] = {
 	0x01
@@ -174,6 +174,7 @@ static void EPD_13IN3E_ReadBusyH(void)
 {
     Debug("e-Paper busy\r\n");
 	while(!DEV_Digital_Read(EPD_BUSY_PIN)) {      //LOW: busy, HIGH: idle
+        Debug("busy\r\n");
         DEV_Delay_ms(10);
         // Debug("e-Paper busy release\r\n");
     }
