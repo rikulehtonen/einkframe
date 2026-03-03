@@ -37,7 +37,7 @@
 const UBYTE PSR_V[2] = {
 	0xDF, 0x69
 };
-const UBYTE PPL_V[1] = {
+const UBYTE PLL_V[1] = {
 	0x08
 };
 const UBYTE PWR_V[6] = {
@@ -235,7 +235,7 @@ void EPD_13IN3E_Init(void)
     EPD_13IN3E_CS_ALL(1);
 
     EPD_13IN3E_CS_ALL(0);
-	EPD_13IN3E_SPI_Sand(PPL, PPL_V, sizeof(PPL_V));
+	EPD_13IN3E_SPI_Sand(PLL, PLL_V, sizeof(PLL_V));
     EPD_13IN3E_CS_ALL(1);
 
     EPD_13IN3E_CS_ALL(0);
