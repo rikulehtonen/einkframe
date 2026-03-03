@@ -298,7 +298,7 @@ parameter:
 ******************************************************************************/
 void EPD_13IN3E_Clear(UBYTE color)
 {
-    UDOUBLE Width, Height;
+/*  UDOUBLE Width, Height;
     UBYTE Color;
     Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
     Height = EPD_13IN3E_HEIGHT;
@@ -324,7 +324,7 @@ void EPD_13IN3E_Clear(UBYTE color)
         EPD_13IN3E_SendData2(buf, Width/2);
         DEV_Delay_ms(1);
     }
-    EPD_13IN3E_CS_ALL(1);
+    EPD_13IN3E_CS_ALL(1); */
     
     EPD_13IN3E_TurnOnDisplay();
 }
@@ -332,133 +332,12 @@ void EPD_13IN3E_Clear(UBYTE color)
 
 void EPD_13IN3E_Display(const UBYTE *Image)
 {
-    UDOUBLE Width, Width1, Height;
-    Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
-    Width1 = (Width % 2 == 0)? (Width / 2 ): (Width / 2 + 1);
-    Height = EPD_13IN3E_HEIGHT;
-    
-    DEV_Digital_Write(EPD_CS_M_PIN, 0);
-    EPD_13IN3E_SendCommand(0x10);
-    for(UDOUBLE i=0; i<Height; i++ )
-    {
-        EPD_13IN3E_SendData2(Image + i*Width,Width1);
-        DEV_Delay_ms(1);
-    }
-    EPD_13IN3E_CS_ALL(1);
-
-    DEV_Digital_Write(EPD_CS_S_PIN, 0);
-    EPD_13IN3E_SendCommand(0x10);
-    for(UDOUBLE i=0; i<Height; i++ )
-    {
-        EPD_13IN3E_SendData2(Image + i*Width + Width1,Width1);
-        DEV_Delay_ms(1);
-    }
-       
-    EPD_13IN3E_CS_ALL(1);
-    
     EPD_13IN3E_TurnOnDisplay();
 }
 
 
 void EPD_13IN3E_DisplayPart(const UBYTE *Image, UWORD xstart, UWORD ystart, UWORD image_width, UWORD image_heigh)
 {
-    UDOUBLE Width, Width1, Height;
-    Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
-    Width1 = (Width % 2 == 0)? (Width / 2 ): (Width / 2 + 1);
-    Height = EPD_13IN3E_HEIGHT;
-    
-    UWORD Xend = ((xstart + image_width)%2 == 0)?((xstart + image_width) / 2 - 1): ((xstart + image_width) / 2 );
-    UWORD Yend = ystart + image_heigh-1;
-    xstart = xstart / 2;
-    
-    if(xstart > 300 )
-    {
-        Xend = Xend - 300;
-        xstart = xstart - 300;
-        DEV_Digital_Write(EPD_CS_M_PIN, 0);
-        EPD_13IN3E_SendCommand(0x10);
-        for (UDOUBLE i = 0; i < Height; i++) {
-            for (UDOUBLE j = 0; j < Width1; j++) {
-                EPD_13IN3E_SendData(0x11);
-            }
-            DEV_Delay_ms(1);
-        }
-        EPD_13IN3E_CS_ALL(1);
-        
-        
-        DEV_Digital_Write(EPD_CS_S_PIN, 0);
-        EPD_13IN3E_SendCommand(0x10);
-        for (UDOUBLE i = 0; i < Height; i++) {
-            for (UDOUBLE j = 0; j < Width1; j++) {
-                if((i<Yend) && (i>=ystart) && (j<Xend) && (j>=xstart)) {
-                    EPD_13IN3E_SendData(Image[(j-xstart) + (image_width/2*(i-ystart))]);
-                }
-                else
-                    EPD_13IN3E_SendData(0x11);
-            }
-            DEV_Delay_ms(1);
-        }
-        EPD_13IN3E_CS_ALL(1);
-    }
-    else if(Xend < 300 )
-    {
-        DEV_Digital_Write(EPD_CS_M_PIN, 0);
-        EPD_13IN3E_SendCommand(0x10);
-        for (UDOUBLE i = 0; i < Height; i++) {
-            for (UDOUBLE j = 0; j < Width1; j++) {
-                if((i<Yend) && (i>=ystart) && (j<Xend) && (j>=xstart)) {
-                    EPD_13IN3E_SendData(Image[(j-xstart) + (image_width/2*(i-ystart))]);
-                }
-                else
-                    EPD_13IN3E_SendData(0x11);
-            }
-            DEV_Delay_ms(1);
-        }
-        EPD_13IN3E_CS_ALL(1);
-        
-        
-        DEV_Digital_Write(EPD_CS_S_PIN, 0);
-        EPD_13IN3E_SendCommand(0x10);
-        for (UDOUBLE i = 0; i < Height; i++) {
-            for (UDOUBLE j = 0; j < Width1; j++) {
-                EPD_13IN3E_SendData(0x11);
-            }
-            DEV_Delay_ms(1);
-        }
-        EPD_13IN3E_CS_ALL(1);
-    }
-    else
-    {
-        DEV_Digital_Write(EPD_CS_M_PIN, 0);
-        EPD_13IN3E_SendCommand(0x10);
-        for (UDOUBLE i = 0; i < Height; i++) {
-            for (UDOUBLE j = 0; j < Width1; j++) {
-                if((i<Yend) && (i>=ystart) && (j>=xstart)) {
-                    EPD_13IN3E_SendData(Image[(j-xstart) + (image_width/2*(i-ystart))]);
-                }
-                else
-                    EPD_13IN3E_SendData(0x11);
-            }
-            DEV_Delay_ms(1);
-        }
-        EPD_13IN3E_CS_ALL(1);
-        
-        
-        DEV_Digital_Write(EPD_CS_S_PIN, 0);
-        EPD_13IN3E_SendCommand(0x10);
-        for (UDOUBLE i = 0; i < Height; i++) {
-            for (UDOUBLE j = 0; j < Width1; j++) {
-                if((i<Yend) && (i>=ystart) && (j<Xend-300)) {
-                    EPD_13IN3E_SendData(Image[(j+300-xstart) + (image_width/2*(i-ystart))]);
-                }
-                else
-                    EPD_13IN3E_SendData(0x11);
-            }
-            DEV_Delay_ms(1);
-        }
-        EPD_13IN3E_CS_ALL(1);
-    }
-
     EPD_13IN3E_TurnOnDisplay();
 }
 
@@ -466,38 +345,6 @@ void EPD_13IN3E_DisplayPart(const UBYTE *Image, UWORD xstart, UWORD ystart, UWOR
 
 void EPD_13IN3E_Show6Block(void)
 {
-    unsigned long i, j, k;
-    UWORD Width, Height;
-    Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
-    Height = EPD_13IN3E_HEIGHT;
-    unsigned char const Color_seven[6] = 
-    {EPD_13IN3E_BLACK, EPD_13IN3E_BLUE, EPD_13IN3E_GREEN,
-    EPD_13IN3E_RED, EPD_13IN3E_YELLOW, EPD_13IN3E_WHITE};
-    
-    DEV_Digital_Write(EPD_CS_M_PIN, 0);
-    EPD_13IN3E_SendCommand(0x10);
-    for (k = 0; k < 6; k++) {
-        for (j = 0; j < Height/6; j++) {
-            for (i = 0; i < Width/2; i++) {
-                EPD_13IN3E_SendData(Color_seven[k]|(Color_seven[k]<<4));
-            }
-        }
-        DEV_Delay_ms(1);
-    }
-    EPD_13IN3E_CS_ALL(1);
-    
-    DEV_Digital_Write(EPD_CS_S_PIN, 0);
-    EPD_13IN3E_SendCommand(0x10);
-    for (k = 0; k < 6; k++) {
-        for (j = 0; j < Height/6; j++) {
-            for (i = 0; i < Width/2; i++) {
-                EPD_13IN3E_SendData(Color_seven[k]|(Color_seven[k]<<4));
-            }
-        }
-        DEV_Delay_ms(1);
-    }
-    EPD_13IN3E_CS_ALL(1);
-    
     EPD_13IN3E_TurnOnDisplay();
 }
 
