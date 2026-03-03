@@ -61,13 +61,14 @@ void setup() {
 
     EPD_13IN3E_Clear(EPD_13IN3E_BLACK);
 
+    DEV_Delay_ms(30000);
+
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
     // close 5V
     Debug("close 5V, Module enters 0 power consumption ...\r\n");
-    DEV_Module_Exit();
 
-    DEV_Delay_ms(30000);
+    DEV_Module_Exit();
     
     //Deep sleep
     esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
