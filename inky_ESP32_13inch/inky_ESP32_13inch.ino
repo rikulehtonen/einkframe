@@ -43,31 +43,26 @@ void setup() {
     const int SD_RETRY_DELAY = 500; // milliseconds
     
 
-    // while (!SD.begin(cs) && sd_init_retries < MAX_SD_RETRIES) {
-    //     Serial.printf("SD Card Mount Failed (attempt %d/%d), retrying...\n", sd_init_retries + 1, MAX_SD_RETRIES);
-    //     DEV_Delay_ms(SD_RETRY_DELAY);
-    //     sd_init_retries++;
-    // }
+    while (!SD.begin(cs) && sd_init_retries < MAX_SD_RETRIES) {
+        Serial.printf("SD Card Mount Failed (attempt %d/%d), retrying...\n", sd_init_retries + 1, MAX_SD_RETRIES);
+        DEV_Delay_ms(SD_RETRY_DELAY);
+        sd_init_retries++;
+    }
 
-    // if (sd_init_retries >= MAX_SD_RETRIES) {
-    //     Serial.println("Card Mount Failed");
-    // }
-    // else {
-    //     // Get and print the next file
-    //     String nextFile = getNextFile();
-    //     Serial.printf("Processing file: %s\n", nextFile.c_str());
-    //     render("/" + nextFile);
-    // }
-
-    EPD_13IN3E_Clear(EPD_13IN3E_BLACK);
-
-    DEV_Delay_ms(30000);
+    if (sd_init_retries >= MAX_SD_RETRIES) {
+        Serial.println("Card Mount Failed");
+    }
+    else {
+        // Get and print the next file
+        String nextFile = getNextFile();
+        Serial.printf("Processing file: %s\n", nextFile.c_str());
+        render("/" + nextFile);
+    }
 
     Debug("Goto Sleep...\r\n");
     EPD_13IN3E_Sleep();
     // close 5V
     Debug("close 5V, Module enters 0 power consumption ...\r\n");
-
     DEV_Module_Exit();
     
     //Deep sleep
@@ -150,7 +145,7 @@ void render(String file_name){
 
     DEV_Delay_ms(5000);
     Debug("EPD_13IN3E_test Demo\r\n");
-    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+    //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
 
     if(psramInit()){
         Serial.println("\nPSRAM is correctly initialized");

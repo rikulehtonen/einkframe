@@ -114,6 +114,8 @@ static void EPD_13IN3E_SPI_Sand(UBYTE Cmd, const UBYTE *buf, UDOUBLE Len)
         DEV_Digital_Write(EPD_DC_PIN, 1);
         DEV_SPI_Write_nByte((UBYTE *)buf,Len);
     }
+    // Reset DC low to match Python driver behaviour
+    DEV_Digital_Write(EPD_DC_PIN, 0);
 }
 
 
@@ -174,7 +176,6 @@ static void EPD_13IN3E_ReadBusyH(void)
 {
     Debug("e-Paper busy\r\n");
 	while(!DEV_Digital_Read(EPD_BUSY_PIN)) {      //LOW: busy, HIGH: idle
-        Debug("busy\r\n");
         DEV_Delay_ms(10);
         // Debug("e-Paper busy release\r\n");
     }
@@ -191,7 +192,7 @@ void EPD_13IN3E_TurnOnDisplay(void)
 {
     printf("Write PON \r\n");
     EPD_13IN3E_CS_ALL(0);
-    EPD_13IN3E_SendCommand(0x04); // POWER_ON
+    EPD_13IN3E_SPI_Sand(PON, NULL, 0); // POWER_ON with 300ms DC setup delay
     EPD_13IN3E_CS_ALL(1);
     EPD_13IN3E_ReadBusyH();
 
@@ -298,20 +299,20 @@ parameter:
 ******************************************************************************/
 void EPD_13IN3E_Clear(UBYTE color)
 {
-/*  UDOUBLE Width, Height;
+    UDOUBLE Width, Height;
     UBYTE Color;
     Width = (EPD_13IN3E_WIDTH % 2 == 0)? (EPD_13IN3E_WIDTH / 2 ): (EPD_13IN3E_WIDTH / 2 + 1);
     Height = EPD_13IN3E_HEIGHT;
     Color = (color<<4)|color;
-    
+
     UBYTE buf[Width/2];
-    
+
     for (UDOUBLE j = 0; j < Width/2; j++) {
         buf[j] = Color;
     }
-    
+
     DEV_Digital_Write(EPD_CS_M_PIN, 0);
-    EPD_13IN3E_SendCommand(0x10);
+    EPD_13IN3E_SPI_Sand(DTM, NULL, 0); // DTM with 300ms DC setup delay
     for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
         EPD_13IN3E_SendData2(buf, Width/2);
         DEV_Delay_ms(1);
@@ -319,13 +320,13 @@ void EPD_13IN3E_Clear(UBYTE color)
     EPD_13IN3E_CS_ALL(1);
 
     DEV_Digital_Write(EPD_CS_S_PIN, 0);
-    EPD_13IN3E_SendCommand(0x10);
+    EPD_13IN3E_SPI_Sand(DTM, NULL, 0); // DTM with 300ms DC setup delay
     for (UDOUBLE j = 0; j < EPD_13IN3E_HEIGHT; j++) {
         EPD_13IN3E_SendData2(buf, Width/2);
         DEV_Delay_ms(1);
     }
-    EPD_13IN3E_CS_ALL(1); */
-    
+    EPD_13IN3E_CS_ALL(1);
+
     EPD_13IN3E_TurnOnDisplay();
 }
 
@@ -358,7 +359,7 @@ void EPD_13IN3E_Sleep(void)
     EPD_13IN3E_CS_ALL(0);
     EPD_13IN3E_SendCommand(0x07); // DEEP_SLEEP
     EPD_13IN3E_SendData(0XA5);
-    EPD_13IN3E_CS_ALL(1);
+    EPD_13IN3E_CS_ALL(0);
 }
 
 
