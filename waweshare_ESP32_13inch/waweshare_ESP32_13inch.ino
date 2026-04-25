@@ -31,6 +31,7 @@ int mosi = 23;
 int cs = 17;
 
 File f;
+int g_current_file_index = 0;  // Global to track which file number we're on
 
 void setup() {
     Serial.begin(115200);
@@ -56,6 +57,10 @@ void setup() {
         // Get and print the next file
         String nextFile = getNextFile();
         Serial.printf("Processing file: %s\n", nextFile.c_str());
+        // Clear screen every 5 files (index 0, 5, 10, etc.)
+        if (g_current_file_index % 5 == 0) {
+            EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+        }
         render("/" + nextFile);
     }
 
@@ -122,6 +127,9 @@ String getNextFile() {
         Serial.println("Error opening config.txt for writing");
     }
 
+    // Store the current index globally
+    g_current_file_index = config_index;
+
     // Print the next file name
     Serial.printf("Next file: %s\n", file_name.c_str());
     return file_name;
@@ -145,7 +153,7 @@ void render(String file_name){
 
     DEV_Delay_ms(5000);
     Debug("EPD_13IN3E_test Demo\r\n");
-    EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
+    //EPD_13IN3E_Clear(EPD_13IN3E_WHITE);
 
     if(psramInit()){
         Serial.println("\nPSRAM is correctly initialized");

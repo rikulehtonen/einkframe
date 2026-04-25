@@ -1,6 +1,6 @@
 # E-ink Art Frame - Low-Power Picture Display
 
-A low-power digital art frame that cycles through images stored on an SD card, displayed on a Waveshare 6-color e-paper screen. The display retains its image indefinitely without power, making it ideal for a always-on picture frame.
+A low-power digital art frame that cycles through images stored on an SD card, displayed on a 6-color e-paper screen. The display retains its image indefinitely without power, making it ideal for an always-on picture frame. Supports both Waveshare and Pimoroni Inky Impression panels.
 
 ![E-ink frame photo](einkframe.jpg)
 
@@ -9,7 +9,7 @@ A low-power digital art frame that cycles through images stored on an SD card, d
 - Cycles through images stored on a microSD card
 - 6-color e-paper display: black, white, yellow, red, blue, green
 - Ultra-low power — display holds image without power between updates
-- Two display size variants: 4-inch and 13.3-inch
+- Three firmware variants: 4-inch Arduino R4, 13.3-inch Waveshare ESP32, 13.3-inch Inky Impression ESP32
 - Custom PCB hardware designs included
 
 ---
@@ -28,13 +28,22 @@ A low-power digital art frame that cycles through images stored on an SD card, d
 - **Update interval:** every 13 hours (deep sleep between updates)
 - Firmware: [waweshare_ESP32_13inch/](waweshare_ESP32_13inch/)
 
+### 13.3-inch (Pimoroni Inky Impression) — ESP32
+- **Resolution:** 1200 × 1600 px
+- **Controller:** ESP32 (with PSRAM)
+- **Update interval:** every 13 hours (deep sleep between updates)
+- **Display:** Pimoroni Inky Impression 13.3" (uses the same underlying panel as the Waveshare variant)
+- **Difference from Waveshare variant:** skips the initial screen clear before rendering, avoiding a full white flash on each update
+- Firmware: [inky_ESP32_13inch/](inky_ESP32_13inch/)
+
 ---
 
 ## Repository Structure
 
 ```
-├── waweshare_Arduino_R4_4inch/   # Arduino R4 firmware for 4-inch display
-├── waweshare_ESP32_13inch/       # ESP32 firmware for 13-inch display
+├── waweshare_Arduino_R4_4inch/   # Arduino R4 firmware for 4-inch Waveshare display
+├── waweshare_ESP32_13inch/       # ESP32 firmware for 13-inch Waveshare display
+├── inky_ESP32_13inch/            # ESP32 firmware for 13-inch Pimoroni Inky Impression
 ├── image_conversion/             # Python script to convert images for the display
 │   ├── convert.py
 │   ├── input/                    # Place source PNG files here
@@ -88,8 +97,9 @@ The firmware reads the current index from `config.txt`, displays that image, inc
 ### 3. Flash the Firmware
 
 Open the appropriate sketch in the Arduino IDE:
-- **4-inch:** `waweshare_Arduino_R4_4inch/Arduino_R4_4inch.ino`
-- **13-inch:** `waweshare_ESP32_13inch/waweshare_ESP32_13inch.ino`
+- **4-inch Waveshare:** `waweshare_Arduino_R4_4inch/Arduino_R4_4inch.ino`
+- **13-inch Waveshare:** `waweshare_ESP32_13inch/waweshare_ESP32_13inch.ino`
+- **13-inch Inky Impression:** `inky_ESP32_13inch/inky_ESP32_13inch.ino`
 
 Flash to your board using the Arduino IDE.
 
@@ -110,7 +120,7 @@ Flash to your board using the Arduino IDE.
 | PWR      | 6           |
 | SD CS    | 4           |
 
-### ESP32 (13-inch display)
+### ESP32 (13-inch Waveshare and Inky Impression — same pins)
 
 | Signal   | ESP32 Pin |
 |----------|-----------|
